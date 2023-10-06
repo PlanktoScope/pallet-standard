@@ -1,3 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/device-backend/controller
 features:
   - camera-preview-stream-mjpeg
+disabled: false

@@ -1,3 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/docs
 features:
   - website
+disabled: false

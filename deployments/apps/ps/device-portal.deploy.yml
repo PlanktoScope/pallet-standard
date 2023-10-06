@@ -1,3 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/device-portal
 features:
   - frontend
+disabled: false

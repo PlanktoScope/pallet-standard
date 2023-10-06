@@ -1,3 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/filebrowser-backend-logs
 features:
   - frontend
+disabled: false
