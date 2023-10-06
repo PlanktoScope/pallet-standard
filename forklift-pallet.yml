@@ -1,2 +1,4 @@
-environment:
+pallet:
+  path: github.com/PlanktoScope/pallet-standard
   description: Standard configuration of Pallet package deployments for the PlanktoScope software distro
+  readme-file: README.md
