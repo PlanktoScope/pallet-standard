@@ -8,6 +8,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Changed
+
+- (Breaking change) Updated files for use with v0.4.0 of the Forklift tool. Previous versions must be used with forklift v0.3.
+
 ## v2023.9.0-beta.1 - 2023-09-14
 
 ### Changed
@@ -18,4 +22,16 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Added
 
-- Repository and package deployment configuration for the v2023.9.0 release
+- Packages for host resources.
+
+### Changed
+
+- (Breaking change) Updated files for use with v0.3.1 of the Forklift tool. Previous versions must be used with forklift v0.1.
+- (Breaking change) Reorganized packages with a directory tree structure.
+- Upgraded various Docker images.
+
+## v2023.9.0-alpha.0 - 2023-05-30
+
+### Added
+
+- Basic repository and package deployment configuration for the v2023.9.0 release
