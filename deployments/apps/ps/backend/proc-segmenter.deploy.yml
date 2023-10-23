@@ -1,4 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/device-backend/processing/segmenter
 features:
-  - mjpeg-object-stream
+  - object-stream-mjpeg
 disabled: false

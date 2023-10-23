@@ -1,4 +1,0 @@
-package: github.com/PlanktoScope/device-pkgs/testing/nodered-sandbox
-features:
-  - editor
-disabled: true

@@ -1,0 +1,5 @@
+package: github.com/PlanktoScope/device-pkgs/testing/simple-demo
+features:
+  - hello
+  - whoami
+disabled: true
