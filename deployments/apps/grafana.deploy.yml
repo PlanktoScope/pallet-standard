@@ -1,0 +1,5 @@
+package: github.com/PlanktoScope/device-pkgs/core/apps/grafana
+features:
+  - frontend
+  - no-login
+disabled: false
