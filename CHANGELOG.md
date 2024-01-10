@@ -3,14 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.MM.patch` scheme.
+and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
 ## Unreleased
 
 ### Added
 
-- Package for Dozzle.
+- Deployment for Dozzle as a Docker container log viewer.
+- Deployments for Prometheus metrics monitoring.
 
 ## v2023.9.0 - 2023-12-30
 
