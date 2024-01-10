@@ -8,6 +8,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- Package for Dozzle.
+
 ## v2023.9.0 - 2023-12-30
 
 (this release involves no changes from v2023.9.0-beta.2; it's just a promotion of v2023.9.0-beta.2 to a stable release)

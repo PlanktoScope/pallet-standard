@@ -1,0 +1,4 @@
+package: github.com/PlanktoScope/device-pkgs/core/apps/dozzle
+features:
+  - frontend
+disabled: false
