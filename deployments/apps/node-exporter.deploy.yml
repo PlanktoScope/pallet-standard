@@ -1,0 +1,4 @@
+package: github.com/PlanktoScope/device-pkgs/core/apps/node-exporter
+features:
+  - node-exporter
+disabled: false
