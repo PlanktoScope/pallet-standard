@@ -1,5 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/infra/prometheus
 features:
-  - frontend
-  - direct
+  - api
 disabled: false
