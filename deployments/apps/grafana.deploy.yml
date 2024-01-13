@@ -2,4 +2,6 @@ package: github.com/PlanktoScope/device-pkgs/core/apps/grafana
 features:
   - frontend
   - no-login
+  - prometheus-datasource
+  - host-summary-dashboard
 disabled: false

@@ -3,4 +3,6 @@ package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/node-red-das
 features:
   - editor
   - frontend
+  - requires-grafana-host-summary-dashboard
+  - requires-filebrowser-datasets
 disabled: false
