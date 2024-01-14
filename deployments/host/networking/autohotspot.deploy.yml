@@ -1,0 +1,3 @@
+package: github.com/PlanktoScope/device-pkgs/core/host/networking/autohotspot
+features:
+disabled: false

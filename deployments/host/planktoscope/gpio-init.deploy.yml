@@ -1,0 +1,3 @@
+package: github.com/PlanktoScope/device-pkgs/core/host/planktoscope/gpio-init
+features:
+disabled: false

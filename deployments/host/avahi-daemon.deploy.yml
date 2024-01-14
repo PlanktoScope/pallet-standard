@@ -1,3 +1,0 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/avahi-daemon
-features:
-disabled: false
