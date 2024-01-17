@@ -14,6 +14,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployments for Prometheus metrics monitoring.
 - Deployments for various scripts to make available for running on the host.
 
+### Changed
+
+- Deployment `apps/ps/backend/proc-segmenter` now deploys the segmenter as a Docker container instead of assuming it's available on the host.
+
 ## v2023.9.0 - 2023-12-30
 
 (this release involves no changes from v2023.9.0-beta.2; it's just a promotion of v2023.9.0-beta.2 to a stable release)
