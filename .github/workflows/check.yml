@@ -33,5 +33,5 @@ jobs:
         run: |
           forklift dev plt cache-repo
           forklift dev plt check
-          forklift dev plan --parallel
-          forklift dev plan
+          forklift dev plt plan --parallel
+          forklift dev plt plan
