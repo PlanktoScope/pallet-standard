@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Setup Forklift
-        uses: PlanktoScope/setup-forklift@v0
+        uses: PlanktoScope/setup-forklift@v0.1
         with:
           version: ${{ matrix.forklift-version }}
 
