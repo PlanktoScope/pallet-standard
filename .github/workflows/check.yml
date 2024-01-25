@@ -29,9 +29,14 @@ jobs:
         with:
           version: ${{ matrix.forklift-version }}
 
+      - name: Cache Forklift repos
+        run: forklift dev plt cache-repo
+
       - name: Run Forklift checks
         run: |
-          forklift dev plt cache-repo
           forklift dev plt check
+
+      - name: Dry-run Forklift plans from an empty host
+        run: |
           forklift dev plt plan --parallel
           forklift dev plt plan
