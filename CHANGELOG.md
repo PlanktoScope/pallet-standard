@@ -16,6 +16,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Upgraded packages so that some now require certain files to be provided by the host.
 
+### Fixed
+
+- The container created by deployment `apps/ps/backend/proc-segmenter` now runs as the `root` user, so that it correctly handles root directories created on the host by `apps/ps/backend/controller`.
+
 ## v2024.0.0-alpha.0 - 2024-02-06
 
 ### Added
