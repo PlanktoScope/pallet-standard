@@ -15,20 +15,18 @@ This Github repository has three release channels, each corresponding to a Git b
 the `stable` branch (recommended so that you will automatically be notified for new stable versions)
 or a specific Git tag.
 
-You can clone this Forklift pallet to your PlanktoScope (or any computer acting as a Docker host)
-using the [`forklift`](https://github.com/PlanktoScope/forklift) tool. For example, you can run any
-one of the `forklift` CLI commands, depending on which release of this pallet you want:
+You can clone and apply this Forklift pallet to your PlanktoScope using the
+[`forklift`](https://github.com/PlanktoScope/forklift) tool. For example, you can run any
+of the following `forklift` CLI commands, depending on which release of this pallet you want:
 ```
-// to clone and track the latest release of the edge branch:
-forklift plt clone github.com/PlanktoScope/pallet-standard@edge
+// to clone the latest development (unstable) version of the edge branch:
+forklift plt switch github.com/PlanktoScope/pallet-standard@edge
+// to clone the latest beta or stable (pre-)release of the edge branch:
+forklift plt switch github.com/PlanktoScope/pallet-standard@beta
+// to clone the latest stable release of the edge branch:
+forklift plt switch github.com/PlanktoScope/pallet-standard@stable
 // to clone the v2023.9.0 release:
-forklift plt clone github.com/PlanktoScope/pallet-standard@v2023.9.0
-```
-
-Then you can apply the cloned pallet on your PlanktoScope (or the Docker host you're running) using
-the following `forklift` CLI command:
-```
-forklift plt apply
+forklift plt switch github.com/PlanktoScope/pallet-standard@v2023.9.0
 ```
 
 Warning: this will replace all Docker containers on your Docker host with the package deployments
