@@ -54,6 +54,14 @@ more details and usage information, refer to the
 ["Work on a development pallet"](https://github.com/PlanktoScope/forklift#work-on-a-development-pallet)
 section.
 
+The most common routine maintenance task will be to upgrade the version of the
+[`github.com/PlanktoScope/device-pkgs`](https://github.com/PlanktoScope/device-pkgs) repository used
+by this pallet. You can do that using a command like the following:
+
+```
+forklift dev --cwd {path to your local copy of the pallet for development} plt add-repo github.com/PlanktoScope/device-pkgs@{version to upgrade to}
+```
+
 ## Licensing
 
 Forklift packages deployed by this pallet have their own software licenses, as specified in the
