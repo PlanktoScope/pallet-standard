@@ -1,3 +1,5 @@
 package: github.com/PlanktoScope/device-pkgs/core/host/sshd
 features:
+  - ssh-server-enabled
+  - ensure-ssh-host-keys
 disabled: false
