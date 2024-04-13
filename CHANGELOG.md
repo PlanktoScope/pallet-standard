@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+- Added a `host/docker` deployment which exports an override to the default systemd `docker.service`.
+- Deployment `host/cockpit` now exports a default basic config file for Cockpit.
+- Deployment `host/networking/autohotspot` now exports everything needed for autohotspot functionality.
+- Deployment `host/networking/dhcpcd` now exports an override to the default systemd `dhcpcd.service`.
+- Deployment `host/networking/dnsmasq` now exports various drop-in config files for dnsmasq and enables the system-provided `dhcpcd.service`.
+- Deployment `host/networking/hostapd` now exports a default basic config file for hostapd.
+- Deployment `host/networking/interface-forwarding` now exports everything needed for interface-forwarding functionality.
+- Deployment `host/sshd` now enables the system-provided `ssh.service` and adds & enables a service which automatically regenerates host keys for the SSH server if no host keys exist at boot.
+
+### Changed
+
+- (Breaking change) The minimum supported Forklift version for using this repository has been bumped from v0.4.0 to v0.7.0-alpha.3, because some packages provided by this repository now require functionality added by v0.7.0 (namely, file-exporting functionality) in order to work as described/expected.
+
+### Removed
+
+- Deployment `apps/cockpit/deploy.yml` no longer has a resource dependency on a fileset involving `/etc/cockpit/cockpit.conf`.
+
 ## v2024.0.0-alpha.1 - 2024-03-26
 
 ### Added
