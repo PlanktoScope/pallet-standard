@@ -1,3 +1,5 @@
 package: github.com/PlanktoScope/device-pkgs/core/host/planktoscope/machine-name
 features:
+  - generate-hostname
+  - update-cockpit-origins
 disabled: false
