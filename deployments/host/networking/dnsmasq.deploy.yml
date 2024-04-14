@@ -1,5 +1,4 @@
 package: github.com/PlanktoScope/device-pkgs/core/host/networking/dnsmasq
 features:
-  - systemd-service-enabled
   - planktoscope-dhcp-interfaces
 disabled: false
