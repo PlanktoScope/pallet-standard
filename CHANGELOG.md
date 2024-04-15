@@ -8,13 +8,20 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- Deployment `apps/cockpit` now exports a drop-in config file for reverse-proxying (see the notes on additions to `core/host/cockpit`)
+- Deployment `apps/ps/node-red-dashboard` now exports more config files needed for the Node-RED dashboard.
+- Deployment `host/cockpit` now exports system services to automatically generate a Cockpit config file from drop-in config file fragments, and various drop-in config files for Cockpit.
 - Added a `host/docker` deployment which exports an override to the default systemd `docker.service`.
-- Deployment `host/cockpit` now exports a default basic config file for Cockpit.
 - Deployment `host/networking/autohotspot` now exports everything needed for autohotspot functionality.
 - Deployment `host/networking/dhcpcd` now exports an override to the default systemd `dhcpcd.service`.
 - Deployment `host/networking/dnsmasq` now exports various drop-in config files for dnsmasq.
 - Deployment `host/networking/hostapd` now exports a default basic config file for hostapd.
 - Deployment `host/networking/interface-forwarding` now exports everything needed for interface-forwarding functionality.
+- Deployment `host/planktoscope/gpio-init` now exports everything needed for GPIO-initialization functionality.
+- Deployment `host/planktoscope/gpsd` now exports all config files needed to support the GPS module (still no guarantee whether the files are actually correct, though!).
+- Deployment `host/planktoscope/machine-name` now exports everything needed for automatically updating machine name-related configurations (machine name, hostname, SSID, Cockpit configuration).
 - Deployment `host/sshd` now enables the system-provided `ssh.service` and adds & enables a service which automatically regenerates host keys for the SSH server if no host keys exist at boot.
 
 ### Changed
