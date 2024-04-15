@@ -1,6 +1,0 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/planktoscope/machine-name
-features:
-  - synchronize-hostname
-  - hostname-prefix-pkscope
-  - update-cockpit-origins
-disabled: false

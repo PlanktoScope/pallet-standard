@@ -1,0 +1,5 @@
+package: github.com/PlanktoScope/device-pkgs/core/host/machine-name
+features:
+  - generate-hostname-templated
+  - hostname-template-pkscope
+disabled: false

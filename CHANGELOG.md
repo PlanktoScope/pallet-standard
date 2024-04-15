@@ -27,6 +27,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (Breaking change) The minimum supported Forklift version for using this repository has been bumped from v0.4.0 to v0.7.0-alpha.3, because some packages provided by this repository now require functionality added by v0.7.0 (namely, file-exporting functionality) in order to work as described/expected.
+- (Breaking change) Deployment `host/planktoscope/machine-name` has been renamed to `host/machine-name`.
 
 ### Removed
 
