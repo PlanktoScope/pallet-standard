@@ -1,3 +1,5 @@
 package: github.com/PlanktoScope/device-pkgs/core/host/networking/avahi-daemon
 features:
+  - register-planktoscope-local
+  - register-pkscope-local
 disabled: false
