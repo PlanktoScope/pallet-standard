@@ -19,6 +19,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `host/networking/dhcpcd` now exports an override to the default systemd `dhcpcd.service`.
 - Deployment `host/networking/dnsmasq` now exports various drop-in config files for dnsmasq.
 - Deployment `host/networking/hostapd` now exports a default basic config file for hostapd.
+- Deployment `host/networking/hosts` now exports system services to automatically generate a hosts file from drop-in hosts file fragments.
 - Deployment `host/networking/interface-forwarding` now exports everything needed for interface-forwarding functionality.
 - Deployment `host/planktoscope/gpio-init` now exports everything needed for GPIO-initialization functionality.
 - Deployment `host/planktoscope/gpsd` now exports all config files needed to support the GPS module (still no guarantee whether the files are actually correct, though!).
