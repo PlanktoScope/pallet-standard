@@ -13,6 +13,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `apps/cockpit` now exports a drop-in config file for reverse-proxying (see the notes on additions to `core/host/cockpit`)
 - Deployment `apps/ps/node-red-dashboard` now exports more config files needed for the Node-RED dashboard.
 - Deployment `host/cockpit` now exports system services to automatically generate a Cockpit config file from drop-in config file fragments, and various drop-in config files for Cockpit.
+- Deployment `host/dnsmasq` now exports system services to automatically generate a dnsmasq drop-in config file from drop-in config file templates.
 - Added a `host/docker` deployment which exports an override to the default systemd `docker.service`.
 - Deployment `host/networking/autohotspot` now exports everything needed for autohotspot functionality.
 - Deployment `host/networking/dhcpcd` now exports an override to the default systemd `dhcpcd.service`.
