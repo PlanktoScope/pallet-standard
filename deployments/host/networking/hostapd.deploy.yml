@@ -3,4 +3,5 @@ features:
   - interface-wlan0
   - localization-us
   - planktoscope-password
+  - ssid-hostname
 disabled: false
