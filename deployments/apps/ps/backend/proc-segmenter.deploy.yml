@@ -6,4 +6,6 @@ features:
   # - dev-data
   # - dev-logs
   # - dev-src
+  # Uncomment the following line to re-enable subtraction of masks between consecutive frames:
+  # - pipeline-subtract-consecutive-masks
 disabled: false
