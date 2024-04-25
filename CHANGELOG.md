@@ -33,6 +33,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Breaking change) Deployment `host/planktoscope/machine-name` has been renamed to `host/machine-name`.
 - Docker container images have been bumped to newer versions for almost all package deployments.
 - Deployment `apps/cockpit/deploy.yml` no longer has a resource dependency on a fileset involving `/etc/cockpit/cockpit.conf`.
+- Deployment `host/networking/interface-forwarding` has a slightly simpler network configuration, and now all packets for the PlanktoScope's static IP addresses (e.g. 192.168.4.1, 192.168.5.1, 192.168.6.1, etc.) are routed to 127.0.0.1 regardless of whether the packet for that IP address came from the interface corresponding to it.
 
 ### Deprecated
 
