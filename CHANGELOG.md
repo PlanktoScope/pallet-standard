@@ -28,12 +28,16 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change) Previously, the default behavior of the segmenter deployed by `apps/ps/backend/proc-segmenter` was to subtract consecutive masks to try to mitigate image-processing issues with objects which get stuck to the flowcell during imaging. However, when different objects occupied the same space in consecutive frames, the subtraction behavior would subtract one object's mask from the mask of the other object in the following frame, which would produce clearly incorrect masks. This behavior is no longer enabled by default; in order to re-enable it, you should enable the `pipeline-subtract-consecutive-masks` feature flag in the package deployment.
 - (Breaking change) The minimum supported Forklift version for using this repository has been bumped from v0.4.0 to v0.7.0-alpha.3, because some packages provided by this repository now require functionality added by v0.7.0 (namely, file-exporting functionality) in order to work as described/expected.
 - (Breaking change) Deployment `host/planktoscope/machine-name` has been renamed to `host/machine-name`.
-
-### Removed
-
+- Docker container images have been bumped to newer versions for almost all package deployments.
 - Deployment `apps/cockpit/deploy.yml` no longer has a resource dependency on a fileset involving `/etc/cockpit/cockpit.conf`.
+- Deployment `host/networking/interface-forwarding` has a slightly simpler network configuration, and now all packets for the PlanktoScope's static IP addresses (e.g. 192.168.4.1, 192.168.5.1, 192.168.6.1, etc.) are routed to 127.0.0.1 regardless of whether the packet for that IP address came from the interface corresponding to it.
+
+### Deprecated
+
+- Deployment `apps/portainer` will no longer be enabled by default after v2024.0.0. This is because it requires inclusion of a relatively large Docker container image in the PlanktoScope OS's SD card image (which is constrained to be up to 2 GB in size so that it can be attached as an upload to GitHub Releases), and because it has an annoying first-time user experience (i.e. that a password must be set within a few minutes of boot, or else the Portainer container must be restarted), and because Dozzle already provides all the basic functionalities needed by most users, and because Portainer has never actually been used for troubleshooting within the past year of the project.
 
 ## v2024.0.0-alpha.1 - 2024-03-26
 
