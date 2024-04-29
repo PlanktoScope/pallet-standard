@@ -1,5 +1,5 @@
 # pallet-standard
-The standard configuration of Forklift package deployments for PlanktoScopes
+The standard configuration of Forklift package deployments for the PlanktoScope OS
 
 ## Introduction
 

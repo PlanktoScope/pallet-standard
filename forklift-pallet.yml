@@ -2,5 +2,5 @@ forklift-version: v0.7.0
 
 pallet:
   path: github.com/PlanktoScope/pallet-standard
-  description: Standard configuration of Forklift package deployments for the PlanktoScope software distro
+  description: Standard configuration of Forklift package deployments for the PlanktoScope OS
   readme-file: README.md
