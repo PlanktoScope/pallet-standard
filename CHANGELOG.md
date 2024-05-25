@@ -12,6 +12,11 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Deployment `host/machine-name` now exports a `machine-name` binary built for the appropriate CPU architecture target.
 
+### Changed
+
+- The Docker container image has been bumped to the latest version for the `apps/ps/device-portal`, to fix some broken links and remove the links to Portainer (whose inclusion in the default PlanktoScope OS images is deprecated for v2024.0.0 of PlanktoScope OS).
+- Docker container images have been bumped to the latest version for filebrowser-related package deployments.
+
 ## v2024.0.0-alpha.2 - 2024-04-25
 
 ### Added
