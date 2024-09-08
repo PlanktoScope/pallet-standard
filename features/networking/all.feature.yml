@@ -1,0 +1,6 @@
+description: All network configurations for device access
+modifiers:
+  - type: add-feature
+    source: networking/wired-access
+  - type: add-feature
+    source: networking/wireless-access

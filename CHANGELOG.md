@@ -11,6 +11,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Added
 
 - Added a `host/prepare-custom-image` package to export a script to `/usr/libexec/prepare-custom-image` for resetting the filesystem and shutting down the machine in preparation for cloning the filesystem as an SD card image.
+- Added experimental feature flags for other pallets to reference when importing files from this pallet.
 
 ## v2024.0.0-beta.1 - 2024-06-24
 

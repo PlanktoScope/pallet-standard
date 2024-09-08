@@ -1,0 +1,3 @@
+description: GPS location-acquisition service
+modifiers:
+  - target: /deployments/host/planktoscope/gpsd.deploy.yml

@@ -1,0 +1,7 @@
+description: Exposing of direct access to the device via a device-created Wi-Fi hotspot
+modifiers:
+  - type: add-feature
+    source: networking/dns
+  - target: /deployments/host/networking/interface-forwarding.deploy.yml
+  - target: /deployments/host/networking/hostapd.deploy.yml
+  - target: /deployments/host/networking/autohotspot.deploy.yml

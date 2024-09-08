@@ -1,0 +1,8 @@
+description: Interfaces for managing containerized apps
+modifiers:
+  - type: add-feature
+    source: base/containers
+  - type: add-feature
+    source: base/http
+  - target: /deployments/apps/dozzle.deploy.yml
+  - target: /deployments/apps/portainer.deploy.yml
