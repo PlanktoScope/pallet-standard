@@ -33,6 +33,7 @@ jobs:
         run: |
           mkdir -p $HOME/.forklift
           forklift dev plt cache-repo
+          forklift dev plt cache-dl
 
       - name: Run Forklift checks
         run: forklift dev plt check
