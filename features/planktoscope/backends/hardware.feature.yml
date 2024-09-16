@@ -1,0 +1,9 @@
+description: Planktoscope hardware controller backend service
+modifiers:
+  - type: add-feature
+    source: base/http
+  - type: add-feature
+    source: base/mqtt
+  - target: /deployments/host/planktoscope/device-backend.deploy.yml
+  - target: /deployments/host/planktoscope/gpio-init.deploy.yml
+  - target: /deployments/apps/ps/backend/controller.deploy.yml

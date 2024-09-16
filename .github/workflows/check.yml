@@ -33,9 +33,13 @@ jobs:
         run: |
           mkdir -p $HOME/.forklift
           forklift dev plt cache-repo
+          forklift dev plt cache-dl
 
       - name: Run Forklift checks
         run: forklift dev plt check
 
       - name: Make Forklift deployment plan
         run: forklift dev plt plan
+
+      - name: Try to stage the pallet
+        run: forklift dev plt stage

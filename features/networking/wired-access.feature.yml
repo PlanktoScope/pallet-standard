@@ -1,0 +1,6 @@
+description: Exposing of direct access to the device via wired connections
+modifiers:
+  - type: add-feature
+    source: networking/dns
+  - target: /deployments/host/networking/interface-forwarding.deploy.yml
+  - target: /deployments/host/networking/dhcpcd.deploy.yml

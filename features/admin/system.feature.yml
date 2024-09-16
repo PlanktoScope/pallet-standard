@@ -1,0 +1,8 @@
+description: General system administration interfaces
+modifiers:
+  - type: add-feature
+    source: base/http
+  - target: /deployments/host/prepare-custom-image.deploy.yml
+  - target: /deployments/host/cockpit.deploy.yml
+  - target: /deployments/apps/cockpit.deploy.yml
+  - target: /deployments/apps/filebrowser-root.deploy.yml
