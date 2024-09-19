@@ -4,4 +4,5 @@ features:
   - no-login
   - prometheus-datasource
   - host-summary-dashboard
+  - cpu-limit
 disabled: false
