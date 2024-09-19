@@ -8,11 +8,16 @@ on:
 jobs:
   ff-branch:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
     permissions:
       contents: write
     steps:
+      - uses: lewagon/wait-on-check-action@v1.3.4
+        with:
+          ref: ${{ github.ref }}
+          running-workflow-name: release-channel-stable
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 10
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
