@@ -14,7 +14,7 @@ jobs:
       - uses: lewagon/wait-on-check-action@v1.3.4
         with:
           ref: ${{ github.ref }}
-          running-workflow-name: release-channel-stable
+          running-workflow-name: ff-branch
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
 
