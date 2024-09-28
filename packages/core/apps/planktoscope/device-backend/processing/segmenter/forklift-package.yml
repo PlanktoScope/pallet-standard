@@ -1,0 +1,96 @@
+package:
+  description: PlanktoScope object segmenter for export to EcoTaxa
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: GPL-3.0-or-later
+  sources:
+    - https://github.com/PlanktoScope/device-backend
+
+deployment:
+  compose-files: [compose.yml]
+  tags:
+    - device-portal.name=PlanktoScope object segmenter
+    - device-portal.description=Provides an MQTT service on /segmenter and /status/segmenter for operating the PlanktoScope object segmenter
+    - device-portal.type=Network APIs
+    - device-portal.purpose=PlanktoScope operation
+  requires:
+    services:
+      - tags: [mqtt-broker]
+        port: 1883
+        protocol: mqtt
+        nonblocking: false # absence of the MQTT server is not yet handled
+    filesets:
+      - description: Directories for datasets
+        paths:
+          - /home/pi/data/img
+          - /home/pi/data/export
+      - description: Directories for logging
+        paths:
+          - /home/pi/device-backend-logs/processing/segmenter
+  provides:
+    services:
+      - description: MQTT handling of segmenter commands and broadcasting of segmenter statuses
+        tags: [planktoscope-api-v2]
+        port: 1883
+        protocol: mqtt
+        paths:
+          - /segmenter/segment
+          - /status/segmenter
+          - /status/segmenter/name
+          - /status/segmenter/object_id
+          - /status/segmenter/metric
+    filesets:
+      - description: Directory for intermediate results
+        paths:
+          - /home/pi/data/obj
+
+features:
+  object-stream-mjpeg:
+    description: Provides access to the last segmented object MJPEG stream
+    compose-files: [compose-object-stream-mjpeg.yml]
+    tags:
+      - device-portal.name=PlanktoScope segmented object preview
+      - device-portal.description=Provides an MJPEG stream to preview the latest segmented object
+      - device-portal.type=Network APIs
+      - device-portal.purpose=PlanktoScope operation
+      - device-portal.entrypoint=/ps/processing/segmenter/streams/object.mjpg
+    requires:
+      networks:
+        - description: Overlay network for Caddy to connect to upstream services
+          name: caddy-ingress
+      services:
+        - tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+    provides:
+      services:
+        - description: Last segmented object MJPEG stream from the segmenter
+          tags: [mjpeg-stream]
+          port: 80
+          protocol: http
+          paths:
+            - /ps/processing/segmenter/streams/object.mjpg
+  deploy:
+    description: Adds bind mounts for the PlanktoScope distro's filesystem structure
+    compose-files: [compose-deploy.yml]
+    requires:
+      filesets:
+        - description: Machine name
+          paths:
+            - /run/machine-name
+  dev-machinename:
+    description: Allows a machine name to be set in a file for development & troubleshooting
+    compose-files: [compose-dev-machinename.yml]
+  dev-data:
+    description: Allows the segmenter to read and write datasets
+    compose-files: [compose-dev-data.yml]
+  dev-logs:
+    description: Allows the segmenter's logs to be accessed and saved on disk
+    compose-files: [compose-dev-logs.yml]
+  dev-src:
+    description: Allows the source code to be overwritten from an existing codebase for development & troubleshooting
+    compose-files: [compose-dev-src.yml]
+  pipeline-subtract-consecutive-masks:
+    description:
+    compose-files: [compose-pipeline-subtract-consecutive-masks.yml]

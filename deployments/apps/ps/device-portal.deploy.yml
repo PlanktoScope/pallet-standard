@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/device-portal
+package: /packages/core/apps/planktoscope/device-portal
 features:
   - deploy-rpi
   # - dev-mock

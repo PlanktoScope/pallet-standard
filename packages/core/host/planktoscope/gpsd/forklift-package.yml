@@ -1,0 +1,27 @@
+package:
+  description: GPS server ambiently provided by the OS
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: BSD-3-Clause
+  sources:
+    - https://gpsd.gitlab.io/gpsd/
+
+host:
+  provides:
+    listeners:
+      - description: GPSd server
+        port: 2947
+        protocol: tcp
+    services:
+      - description: GPSd server
+        port: 2947
+        protocol: gpsd
+
+deployment:
+  provides:
+    file-exports:
+      - description: Basic GPSd config
+        target: overlays/etc/default/gpsd
+      - description: PPS GPIO config for the Chrony time server
+        target: overlays/etc/chrony/conf.d/20-pps-gpio.conf

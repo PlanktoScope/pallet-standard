@@ -1,0 +1,18 @@
+services:
+  server:
+    image: docker.io/filebrowser/filebrowser:v2.30.0
+    volumes:
+      - /home/pi/data:/home/pi/data
+      - /home/pi/data:/srv # this prevents filebrowser from making an unnamed volume
+      - server-data:/database
+    environment:
+      - FB_DATABASE=/database/filebrowser.db
+      - FB_ROOT=/home/pi/data
+
+networks:
+  default:
+    name: none
+    external: true
+
+volumes:
+  server-data: {}

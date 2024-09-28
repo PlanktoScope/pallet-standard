@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/infra/prometheus
+package: /packages/core/infra/prometheus
 features:
   - api
 disabled: false

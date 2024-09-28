@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/networking/hostapd
+package: /packages/core/host/networking/hostapd
 features:
   - interface-wlan0
   - localization-us

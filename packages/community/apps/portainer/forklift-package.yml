@@ -1,0 +1,66 @@
+package:
+  description: Admin GUI for Docker
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: Zlib
+  sources:
+    - https://github.com/portainer/portainer
+
+deployment:
+  compose-files: [compose.yml]
+  # TODO: add a file requirement for /run/docker.sock, and update the compose file accordingly
+
+features:
+  frontend:
+    description: Provides access to the GUI
+    compose-files: [compose-frontend.yml]
+    tags:
+      - device-portal-name=Portainer
+      - device-portal-description=Provides a Docker administration dashboard
+      - device-portal-type=Browser applications
+      - device-portal-purpose=System administration and troubleshooting
+      - device-portal-entrypoint=/admin/portainer/
+    requires:
+      networks:
+        - description: Overlay network for Caddy to connect to upstream services
+          name: caddy-ingress
+      services:
+        - tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+    provides:
+      services:
+        - description: The Portainer Docker management dashboard
+          port: 80
+          protocol: http
+          paths:
+            - /admin/portainer
+            - /admin/portainer/*
+  frontend-direct:
+    description: Provides direct access to the GUI
+    compose-files: [compose-frontend-direct.yml]
+    tags:
+      - device-portal-name=Portainer (direct-access fallback)
+      - device-portal-description=Provides fallback access to the Portainer application, accessible even if the system's service proxy stops working
+      - device-portal-type=Browser applications
+      - device-portal-purpose=System recovery
+    provides:
+      listeners:
+        - description: Web server for the Portainer dashboard (HTTP)
+          port: 9000
+          protocol: tcp
+        - description: Web server for the Portainer dashboard (HTTPS)
+          port: 9443
+          protocol: tcp
+      services:
+        - port: 9000
+          application: portainer-gui
+          protocol: http
+          paths:
+            - /*
+        - port: 9443
+          application: portainer-gui
+          protocol: https
+          paths:
+            - /*

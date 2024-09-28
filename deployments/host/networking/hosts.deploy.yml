@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/networking/hosts
+package: /packages/core/host/networking/hosts
 features:
   - planktoscope-custom-domain-home
   - planktoscope-custom-domain-machine-name

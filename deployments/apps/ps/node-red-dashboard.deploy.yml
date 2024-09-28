@@ -1,5 +1,5 @@
-package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/node-red-dashboard
-# package: github.com/PlanktoScope/device-pkgs/testing/node-red-dashboard
+package: /packages/core/apps/planktoscope/node-red-dashboard
+# package: /packages/testing/node-red-dashboard
 features:
   - editor
   - frontend

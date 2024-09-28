@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/apps/cockpit
+package: /packages/core/apps/cockpit
 features:
   - frontend
 disabled: false

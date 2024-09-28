@@ -1,0 +1,38 @@
+package:
+  description: In-browser file manager for the root filesystem
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: Apache-2.0
+  sources:
+    - https://github.com/filebrowser/filebrowser
+
+deployment:
+  compose-files: [compose.yml]
+
+features:
+  frontend:
+    description: Provides access to the GUI
+    compose-files: [compose-frontend.yml]
+    tags:
+      - device-portal-name=System file manager
+      - device-portal-description=Provides a file browsing and management interface for the entire filesystem of the computer embedded in the PlanktoScope
+      - device-portal-type=Browser applications
+      - device-portal-purpose=System administration and troubleshooting
+      - device-portal-entrypoint=/admin/files/
+    requires:
+      networks:
+        - description: Overlay network for Caddy to connect to upstream services
+          name: caddy-ingress
+      services:
+        - tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+    provides:
+      services:
+        - description: File browser & manager for the PlanktoScope's filesystem
+          port: 80
+          protocol: http
+          paths:
+            - /admin/files
+            - /admin/files/*

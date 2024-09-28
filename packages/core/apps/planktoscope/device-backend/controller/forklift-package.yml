@@ -1,0 +1,86 @@
+package:
+  description: Python backend ambiently provided by the PlanktoScope
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: GPL-3.0-or-later
+  sources:
+    - https://github.com/PlanktoScope/device-backend
+
+host:
+  tags:
+    - device-portal.name=PlanktoScope hardware controller
+    - device-portal.description=Provides an MQTT service on /actuator, /imager, /status/pump, /status/focus, /status/imager for operating the PlanktoScope hardware
+    - device-portal.type=Network APIs
+    - device-portal.purpose=PlanktoScope operation
+  provides:
+    listeners:
+      - description: MJPEG streaming web server for the PlanktoScope's pi camera
+        port: 8000
+        protocol: tcp
+    services:
+      - description: MJPEG preview stream of the PlanktoScope's Pi camera
+        tags: [mjpeg-stream]
+        port: 8000
+        protocol: http
+        paths:
+          - /
+          - /stream.mjpg
+      - description: MQTT handling of HAL & controller commands and broadcasting of HAL & controller statuses
+        tags: [planktoscope-api-v2]
+        port: 1883
+        protocol: mqtt
+        paths:
+          - /actuator/pump
+          - /actuator/focus
+          - /imager/image
+          - /status/pump
+          - /status/focus
+          - /status/imager
+      - description: Controller service logs
+        tags: [log-files]
+        protocol: filesystem # FIXME: filesystem entities should probably be a separate resource type
+        paths:
+          - /home/pi/device-backend-logs
+          - /home/pi/device-backend-logs/controller
+
+deployment:
+  compose-files: [compose.yml]
+  requires:
+    services:
+      - tags: [mqtt-broker]
+        port: 1883
+        protocol: mqtt
+        nonblocking: false # absence of the MQTT server is not yet handled
+
+features:
+  camera-preview-stream-mjpeg:
+    description: Provides access to the preview MJPEG stream
+    compose-files: [compose-camera-preview-stream-mjpeg.yml]
+    tags:
+    - device-portal.name=PlanktoScope microscope camera preview
+    - device-portal.description=Provides an MJPEG stream to preview the latest microscope camera frame
+    - device-portal.type=Network APIs
+    - device-portal.purpose=PlanktoScope operation
+    - device-portal.entrypoint=/ps/hal/camera/streams/preview.mjpg
+    requires:
+      networks:
+        - description: Overlay network for Caddy to connect to upstream services
+          name: caddy-ingress
+      services:
+        - tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+        - tags: [mjpeg-stream]
+          port: 8000
+          protocol: http
+          paths:
+            - /stream.mjpg
+    provides:
+      services:
+        - description: Preview MJPEG stream from the Pi camera
+          tags: [mjpeg-stream]
+          port: 80
+          protocol: http
+          paths:
+            - /ps/hal/camera/streams/preview.mjpg

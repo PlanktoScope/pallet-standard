@@ -1,2 +1,2 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/prepare-custom-image
+package: /packages/core/host/prepare-custom-image
 disabled: false

@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/community/apps/portainer
+package: /packages/community/apps/portainer
 features:
   - frontend
   - frontend-direct

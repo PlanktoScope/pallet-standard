@@ -1,0 +1,41 @@
+package:
+  description: Reverse proxy for web services
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: MIT
+  sources:
+    - https://github.com/lucaslorentz/caddy-docker-proxy
+
+deployment:
+  compose-files: [compose.yml]
+
+features:
+  service-proxy:
+    description: Provides reverse-proxying access to Docker Swarm services defined by other packages
+    compose-files: [compose-service-proxy.yml]
+    tags:
+      - device-portal-name=Service proxy
+      - device-portal-description=Provides a reverse-proxy to make browser applications and HTTP network APIs uniformly available at different paths on port 80
+      - device-portal-type=System infrastructure
+      - device-portal-purpose=Networking
+    provides:
+      networks:
+        - description: Bridge network for Caddy to connect to upstream services
+          name: caddy-ingress
+      listeners:
+        - description: Web server for all HTTP requests
+          port: 80
+          protocol: tcp
+        - description: Web server for all HTTPS requests
+          port: 443
+          protocol: tcp
+      services:
+        - description: Web server which reverse-proxies PlanktoScope web services
+          tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+        - description: Reverse-proxy web server which provides TLS termination to PlanktoScope web services
+          tags: [caddy-docker-proxy]
+          port: 443
+          protocol: https

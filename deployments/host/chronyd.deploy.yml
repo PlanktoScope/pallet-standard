@@ -1,3 +1,3 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/chronyd
+package: /packages/core/host/chronyd
 features:
 disabled: false

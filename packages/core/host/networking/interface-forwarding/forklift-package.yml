@@ -1,0 +1,20 @@
+package:
+  description: Routing configuration to forward network traffic between interfaces
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: Apache-2.0
+  sources:
+    - https://github.com/PlanktoScope/device-pkgs
+
+deployment:
+  provides:
+    file-exports:
+      - description: Kernel parameters to enable routing between network interfaces
+        target: overlays/usr/lib/sysctl.d/20-routed-ap.conf
+      - description: Shell script to set up iptables rules to forward network traffic between interfaces
+        target: overlays/usr/libexec/enable-interface-forwarding
+      - description: systemd service to run the enable-interface-forwarding script during boot
+        target: overlays/usr/lib/systemd/system/enable-interface-forwarding.service
+      - description: systemd service enablement for enable-interface-forwarding.service
+        target: overlays/etc/systemd/system/network-online.target.wants/enable-interface-forwarding.service

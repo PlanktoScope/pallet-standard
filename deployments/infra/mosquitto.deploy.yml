@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/infra/mosquitto
+package: /packages/core/infra/mosquitto
 features:
   - mqtt-broker
 disabled: false
