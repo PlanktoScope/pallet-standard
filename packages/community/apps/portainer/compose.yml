@@ -1,0 +1,15 @@
+services:
+  server:
+    image: docker.io/portainer/portainer-ce:2.19.5
+    command: --tlsskipverify
+    volumes:
+      - server-data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  default:
+    name: none
+    external: true
+
+volumes:
+  server-data:

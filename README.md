@@ -60,15 +60,7 @@ more details and usage information, refer to the
 section of that readme's usage instructions. If you are performing development tasks on your
 PlanktoScope, `forklift` is already installed for you.
 
-The most common routine maintenance task will be to upgrade the version of the
-[`github.com/PlanktoScope/device-pkgs`](https://github.com/PlanktoScope/device-pkgs) repository used
-by this pallet. You can do that using a command like the following:
-
-```
-forklift dev --cwd {path to your local copy of the pallet for development} plt add-repo github.com/PlanktoScope/device-pkgs@{version to upgrade to}
-```
-
-If you are your PlanktoScope's embedded computer to perform development tasks and you want to
+If you are using your PlanktoScope's embedded computer to perform development tasks and you want to
 immediately test changes to the Docker apps provided by the your local development copy of this
 pallet, you can run:
 
@@ -82,8 +74,8 @@ the next time you boot up your PlanktoScope - to test those changes, reboot your
 ## Licensing
 
 Forklift packages deployed by this pallet have their own software licenses, as specified in the
-Forklift repositories where those packages are published. Any source code provided with this
-Forklift pallet is covered by the following information, except where otherwise indicated:
+declaration files for those packages. Any source code provided with this Forklift pallet is covered
+by the following information, except where otherwise indicated:
 
 Copyright Ethan Li and PlanktoScope project contributors
 

@@ -1,0 +1,44 @@
+package:
+  description: In-browser file manager for PlanktoScope datasets
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: Apache-2.0
+  sources:
+    - https://github.com/filebrowser/filebrowser
+
+deployment:
+  compose-files: [compose.yml]
+  requires:
+    filesets:
+      - description: Directory for datasets
+        paths:
+          - /home/pi/data
+        nonblocking: true
+
+features:
+  frontend:
+    description: Provides access to the GUI
+    compose-files: [compose-frontend.yml]
+    tags:
+      - device-portal-name=Dataset file manager
+      - device-portal-description=Provides a file browsing and management interface for the datasets collected by the PlanktoScope
+      - device-portal-type=Browser applications
+      - device-portal-purpose=PlanktoScope operation
+      - device-portal-entrypoint=/ps/data/browse/
+    requires:
+      networks:
+        - description: Overlay network for Caddy to connect to upstream services
+          name: caddy-ingress
+      services:
+        - tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+    provides:
+      services:
+        - description: File browser & manager for PlanktoScope's datasets
+          port: 80
+          protocol: http
+          paths:
+            - /ps/data/browse
+            - /ps/data/browse/*

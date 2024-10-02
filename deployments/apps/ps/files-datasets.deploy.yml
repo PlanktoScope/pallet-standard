@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/filebrowser-datasets
+package: /packages/core/apps/planktoscope/filebrowser-datasets
 features:
   - frontend
 disabled: false

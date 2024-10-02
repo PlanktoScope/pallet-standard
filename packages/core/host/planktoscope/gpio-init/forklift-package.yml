@@ -1,0 +1,18 @@
+package:
+  description: Automatic initialization of GPIO at boot
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: GPL-3.0-or-later
+  sources:
+    - https://github.com/PlanktoScope/device-pkgs
+
+deployment:
+  provides:
+    file-exports:
+      - description: Shell script to release power to the stepper motors
+        target: overlays/usr/libexec/release-gpio-steppers
+      - description: systemd service to run the release-gpio-steppers script during boot
+        target: overlays/usr/lib/systemd/system/planktoscope-org.init-gpio-steppers.service
+      - description: systemd service enablement for autohotspot.service
+        target: overlays/etc/systemd/system/multi-user.target.wants/planktoscope-org.init-gpio-steppers.service

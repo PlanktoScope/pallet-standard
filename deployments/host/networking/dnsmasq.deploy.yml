@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/host/networking/dnsmasq
+package: /packages/core/host/networking/dnsmasq
 features:
   - planktoscope-dhcp-interfaces
   - custom-domain

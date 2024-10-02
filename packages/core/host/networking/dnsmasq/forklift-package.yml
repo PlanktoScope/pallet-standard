@@ -1,0 +1,87 @@
+package:
+  description:
+    DNS and DHCP server ambiently provided by the OS, and auto-generated configurations for it
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: GPL-2.0-only OR GPL-3.0-only
+  sources:
+    # Ambiently-provided software (GPL):
+    - https://thekelleys.org.uk/dnsmasq/doc.html
+    # Config templating & auto-generation scripts (Apache-2.0):
+    - https://github.com/PlanktoScope/device-pkgs
+
+host:
+  provides:
+    listeners:
+      - description: DNS server
+        port: 53
+        protocol: tcp
+      - description: DNS server
+        port: 53
+        protocol: udp
+      - description: DHCP server
+        port: 67
+        protocol: udp
+
+deployment:
+  provides:
+    file-exports:
+      # Basic drop-in config files
+      - description: Basic config to automatically listen for DNS & DHCP queries
+        target: overlays/etc/dnsmasq.d/10-listen.conf
+      - description: Basic config to forward DNS queries to Cloudflare & Google when needed
+        target: overlays/etc/dnsmasq.d/20-upstream-dns.conf
+      # Templated drop-in config file assembly:
+      - description:
+          Shell script to generate a drop-in dnsmasq drop-in config file from drop-in dnsmasq config
+          templates
+        target: overlays/usr/libexec/assemble-dnsmasq-config-templated
+      - description: systemd service to run the assemble-dnsmasq-config-templated script during boot
+        target: overlays/usr/lib/systemd/system/assemble-dnsmasq-config-templated.service
+      - description: systemd service enablement for assemble-dnsmasq-config-templated.service
+        target: overlays/etc/systemd/system/dnsmasq.service.wants/assemble-dnsmasq-config-templated.service
+      - description:
+          Symlink redirecting /etc/dnsmasq.d/40-generated-templated-config to an auto-generated file
+        target: overlays/etc/dnsmasq.d/40-generated-templated-config
+      # Drop-in config templates to assemble by default:
+      - description:
+          Drop-in dnsmasq config template with comment describing dnsmasq template drop-in directory
+        target: overlays/etc/dnsmasq-templates.d/10-README.conf
+    filesets:
+      - description: Drop-in directory to specify templates of drop-in dnsmasq config files
+        tags:
+          - drop-in-assembly
+          - templating-machine-name
+          - templating-hostname
+          - templating-custom-domain
+        paths:
+          - /etc/dhsmasq-templates.d
+      - description:
+          Auto-generated dnsmasq drop-in config file with configurations based on machine name,
+          hostname, and/or custom domain.
+        paths:
+          - /run/overlays/generated/etc/dnsmasq.d/40-generated-templated-config
+
+features:
+  planktoscope-dhcp-interfaces:
+    description:
+      Enable DHCP & DNS server functionality for the PlanktoScope OS's static IP address
+      assignments on its network interfaces
+    provides:
+      file-exports:
+        - description:
+            Sets DHCP & DNS server settings on the wlan0, wlan1, eth0, eth1, and usb0 interfaces
+          target: overlays/etc/dnsmasq.d/30-dhcp-interfaces.conf
+  custom-domain:
+    description: Handle DNS requests for a custom domain set by /etc/custom-domain
+    provides:
+      file-exports:
+        - description: Drop-in dnsmasq config template
+          target: overlays/etc/dnsmasq-templates.d/20-custom-domain.conf
+  planktoscope-custom-domain:
+    description: "Set the custom domain to 'pkscope'"
+    provides:
+      file-exports:
+        - description: File to set custom domain
+          target: overlays/etc/custom-domain

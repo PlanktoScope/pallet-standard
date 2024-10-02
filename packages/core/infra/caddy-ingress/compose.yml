@@ -1,0 +1,18 @@
+services:
+  reverse-proxy:
+    image: docker.io/lucaslorentz/caddy-docker-proxy:2.8.11
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - server-data:/data
+      - server-config:/config
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+networks:
+  default:
+    name: none
+    external: true
+
+volumes:
+  server-data:
+  server-config:

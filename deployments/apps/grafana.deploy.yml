@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/apps/grafana
+package: /packages/core/apps/grafana
 features:
   - frontend
   - no-login

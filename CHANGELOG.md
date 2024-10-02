@@ -6,11 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project uses [Calendar Versioning](https://calver.org/) with a `YYYY.minor.patch` scheme.
 All dates in this file are given in the [UTC time zone](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 
+## Unreleased
+
+### Changed
+
+- Merged the github.com/PlanktoScope/device-pkgs repo into this pallet, by moving all packages from there into here.
+
 ## v2024.0.0-beta.2 - 2024-09-19
 
 ### Added
 
-- Added a `host/prepare-custom-image` package to export a script to `/usr/libexec/prepare-custom-image` for resetting the filesystem and shutting down the machine in preparation for cloning the filesystem as an SD card image.
+- Added a `host/prepare-custom-image` package deployment to export a script to `/usr/libexec/prepare-custom-image` for resetting the filesystem and shutting down the machine in preparation for cloning the filesystem as an SD card image.
 - Added experimental feature flags for other pallets to reference when importing files from this pallet.
 
 ### Changed

@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/core/apps/planktoscope/device-backend/processing/segmenter
+package: /packages/core/apps/planktoscope/device-backend/processing/segmenter
 features:
   - object-stream-mjpeg
   - deploy

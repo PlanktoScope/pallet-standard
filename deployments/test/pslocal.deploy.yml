@@ -1,4 +1,4 @@
-package: github.com/PlanktoScope/device-pkgs/testing/pslocal
+package: /packages/testing/pslocal
 features:
   - frontend-direct
 disabled: true
