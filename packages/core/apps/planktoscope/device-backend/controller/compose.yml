@@ -1,8 +1,7 @@
 services:
   reverse-proxy-config:
-    image: docker.io/library/alpine:3.19.1
+    image: docker.io/library/alpine:3.19.4@sha256:ae65dbf8749a7d4527648ccee1fa3deb6bfcae34cbc30fc67aa45c44dcaa90ee
     command: sh -c 'while sleep 3600; do :; done'
-
 networks:
   default:
     name: none
