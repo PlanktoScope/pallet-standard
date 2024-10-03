@@ -11,7 +11,7 @@ scms:
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
-      commitusingapi: true # this might be needed to make CI checks work
+      commitusingapi: true # this allows commits to be signed
 
 actions:
   pull-request:

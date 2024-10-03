@@ -1,8 +1,19 @@
 name: check
 
 on:
-  push: # run on every pushed commit, since these checks are fast/cheap to run
+  push:
+    branches:
+      - main
+      - edge
+      - beta
+      - stable
+      - updatecli_**
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - auto_merge_enabled  # needed for PRs opened via CI workflows without PATs
   merge_group:
   workflow_dispatch:
 
