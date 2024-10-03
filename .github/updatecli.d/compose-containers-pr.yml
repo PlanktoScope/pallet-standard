@@ -1,4 +1,4 @@
-name: Update container images in all Compose files
+name: PR-update container images in all Compose files
 
 scms:
   pallet:
@@ -12,8 +12,8 @@ scms:
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
       commitmessage:
-        type: build
-        scope: compose
+        type: ""
+        scope: ""
 
 # TODO: make separate update pipelines for patch updates (auto-merge with grouping) vs. minor/major
 # updates (maybe no grouping? definitely no auto-merge)
@@ -22,7 +22,7 @@ actions:
     scmid: pallet
     kind: github/pullrequest
     spec:
-      title: "chore(deps): bump container images in Compose files"
+      title: "build(compose): bump container images in Compose files"
       labels:
         - dependencies
       mergemethod: squash
@@ -53,6 +53,7 @@ autodiscovery:
       ignore:
         - images:
           - ghcr.io/sargassum-world/pslocal # temporarily unmaintained; only used in a test package
+
     # updatecli provides no easy way to only enable specified crawlers, so instead we have to
     # disable all other crawlers. Refer to the "enumerating badness" section of
     # https://www.ranum.com/security/computer_security/editorials/dumb/ for why this is annoying.
