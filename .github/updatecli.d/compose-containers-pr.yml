@@ -18,7 +18,7 @@ actions:
     scmid: pallet
     kind: github/pullrequest
     spec:
-      title: "build(compose): bump Compose container images (non-patch)"
+      title: "build(compose): bump Compose container images"
       labels:
         - dependencies
       mergemethod: squash
