@@ -7,7 +7,7 @@ on:
       - edge
       - beta
       - stable
-      - updatecli_*
+      - updatecli_**
   pull_request:
   merge_group:
   workflow_dispatch:

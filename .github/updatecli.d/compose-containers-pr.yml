@@ -11,18 +11,13 @@ scms:
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
-      commitmessage:
-        type: ""
-        scope: ""
 
-# TODO: make separate update pipelines for patch updates (auto-merge with grouping) vs. minor/major
-# updates (maybe no grouping? definitely no auto-merge)
 actions:
   pull-request:
     scmid: pallet
     kind: github/pullrequest
     spec:
-      title: "build(compose): bump container images in Compose files"
+      title: "build(compose): bump Compose container images (non-patch)"
       labels:
         - dependencies
       mergemethod: squash
