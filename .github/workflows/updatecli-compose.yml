@@ -29,7 +29,6 @@ jobs:
   containers-pr:
     env:
       UPDATECLI_CONFIG: .github/updatecli.d/compose-containers-pr.yml
-    needs: auto-containers # try to only make the PR after patch-level bumps are applied
     runs-on: ubuntu-latest
     defaults:
       run:
