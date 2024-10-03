@@ -16,7 +16,7 @@ services:
       prometheus-__scrape_interval__: 30s
       prometheus-__address__: localhost:9090
   docker-socket-proxy: # needed because prometheus can only read /var/run/docker.sock as root user
-    image: tecnativa/docker-socket-proxy:0.1.2
+    image: tecnativa/docker-socket-proxy:0.3.0@sha256:9e4b9e7517a6b660f2cc903a19b257b1852d5b3344794e3ea334ff00ae677ac2
     networks:
       - docker-socket-access
     volumes:
@@ -28,14 +28,12 @@ services:
       CONTAINERS: 1
     logging:
       driver: none
-
 networks:
   default:
     name: none
     external: true
   metrics:
     name: prometheus-metrics
-  docker-socket-access:
-
+  docker-socket-access: null
 volumes:
-  server-data:
+  server-data: null
