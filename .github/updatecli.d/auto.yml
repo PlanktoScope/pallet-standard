@@ -1,0 +1,48 @@
+name: Update container images in all Compose files
+
+scms:
+  pallet:
+    kind: github
+    spec:
+      owner: '{{ requiredEnv "REPO_OWNER" }}'
+      repository: '{{ requiredEnv "REPO_NAME" }}'
+      branch: edge
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
+      email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
+
+autodiscovery:
+  scmid: pallet
+  crawlers:
+    dockercompose:
+      filematch:
+        - "docker-compose.yml"
+        - "docker-compose.*.yml"
+        - "docker-compose-*.yml"
+        - "*.docker-compose.yml"
+        - "docker-compose.yaml"
+        - "docker-compose.*.yaml"
+        - "docker-compose-*.yaml"
+        - "*.docker-compose.yaml"
+        - "compose.yml"
+        - "compose.*.yml"
+        - "compose-*.yml"
+        - "*.compose.yml"
+        - "compose.yaml"
+        - "compose.*.yaml"
+        - "compose-*.yaml"
+        - "*.compose.yaml"
+      ignore:
+        - images:
+          - ghcr.io/sargassum-world/pslocal # temporarily unmaintained; only used in a test package
+
+actions:
+  pull-request:
+    scmid: pallet
+    kind: github/pullrequest
+    spec:
+      #title: Bump Docker container images in Compose files
+      labels:
+        - dependencies
+      draft: true
+      mergemethod: squash
