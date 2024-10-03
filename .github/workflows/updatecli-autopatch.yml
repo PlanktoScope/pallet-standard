@@ -1,5 +1,5 @@
 ---
-name: updatecli-auto
+name: updatecli
 
 on:
   push:
@@ -20,11 +20,16 @@ env:
   COMMITTER_USERNAME: "updatecli[bot]"
   COMMITTER_EMAIL: "${{ github.repository_id }}+updatecli[bot]@users.noreply.forklift.run"
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
-  update-deps:
-    permissions:
-      contents: write
-      pull-requests: write
+  containers-patch-auto:
+    name: auto-apply patch updates to container images
+    env:
+      UPDATECLI_CONFIG: .github/updatecli.d/compose-containers.config.yml
+      UPDATECLI_VALUES: .github/updatecli.d/compose-containers-patch.values.yml
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -36,11 +41,11 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Dry-run updates
-        run: "updatecli diff --config .github/updatecli.d/auto.yml"
+        run: "updatecli diff --config ${{ env.UPDATECLI_CONFIG }} --values ${{ env.UPDATECLI_VALUES }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Apply updates
-        run: "updatecli apply --config .github/updatecli.d/auto.yml"
+        run: "updatecli apply --config ${{ env.UPDATECLI_CONFIG }} --values ${{ env.UPDATECLI_VALUES }}"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

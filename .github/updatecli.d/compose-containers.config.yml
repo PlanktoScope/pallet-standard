@@ -11,6 +11,9 @@ scms:
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
+      commitmessage:
+        type: build
+        scope: compose
 
 # TODO: make separate update pipelines for patch updates (auto-merge with grouping) vs. minor/major
 # updates (maybe no grouping? definitely no auto-merge)
@@ -19,10 +22,9 @@ actions:
     scmid: pallet
     kind: github/pullrequest
     spec:
-      #title: Bump Docker container images in Compose files
+      title: "chore(deps): bump container images in Compose files"
       labels:
         - dependencies
-      draft: true
       mergemethod: squash
 
 autodiscovery:
@@ -51,3 +53,48 @@ autodiscovery:
       ignore:
         - images:
           - ghcr.io/sargassum-world/pslocal # temporarily unmaintained; only used in a test package
+    # updatecli provides no easy way to only enable specified crawlers, so instead we have to
+    # disable all other crawlers. Refer to the "enumerating badness" section of
+    # https://www.ranum.com/security/computer_security/editorials/dumb/ for why this is annoying.
+    argocd:
+      ignore:
+        - path: "*"
+    cargo:
+      ignore:
+        - path: "*"
+    flux:
+      ignore:
+        - path: "*"
+    golang/gomod:
+      ignore:
+        - path: "*"
+    helm:
+      ignore:
+        - path: "*"
+    helmfile:
+      ignore:
+        - path: "*"
+    ko:
+      ignore:
+        - path: "*"
+    kubernetes:
+      ignore:
+        - path: "*"
+    maven:
+      ignore:
+        - path: "*"
+    npm:
+      ignore:
+        - path: "*"
+    prow:
+      ignore:
+        - path: "*"
+    rancher/fleet:
+      ignore:
+        - path: "*"
+    terraform:
+      ignore:
+        - path: "*"
+    terragrunt:
+      ignore:
+        - path: "*"
