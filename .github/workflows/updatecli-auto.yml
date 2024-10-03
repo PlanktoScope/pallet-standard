@@ -18,10 +18,10 @@ env:
   REPO_OWNER: ${{ github.repository_owner }}
   REPO_NAME: ${{ github.event.repository.name }}
   COMMITTER_USERNAME: "updatecli[bot]"
-  COMMITTER_EMAIL: "updatecli[bot]@users.noreply.forklift.run"
+  COMMITTER_EMAIL: "${{ github.repository_id }}+updatecli[bot]@users.noreply.forklift.run"
 
 jobs:
-  ci:
+  update-deps:
     permissions:
       contents: write
       pull-requests: write

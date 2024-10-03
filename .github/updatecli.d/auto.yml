@@ -7,12 +7,28 @@ scms:
       owner: '{{ requiredEnv "REPO_OWNER" }}'
       repository: '{{ requiredEnv "REPO_NAME" }}'
       branch: edge
+      username: '{{ requiredEnv "GITHUB_ACTOR" }}'
       token: '{{ requiredEnv "GITHUB_TOKEN" }}'
       user: '{{ requiredEnv "COMMITTER_USERNAME" }}'
       email: '{{ requiredEnv "COMMITTER_EMAIL" }}'
 
+# TODO: make separate update pipelines for patch updates (auto-merge with grouping) vs. minor/major
+# updates (maybe no grouping? definitely no auto-merge)
+actions:
+  pull-request:
+    scmid: pallet
+    kind: github/pullrequest
+    spec:
+      #title: Bump Docker container images in Compose files
+      labels:
+        - dependencies
+      draft: true
+      mergemethod: squash
+
 autodiscovery:
   scmid: pallet
+  actionid: pull-request
+  groupby: all
   crawlers:
     dockercompose:
       filematch:
@@ -35,14 +51,3 @@ autodiscovery:
       ignore:
         - images:
           - ghcr.io/sargassum-world/pslocal # temporarily unmaintained; only used in a test package
-
-actions:
-  pull-request:
-    scmid: pallet
-    kind: github/pullrequest
-    spec:
-      #title: Bump Docker container images in Compose files
-      labels:
-        - dependencies
-      draft: true
-      mergemethod: squash
