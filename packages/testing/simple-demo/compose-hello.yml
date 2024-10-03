@@ -1,6 +1,6 @@
 services:
   hello:
-    image: nginxdemos/hello:0.3
+    image: nginxdemos/hello:0.4@sha256:f29f5d274815a6ee8f26fe9065d300bd346be1e39a02784842fce8b1f98e013d
     networks:
       - caddy-ingress
     labels:
@@ -8,7 +8,6 @@ services:
       caddy.redir: /demo/hello-nginx /demo/hello-nginx/
       caddy.handle_path: /demo/hello-nginx/*
       caddy.handle_path.reverse_proxy: "{{upstreams 80}}"
-
 networks:
   caddy-ingress:
     external: true
