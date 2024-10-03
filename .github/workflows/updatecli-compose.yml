@@ -21,9 +21,15 @@ permissions:
   pull-requests: write
 
 jobs:
-  containers-patch-auto:
+  # Note(ethanjli): we don't use the updatecli config for auto-merging patch updates, because that
+  # would require either making a personal access token in the PlanktoScope organization or making a
+  # GitHub App and installing it in the PlanktoScope organization, and both options are not worth
+  # the administrative hassle (since I don't have access to do those things myself).
+
+  containers-pr:
     env:
-      UPDATECLI_CONFIG: .github/updatecli.d/compose-containers-automerge.yml
+      UPDATECLI_CONFIG: .github/updatecli.d/compose-containers-pr.yml
+    needs: auto-containers # try to only make the PR after patch-level bumps are applied
     runs-on: ubuntu-latest
     defaults:
       run:
