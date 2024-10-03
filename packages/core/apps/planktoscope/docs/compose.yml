@@ -1,15 +1,13 @@
 services:
   server:
-    image: ghcr.io/planktoscope/project-docs:2024.0.0-beta.2-minimal
+    image: ghcr.io/planktoscope/project-docs:2024.0.0-beta.2-minimal@sha256:e4acfdf2fc67884a409bc031af7459c1a48e0bb2d17140a602cb590700ee171e
     volumes:
       - server-data:/data
       - server-config:/config
-
 networks:
   default:
     name: none
     external: true
-
 volumes:
-  server-data:
-  server-config:
+  server-data: null
+  server-config: null
