@@ -9,6 +9,11 @@ on:
       - stable
       - updatecli_**
   pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - auto_merge_enabled
   merge_group:
   workflow_dispatch:
 
