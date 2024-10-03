@@ -1,6 +1,6 @@
 services:
   node-exporter:
-    image: docker.io/prom/node-exporter:v1.7.0
+    image: docker.io/prom/node-exporter:v1.8.2@sha256:4032c6d5bfd752342c3e631c2f1de93ba6b86c41db6b167b9a35372c139e7706
     command:
       - '--path.rootfs=/host'
     network_mode: host
@@ -12,7 +12,6 @@ services:
       prometheus-__scrape_interval__: 5s
       prometheus-__scrape_timeout__: 5s
       prometheus-__address__: host.docker.internal:9100
-
 networks:
   default:
     name: none
