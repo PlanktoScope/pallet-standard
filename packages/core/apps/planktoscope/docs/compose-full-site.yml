@@ -1,3 +1,3 @@
 services:
   server:
-    image: ghcr.io/planktoscope/project-docs:2024.0.0-beta.2
+    image: ghcr.io/planktoscope/project-docs:2024.0.0-beta.2@sha256:ce7db9194d20aeb27f07595f6935e41c300061c94867f63b51fd61881cf9d5b8
