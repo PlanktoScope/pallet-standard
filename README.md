@@ -4,7 +4,7 @@ The standard configuration of Forklift package deployments for the PlanktoScope 
 ## Introduction
 
 pallet-standard is a [Forklift](https://github.com/PlanktoScope/forklift) pallet specifying the
-standard configuration of Forklift package deployments for the PlanktoScope software distribution.
+standard configuration of Forklift package deployments for the PlanktoScope Operating System.
 
 ## Usage
 
@@ -68,7 +68,7 @@ pallet, you can run:
 forklift dev --cwd {path to your local copy of the pallet for development} plt apply
 ```
 
-Note: any changes made to your OS's configuration files in `/etc` and `/var` will only take effect
+Note: any changes made to your OS's configuration files in `/etc` and `/usr` will only take effect
 the next time you boot up your PlanktoScope - to test those changes, reboot your PlanktoScope.
 
 ## Licensing
