@@ -12,29 +12,27 @@
 
 wifi_dev="wlan0" # device name to use; by default wlan0 is the on-board wifi chip on the RPi4
 
-# Determine the SSIDs of the wifi networks the RPi is configured to use:
-# FIXME: can we simplify these commands?
-wpa_ssid=$(grep -e '^[[:space:]]*ssid="' /etc/wpa_supplicant/wpa_supplicant.conf | \
-  awk -F'ssid=' '{ print $2 }' | sed 's/\r//g' | \
-  awk 'BEGIN{ORS=","} {print}' | sed 's/\"//g' | sed 's/,$//')
-IFS="," read -r -a ssids <<<"$wpa_ssid"
+hostname="$(sed 's~#.*$~~g' /etc/hostname | tr -d '[:space:]')"
+hostname_32="${hostname:0:32}"
+# list of ssids to connect to
+ssids=$(nmcli -t -f NAME,TYPE connection show | grep "802-11-wireless" | grep -v "$hostname_32" | cut -d':' -f1 | sort | uniq)
 
 start_isolated_wlan() {
   echo "Starting isolated wifi network..."
-  ip link set dev "$wifi_dev" down
-  ip address add 192.168.4.1/24 broadcast + dev "$wifi_dev"
-  ip link set dev "$wifi_dev" up
-  dhcpcd --release "$wifi_dev"
-  systemctl start hostapd
+  if nmcli connection show --active | grep -q "$hostname_32"; then
+    echo "Hotspot '$hostname_32' is already up"
+    return
+  fi
+  systemctl stop dnsmasq
+  sleep 5
+  sudo ip link set "$wifi_dev" up
+  sleep 5
+  nmcli device wifi hotspot ifname "$wifi_dev" con-name "$hostname_32" ssid "$hostname_32"  band bg password "copepode"
 }
 
 stop_isolated_wlan() {
   echo "Stopping isolated wifi network..."
-  ip link set dev "$wifi_dev" down
-  systemctl stop hostapd
-  ip address flush dev "$wifi_dev"
-  ip link set dev "$wifi_dev" up
-  dhcpcd --rebind "$wifi_dev"
+  nmcli connection down $hostname_32
 }
 
 fallback_if_unusable_wifi() {
@@ -102,9 +100,7 @@ find_ssid() {
     fi
 
     echo "Checking wlan device $wifi_dev (attempt $attempt of $max_attempts)..."
-    available_ssids=$( (iw dev "$wifi_dev" scan ap-force | grep -E "SSID:" | sort | uniq) 2>&1) >/dev/null 2>&1
-    echo "SSIDs in range:"
-    echo "$available_ssids"
+    available_ssids=$(nmcli -t -f SSID device wifi list ifname "$wifi_dev" | sort | uniq)
     if echo "$available_ssids" | grep "No such device (-19)" >/dev/null; then
       handle_missing_device
       echo "Wifi device \"$wifi_dev\" does not exist!"
@@ -153,28 +149,36 @@ find_ssid
 # Connect to a valid wifi network if it's available, otherwise make an isolated wifi network
 if [[ "$ssid_status" == "unavailable" ]]; then
   echo "No external wifi network to connect to!"
-  if systemctl status hostapd | grep "(running)" >/dev/null; then
+  if nmcli connection show --active | grep -q "$hostname_32"; then
     echo "Isolated wifi network already started; nothing else to do!"
     exit 0
-  elif { wpa_cli status | grep "$wifi_dev"; } >/dev/null; then
+  elif nmcli device status | grep -q "$wifi_dev"; then
     echo "Resetting $wifi_dev..."
-    wpa_cli terminate
-    ip addr flush "$wifi_dev"
-    ip link set dev "$wifi_dev" down
-    rm -r /var/run/wpa_supplicant >/dev/null
+    #nmcli connection down "$hostname_32"
+    #nmcli device disconnect "$wifi_dev"
+    #ip addr flush "$wifi_dev"
+    #ip link set "$wifi_dev" down
+    #sleep 5
+    #nmcli device wifi hotspot ifname "$wifi_dev" con-name "$hostname_32" ssid "$hostname_32" band bg password "copepode"
   fi
   start_isolated_wlan
 else
-  if systemctl status hostapd | grep "(running)" >/dev/null; then
+  if nmcli connection show --active | grep -q "$hostname_32"; then
     stop_isolated_wlan
-    echo "Connecting to external wifi network..."
-    dhcpcd --rebind "$wifi_dev"
+    echo "Connecting to external wifi network...1"
+    nmcli device wifi connect "$(nmcli device wifi list | grep -oP '(?<=SSID: )\S+')"
+    echo "end connnectiong"
     fallback_if_unusable_wifi
-  elif { wpa_cli -i "$wifi_dev" status | grep 'ip_address'; } >/dev/null 2>&1; then
+  elif nmcli -t -f IP4.ADDRESS device show "$wifi_dev" | grep -q 'IP4.ADDRESS'; then
     echo "Already connected to external wifi network!"
+  elif nmcli device wifi list | grep -qP '(?<=SSID: )\S+'; then
+    echo "Connecting to external wifi network...2"
+    nmcli device wifi connect "$(nmcli device wifi list | grep -oP '(?<=SSID: )\S+')"
+    fallback_if_unusable_wifi
   else
-    echo "Connecting to external wifi network..."
-    dhcpcd --rebind "$wifi_dev"
+    echo "Connecting to external wifi network...3"
+    #nmcli device wifi connect "FairScope" password "copepode"
+    #nmcli device reapply "$wifi_dev"
     fallback_if_unusable_wifi
   fi
 fi
