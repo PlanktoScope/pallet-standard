@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.io/amir20/dozzle:v8.7.3@sha256:7234eadb844a0454bee8d2596b20f15c7803b6813b04eefddf82ea42f1da1281
+    image: docker.io/amir20/dozzle:v8.8.1@sha256:f3942ddd88f45648708dc5595b83a2d9757194ac0e80cc25944f031e02ac03bf
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
