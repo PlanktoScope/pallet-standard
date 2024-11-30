@@ -1,6 +1,6 @@
 services:
   server:
-    image: ghcr.io/planktoscope/project-docs:2024.0.0-beta.3-minimal
+    image: ghcr.io/planktoscope/project-docs:2024.0.0-beta.3-minimal@sha256:900aff77f23401a944b2d800d969779665fada14df4c27c3d3aac9bd6fa95831
     volumes:
       - server-data:/data
       - server-config:/config
