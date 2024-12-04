@@ -2,4 +2,4 @@ package: /packages/community/apps/portainer
 features:
   - frontend
   - frontend-direct
-disabled: false
+disabled: true

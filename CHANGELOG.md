@@ -12,6 +12,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Merged the github.com/PlanktoScope/device-pkgs repo into this pallet, by moving all packages from there into here.
 
+### Removed
+
+- Deployment `apps/portainer` (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
+
 ## v2024.0.0-beta.3 - 2024-11-30
 
 ### Changed
