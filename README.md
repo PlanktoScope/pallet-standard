@@ -41,7 +41,18 @@ more information).
 
 ### Layering
 
-TBD
+You can import files from this pallet into another pallet by running one of the following `forklift`
+CLI commands in the other pallet as your current working directory, depending on which release of
+this pallet you want:
+```
+forklift dev plt require-plt github.com/PlanktoScope/pallet-standard@edge
+forklift dev plt require-plt github.com/PlanktoScope/pallet-standard@beta
+forklift dev plt require-plt github.com/PlanktoScope/pallet-standard@stable
+forklift dev plt require-plt github.com/PlanktoScope/pallet-standard@v2024.0.0
+```
+
+Then you can manually create `*.imports.yml` files in the required pallet's subdirectory within
+`/requirements/pallets` (TODO: document this and add commands).
 
 ### Development
 
