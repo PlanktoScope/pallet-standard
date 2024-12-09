@@ -1,3 +1,4 @@
 description: Support for exposing MQTT APIs via a single message broker
 modifiers:
+  - target: /packages/core/infra/mosquitto
   - target: /deployments/infra/mosquitto.deploy.yml
