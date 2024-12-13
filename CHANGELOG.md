@@ -8,13 +8,19 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- Package `/packages/core/host/networking/interface-forwarding` (and its package deployment `host/networking/interface-forwarding`) now has a feature flag named `planktoscope-dhcp-default-route` which can be disabled so that the PlanktoScope doesn't advertise itself as a default route to the internet. This is useful when the PlanktoScope has no internet access and is connected (e.g. by Ethernet) to a Windows or macOS device which is connected to a Wi-Fi network with internet access: when the PlanktoScope advertises itself as a default route to the internet, such devices will only use the PlanktoScope to try to access the internet instead of using the Wi-Fi network to access the internet; then the feature flag can be disabled to enable such devices to access the internet in such a network topology.
+- Package `core/host/networking/interface-forwarding`'s default deployment now configures dnsmasq to advertise the PlanktoScope as a route to all IP addresses in 192.168.3.\*, 192.168.4.\*, 192.168.5.\*, 192.168.6.\*, and 192.168.7.\*, so that connected devices will now try to reach the PlanktoScope at 192.168.3.1, 192.168.4.1, ..., 192.168.7.1 even if the PlanktoScope doesn't advertise itself as a default route to the internet (i.e. even if the `planktoscope-dhcp-default-route` feature flag is disabled).
+
 ### Changed
 
-- Merged the github.com/PlanktoScope/device-pkgs repo into this pallet, by moving all packages from there into here.
+- Merged the [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo into this pallet, by moving all packages from there into here.
 
 ### Removed
 
 - Deployment `apps/portainer` (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
+- Package `core/host/networking/dnsmasq`'s configuration of the DHCP server no longer advertises the PlanktoScope as a default route to the internet, since this breaks internet access on certain (macOS/Windows) client devices connected simultaneously to a Wi-Fi network for internet access and to a PlanktoScope via Ethernet. The overall pallet is unaffected because the `host/networking/interface-forwarding` deployment now provides that functionality by enabling the new `planktoscope-dhcp-default-route` feature flag described above.
 
 ## v2024.0.0-beta.3 - 2024-11-30
 
