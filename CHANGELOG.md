@@ -12,6 +12,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Deployment `host/networking/interface-forwarding` now has an enabled feature flag `planktoscope-dhcp-default-route` which can be disabled so that the PlanktoScope no longer advertises itself as a default route to the internet. This is useful when the PlanktoScope has no internet access and is connected (e.g. by Ethernet) to a Windows or macOS device which is connected to a Wi-Fi network with internet access: when the PlanktoScope advertises itself as a default route to the internet, such devices will only use the PlanktoScope to try to access the internet instead of using the Wi-Fi network to access the internet; then the feature flag can be disabled to enable such devices to access the internet in such a network topology.
 
+### Fixed
+
+- Deployment `apps/ps/backend/proc-segmenter` now correctly sets the `img_rank` metadata field of the EcoTaxa export to `1`, instead of setting it to an incrementing index which makes exports un-importable by EcoTaxa for datasets with more than ~32,000 objects.
+
 ## v2024.0.0-beta.3 - 2024-11-30
 
 ### Changed
