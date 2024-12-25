@@ -2,7 +2,7 @@
 services:
   reverse-proxy-config:
     # TODO: add a dev-mode feature flag which uses a non-minimal container image
-    image: nodered/node-red:4.0.5-minimal@sha256:5fe1e228561764d531b282750d98e5fed78efdc56e9de05348d68b24701333ce
+    image: nodered/node-red:4.0.8-minimal@sha256:cff6cf3569fbdafea9281929515618c5c01bda5706c581be3bc54b3e15d0987a
     volumes:
       # TODO: provide the settings.js file in a subdir of this package and bind it in
       # TODO: build a docker image which contains the flows already set up
