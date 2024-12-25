@@ -16,6 +16,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - Merged the [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo into this pallet, by moving all packages from there into here.
+- Deployment `apps/ps/device-portal` (and its package `core/apps/planktoscope/device-portal`): the container image has been bumped from v0.2.4 to v0.2.5.
 
 ### Removed
 
