@@ -1,6 +1,6 @@
 services:
   server:
-    image: ghcr.io/planktoscope/device-backend-processing-segmenter:2024.0.0-beta.3@sha256:2ed82ddfe093ac40090b952242be7c04dbcc831f0ce4ea28c655d0bc47375944
+    image: ghcr.io/planktoscope/device-backend-processing-segmenter:2024.0.0
     extra_hosts:
       - host.docker.internal:host-gateway
 networks:
