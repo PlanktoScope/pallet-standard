@@ -10,7 +10,7 @@ package:
     # Ambiently-provided software (BSD-3-Clause):
     - https://w1.fi/hostapd/
     # Config templating & auto-generation scripts (Apache-2.0):
-    - https://github.com/PlanktoScope/device-pkgs
+    - https://github.com/PlanktoScope/pallet-standard
 
 deployment:
   provides:
