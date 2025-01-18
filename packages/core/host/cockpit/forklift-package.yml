@@ -7,8 +7,10 @@ package:
       email: lietk12@gmail.com
   license: LGPL-2.1
   sources:
+    # Ambiently-provided software (LGPL-2.1):
     - https://github.com/cockpit-project/cockpit
-    - https://github.com/PlanktoScope/device-pkgs
+    # Auto-generation scripts (Apache-2.0):
+    - https://github.com/PlanktoScope/pallet-standard
 
 host:
   tags:

@@ -8,7 +8,7 @@ package:
     # Ambiently-provided software (LGPL):
     - https://github.com/avahi/avahi
     # Systemd units (Apache-2.0):
-    - https://github.com/PlanktoScope/device-pkgs
+    - https://github.com/PlanktoScope/pallet-standard
 
 host:
   provides:
