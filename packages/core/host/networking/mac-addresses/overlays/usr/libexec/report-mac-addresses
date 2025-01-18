@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 OUTPUT_FILE="/run/mac-addresses.yml"
-echo "" >"$OUTPUT_FILE"
+echo "# This is an auto-generated file! Any changes you make here will be overwritten." >"$OUTPUT_FILE"
 
 cd /sys/class/net/
 for i in *; do
