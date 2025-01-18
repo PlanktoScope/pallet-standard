@@ -1,0 +1,10 @@
+[Unit]
+Description=Enable forwarding of inbound packets to between supported interfaces
+ConditionFileIsExecutable=/usr/libexec/forward-between
+
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/forward-between
+
+[Install]
+WantedBy=network-online.target
