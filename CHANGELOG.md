@@ -15,6 +15,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Removed
 
 - Deployment `apps/portainer` (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
+- Deployment `apps/ps/device-portal` had a broken link (to a removed protocol PDF file) which has now been removed.
 
 ## v2024.0.0 - 2024-12-25
 
