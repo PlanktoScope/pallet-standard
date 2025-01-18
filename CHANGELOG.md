@@ -8,6 +8,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ## Unreleased
 
+### Added
+
+- Deployment `host/networking/mac-addresses` of new package `core/host/networking/mac-addresses` adds a systemd service to generate a YAML file report of the MAC addresses of the PlanktoScope's network interfaces.
+
 ### Changed
 
 - Merged the [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo into this pallet, by moving all packages from there into here.

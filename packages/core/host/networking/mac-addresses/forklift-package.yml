@@ -18,7 +18,7 @@ deployment:
         target: overlays/etc/systemd/system/multi-user.target.wants/report-mac-addresses.service
 
 features:
-  scheduled-updates:
+  periodic-updates:
     description: Periodically update the report of MAC addresses every two minutes
     provides:
       file-exports:
