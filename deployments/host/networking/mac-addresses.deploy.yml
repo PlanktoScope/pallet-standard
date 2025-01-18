@@ -1,3 +1,4 @@
 package: /packages/core/host/networking/mac-addresses
 features:
+  - periodic-updates
 disabled: false
