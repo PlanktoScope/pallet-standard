@@ -1,5 +1,7 @@
 package:
-  description: Routing configuration to forward network traffic between interfaces
+  description:
+    Routing configuration to forward network traffic between network interfaces, in various
+    directions
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com
@@ -13,17 +15,35 @@ deployment:
       - description: Kernel parameters to enable routing between network interfaces
         target: overlays/usr/lib/sysctl.d/20-routed-ap.conf
       - description: Shell script to set up iptables rules to forward network traffic between interfaces
-        target: overlays/usr/libexec/enable-interface-forwarding
-      - description: systemd service to run the enable-interface-forwarding script during boot
-        target: overlays/usr/lib/systemd/system/enable-interface-forwarding.service
-      - description: systemd service enablement for enable-interface-forwarding.service
-        target: overlays/etc/systemd/system/network-online.target.wants/enable-interface-forwarding.service
-      - description:
-          dnsmasq configuration to advertise the PlanktoScope as a route to all IP addresses
-          assigned by the PlanktoScope to devices connected on all interfaces.
-        target: overlays/etc/dnsmasq.d/35-dhcp-subnet-routes.conf
+        target: overlays/usr/libexec/forward-between
+      - description: Shell script to set up iptables rules to handle inbound network traffic on static IPs
+        target: overlays/usr/libexec/forward-inbound
 
 features:
+  planktoscope-between:
+    description:
+      Forward network traffic between network interfaces for all interfaces supported by the
+      PlanktoScope
+    provides:
+      file-exports:
+        - description: systemd service to run the forward-between script during boot
+          target: overlays/usr/lib/systemd/system/enable-interface-forwarding-between.service
+        - description: systemd service enablement for enable-interface-forwarding-between.service
+          target: overlays/etc/systemd/system/network-online.target.wants/enable-interface-forwarding-between.service
+  planktoscope-inbound-any:
+    description:
+      Enable the PlanktoScope to respond on any of its known static IPs (e.g. 192.168.4.1,
+      192.168.5.1) on any network interface
+    provides:
+      file-exports:
+        - description: systemd service to run the forward-inbound script during boot
+          target: overlays/usr/lib/systemd/system/enable-interface-forwarding-inbound.service
+        - description: systemd service enablement for enable-interface-forwarding-inbound.service
+          target: overlays/etc/systemd/system/network-online.target.wants/enable-interface-forwarding-inbound.service
+        - description:
+            dnsmasq configuration to advertise the PlanktoScope as a route to all IP addresses
+            assigned by the PlanktoScope to devices connected on all interfaces.
+          target: overlays/etc/dnsmasq.d/35-dhcp-subnet-routes.conf
   planktoscope-dhcp-default-route:
     description:
       Configure dnsmasq's DHCP server to advertise itself as a default route to the internet
