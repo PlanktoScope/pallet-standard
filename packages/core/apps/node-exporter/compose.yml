@@ -6,7 +6,13 @@ services:
     network_mode: host
     pid: host
     volumes:
-      - '/:/host:ro,rslave'
+      - type: bind
+        source: /
+        target: /host
+        read_only: true
+        bind:
+          create_host_path: false
+          propagation: rslave
     labels:
       prometheus-job: node-exporter
       prometheus-__scrape_interval__: 5s

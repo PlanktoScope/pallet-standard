@@ -2,7 +2,11 @@ services:
   server:
     image: docker.io/amir20/dozzle:v8.10.5@sha256:c678e2807a6af879759fb15c2777b9f6e70e6ddec93d1e3b3eb64d50eb587c1b
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        bind:
+          create_host_path: false
     environment:
       - DOZZLE_ENABLE_ACTIONS=true
 networks:

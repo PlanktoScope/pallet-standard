@@ -3,7 +3,11 @@ services:
     image: docker.io/filebrowser/filebrowser:v2.32.0@sha256:593478e3c24c5ea9f5d7478dc549965b7bc7030707291006ce8d0b6162d3454b
     volumes:
       - /home/pi/data:/home/pi/data
-      - /home/pi/data:/srv # this prevents filebrowser from making an unnamed volume
+      - type: bind
+        source: /home/pi/data
+        target: /srv # this prevents filebrowser from making an unnamed volume
+        bind:
+          create_host_path: false
       - server-data:/database
     environment:
       - FB_DATABASE=/database/filebrowser.db
