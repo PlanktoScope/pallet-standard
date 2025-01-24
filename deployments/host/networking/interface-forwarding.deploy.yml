@@ -1,3 +1,6 @@
 package: /packages/core/host/networking/interface-forwarding
 features:
+  - planktoscope-between
+  - planktoscope-inbound-any
+  - planktoscope-dhcp-default-route
 disabled: false

@@ -1,6 +1,6 @@
 services:
   hello:
-    image: nginxdemos/hello:0.4@sha256:a87891c3daa5bd5436c9a652897e78de2fec10ee04e780dfb61b8e1137cd4d61
+    image: nginxdemos/hello:0.4@sha256:f89cb9c05c54d591f5408b821b583beaf951f81733efd4062c1c61ce988ce682
     networks:
       - caddy-ingress
     labels:
