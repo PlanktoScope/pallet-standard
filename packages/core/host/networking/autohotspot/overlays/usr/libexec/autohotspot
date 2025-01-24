@@ -159,13 +159,12 @@ fi
 
 if nmcli connection show --active | grep -q "$hostname_32"; then
   stop_isolated_wlan
-
 elif nmcli -t -f GENERAL.CONNECTION device show "$wifi_dev" | grep -q "$detected_ssid"; then 
   echo "Already connected to external wifi network!"
   fallback_if_unusable_wifi
   exit 0
 fi
 
-echo "Connecting to external wifi network...3"
+echo "Connecting to external wifi network $detected_ssid..."
 nmcli device wifi connect "$detected_ssid"  
 fallback_if_unusable_wifi
