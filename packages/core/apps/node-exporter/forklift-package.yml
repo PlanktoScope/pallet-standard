@@ -8,7 +8,8 @@ package:
     - https://github.com/prometheus/node_exporter
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
   tags:
     - device-portal-name=Host system metrics
     - device-portal-description=Provides metrics about the Raspberry Pi

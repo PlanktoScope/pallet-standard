@@ -9,7 +9,8 @@ package:
     - https://github.com/PlanktoScope/PlanktoScope
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
   # TODO: add some sort of resource constraint so that Node-RED starts well before the Python
   # backend, or else Node-RED will miss a message the Python backend emits at startup
   requires:
@@ -33,7 +34,8 @@ deployment:
 features:
   editor:
     description: Provides access to the Node-RED admin editor for modifying the GUI
-    compose-files: [compose-editor.yml]
+    compose-files:
+      - editor.compose.yml
     tags:
     - device-portal.name=Node-RED dashboard editor
     - device-portal.description=Provides a Node-RED flow editor to modify the Node-RED dashboard
@@ -58,7 +60,8 @@ features:
             - /admin/ps/node-red-v2/*
   frontend:
     description: Provides access to the GUI
-    compose-files: [compose-frontend.yml]
+    compose-files:
+      - frontend.compose.yml
     tags:
     - device-portal.name=Node-RED dashboard
     - device-portal.description=Provides a Node-RED dashboard to operate the PlanktoScope

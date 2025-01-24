@@ -8,12 +8,14 @@ package:
     - https://github.com/lucaslorentz/caddy-docker-proxy
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
 
 features:
   service-proxy:
     description: Provides reverse-proxying access to Docker Swarm services defined by other packages
-    compose-files: [compose-service-proxy.yml]
+    compose-files:
+      - service-proxy.compose.yml
     tags:
       - device-portal-name=Service proxy
       - device-portal-description=Provides a reverse-proxy to make browser applications and HTTP network APIs uniformly available at different paths on port 80
