@@ -10,7 +10,11 @@ package:
 deployment:
   compose-files:
     - deployment.compose.yml
-  # TODO: add a requirement for /run/docker.sock, and update the compose file's path accordingly
+  requires:
+    filesets:
+      - description: Docker socket
+        paths:
+          - /run/docker.sock
 
 features:
   frontend:

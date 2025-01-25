@@ -3,8 +3,8 @@ services:
     image: docker.io/lucaslorentz/caddy-docker-proxy:2.9.1@sha256:7f9a60e1d12da8ef4714cdeaccfce151cfd4b2deb0561f522b90e67784e68a91
     volumes:
       - type: bind
-        source: /var/run/docker.sock
-        target: /var/run/docker.sock
+        source: /run/docker.sock
+        target: /run/docker.sock
         bind:
           create_host_path: false
       - server-data:/data

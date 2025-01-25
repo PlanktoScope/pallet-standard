@@ -10,6 +10,11 @@ package:
 deployment:
   compose-files:
     - deployment.compose.yml
+  requires:
+    filesets:
+      - description: Docker socket
+        paths:
+          - /run/docker.sock
   provides:
     networks:
       - description: Bridge network for Prometheus to connect to upstream metrics endpoints

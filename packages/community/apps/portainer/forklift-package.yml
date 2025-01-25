@@ -14,7 +14,7 @@ deployment:
     filesets:
       - description: Docker socket
         paths:
-          - /var/run/docker.sock
+          - /run/docker.sock
 
 features:
   frontend:
