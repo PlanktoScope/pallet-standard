@@ -48,6 +48,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Fixed
 
 - Various filesystem bind mounts for the Compose apps of deployments `apps/dozzle`, `apps/filebrowser-root`, `apps/node-exporter`, `apps/ps/files-logs`, `apps/ps/files-datasets`, `infra/caddy-ingress`, and `infra/prometheus` are now configured to error out of the required files (e.g. `/var/run/docker.sock`) don't exist, instead of having Docker try to automatically create those paths as directories.
+- Deployment `infra/mosquitto` no longer makes an unnecessary default Docker network.
 
 ## v2024.0.0 - 2024-12-25
 

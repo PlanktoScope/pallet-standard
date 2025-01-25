@@ -7,6 +7,10 @@ services:
     volumes:
       - server-data:/mosquitto/data
       - server-logs:/mosquitto/log
+networks:
+  default:
+    name: none
+    external: true
 volumes:
   server-data: null
   server-logs: null
