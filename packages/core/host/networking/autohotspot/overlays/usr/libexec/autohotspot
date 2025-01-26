@@ -10,12 +10,15 @@
 # enable sharing internet access).
 # Works at startup or with a separate timer or manually without a reboot.
 
-wifi_dev="wlan0" # device name to use; by default wlan0 is the on-board wifi chip on the RPi4
+wifi_dev="wlan0" # device name to use; by default wlan0 is the on-board wifi module
 
 hostname="$(sed 's~#.*$~~g' /etc/hostname | tr -d '[:space:]')"
 hostname_32="${hostname:0:32}"
 # list of ssids to connect to
-ssids=$(nmcli -t -f NAME,TYPE connection show | grep "802-11-wireless" | grep -v "$hostname_32" | cut -d':' -f1 | sort | uniq)
+ssids=$(
+  nmcli -t -f TIMESTAMP,NAME,TYPE connection show |
+    sort | grep "802-11-wireless" | grep -v ":$hostname_32:" | cut -d ':' -f 2 | uniq
+)
 
 start_isolated_wlan() {
   echo "Starting isolated wifi network..."
@@ -24,22 +27,27 @@ start_isolated_wlan() {
     return
   fi
   systemctl stop dnsmasq
-  sleep 5
-  nmcli device wifi hotspot ifname "$wifi_dev" con-name "$hostname_32" ssid "$hostname_32"  band bg password "copepode"
+  elapsed=0
+  while [[ elapsed -lt 10 ]] && systemctl is-active --quiet dnsmasq; do
+    echo "Waiting for dnsmasq to stop..."
+    sleep 1
+    ((elapsed++))
+  done
+  nmcli device wifi hotspot ifname "$wifi_dev" con-name "$hostname_32" ssid "$hostname_32" band bg password "copepode"
   systemctl start dnsmasq
 
 }
 
 stop_isolated_wlan() {
   echo "Stopping isolated wifi network..."
-  nmcli connection down $hostname_32
+  nmcli connection down "$hostname_32"
 }
 
 fallback_if_unusable_wifi() {
   echo "Checking whether external wifi network is usable..."
   attempt=0
   max_attempts=10
-  while : ; do
+  while :; do
     if ((attempt >= max_attempts)); then
       echo "Couldn't reach the internet after $max_attempts attempts, giving up!"
       break
@@ -92,7 +100,7 @@ find_ssid() {
   detected_ssid=""
   attempt=0
   max_attempts=5
-  while : ; do # wait for wifi if busy
+  while :; do # wait for wifi if busy
     if ((attempt >= max_attempts)); then
       echo "Couldn't scan for networks after $max_attempts attempts, giving up!"
       available_ssids=""
@@ -159,12 +167,12 @@ fi
 
 if nmcli connection show --active | grep -q "$hostname_32"; then
   stop_isolated_wlan
-elif nmcli -t -f GENERAL.CONNECTION device show "$wifi_dev" | grep -q "$detected_ssid"; then 
+elif nmcli -t -f GENERAL.CONNECTION device show "$wifi_dev" | grep -q "$detected_ssid"; then
   echo "Already connected to external wifi network!"
   fallback_if_unusable_wifi
   exit 0
 fi
 
 echo "Connecting to external wifi network $detected_ssid..."
-nmcli device wifi connect "$detected_ssid"  
+nmcli device wifi connect "$detected_ssid"
 fallback_if_unusable_wifi
