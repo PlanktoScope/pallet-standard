@@ -1,0 +1,24 @@
+package:
+  description: Default NetworkManager connection profiles
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: Apache-2.0
+  sources:
+    - https://github.com/PlanktoScope/pallet-standard
+
+features:
+  planktoscope-eth:
+    description: Basic connections on PlanktoScope-supported ethernet interfaces
+    provides:
+      file-exports:
+        - description: Basic connection on eth0 with PlanktoScope-specific default IP address
+          target: overlays/usr/lib/NetworkManager/system-connections/eth0-fallback.nmconnection
+        - description: Basic connection on eth1 with PlanktoScope-specific default IP address
+          target: overlays/usr/lib/NetworkManager/system-connections/eth1-fallback.nmconnection
+  planktoscope-usb:
+    description: Basic connections on PlanktoScope-supported USB tethering interfaces
+    provides:
+      file-exports:
+        - description: Basic connection on usb0 with PlanktoScope-specific default IP address
+          target: overlays/usr/lib/NetworkManager/system-connections/usb0-fallback.nmconnection
