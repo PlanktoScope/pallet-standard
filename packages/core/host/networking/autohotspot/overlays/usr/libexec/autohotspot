@@ -11,19 +11,24 @@
 # Works at startup or with a separate timer or manually without a reboot.
 
 wifi_dev="wlan0" # device name to use; by default wlan0 is the on-board wifi module
+hotspot_band="bg"
+hotspot_channel=8           # WLAN channel; prefer 1-11 for compatibility (8 is generally okay)
+hotspot_ip="192.168.4.1"    # static IP address of the RPi in the Wi-Fi hotspot
+hotspot_password="copepode" # FIXME: load this from a template-generated etc config file
 
 hostname="$(sed 's~#.*$~~g' /etc/hostname | tr -d '[:space:]')"
 hostname_32="${hostname:0:32}"
-# list of ssids to connect to
+connection_name="hotspot-$hostname_32" # this is the NetworkManager connection name for the hotspot
+hotspot_ssid="$hostname_32"            # FIXME: load this from a template-generated etc config file
 ssids=$(
   nmcli -t -f TIMESTAMP,NAME,TYPE connection show |
-    sort | grep "802-11-wireless" | grep -v ":$hostname_32:" | cut -d ':' -f 2 | uniq
-)
+    sort | grep "802-11-wireless" | grep -v ":$connection_name:" | cut -d ':' -f 2 | uniq
+) # list of ssids to connect to:
 
 start_isolated_wlan() {
   echo "Starting isolated wifi network..."
-  if nmcli connection show --active | grep -q "$hostname_32"; then
-    echo "Hotspot '$hostname_32' is already up"
+  if nmcli connection show --active | grep -q "$connection_name"; then
+    echo "Hotspot '$hotspot_ssid' is already up"
     return
   fi
   systemctl stop dnsmasq
@@ -33,14 +38,22 @@ start_isolated_wlan() {
     sleep 1
     ((elapsed++))
   done
-  nmcli device wifi hotspot ifname "$wifi_dev" con-name "$hostname_32" ssid "$hostname_32" band bg password "copepode"
+  nmcli device wifi hotspot ifname "$wifi_dev" \
+    con-name "$connection_name" \
+    ssid "$hotspot_ssid" \
+    band "$hotspot_band" \
+    channel "$hotspot_channel" \
+    password "$hotspot_password"
+  nmcli connection modify "$connection_name" \
+    ipv4.method shared \
+    +ipv4.addr "$hotspot_ip"
   systemctl start dnsmasq
 
 }
 
 stop_isolated_wlan() {
   echo "Stopping isolated wifi network..."
-  nmcli connection down "$hostname_32"
+  nmcli connection down "$connection_name"
 }
 
 fallback_if_unusable_wifi() {
@@ -157,7 +170,7 @@ find_ssid
 # Connect to a valid wifi network if it's available, otherwise make an isolated wifi network
 if [[ "$ssid_status" == "unavailable" ]]; then
   echo "No external wifi network to connect to!"
-  if nmcli connection show --active | grep -q "$hostname_32"; then
+  if nmcli connection show --active | grep -q "$connection_name"; then
     echo "Isolated wifi network already started; nothing else to do!"
     exit 0
   fi
@@ -165,7 +178,7 @@ if [[ "$ssid_status" == "unavailable" ]]; then
   exit 0
 fi
 
-if nmcli connection show --active | grep -q "$hostname_32"; then
+if nmcli connection show --active | grep -q "$connection_name"; then
   stop_isolated_wlan
 elif nmcli -t -f GENERAL.CONNECTION device show "$wifi_dev" | grep -q "$detected_ssid"; then
   echo "Already connected to external wifi network!"
