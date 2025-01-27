@@ -16,6 +16,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
+- (Breaking change) Bumped the minimum required Forklift version to v0.8.0-alpha.6 in order to implement the new `host/networking/nm-connections` deployment (which requires new functionality added in that version of Forklift).
 - Merged the [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo into this pallet, by moving all packages from there into here.
 - (Breaking change) Package `core/host/networking/interface-forwarding` has split its default functionality into two new feature flags named `planktoscope-between` (for forwarding network traffic between interfaces, to support internet connection sharing) and `planktoscope-inbound` (for forwarding network traffic targeted at `192.168.4.1`, `192.168.5.1`, etc., all to `127.0.0.1`), so that functionality is no longer enabled by default in deployments (though the `host/networking/interface-forwarding` deployment does enable both new feature flags, resulting in no visible change to the deployment). Similarly, the `/usr/lib/enable-interface-forwarding` script has been split into two scripts: `/usr/libexec/forward-between` and `/usr/libexec/forward-inbound`.
 

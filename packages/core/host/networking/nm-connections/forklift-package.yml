@@ -13,12 +13,15 @@ features:
     provides:
       file-exports:
         - description: Basic connection on eth0 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/eth0-fallback.nmconnection
+          target: overlays/usr/lib/NetworkManager/system-connections/eth0-fallback.nmconnection
+          permissions: 0600
         - description: Basic connection on eth1 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/eth1-fallback.nmconnection
+          target: overlays/usr/lib/NetworkManager/system-connections/eth1-fallback.nmconnection
+          permissions: 0600
   planktoscope-usb:
     description: Basic connections on PlanktoScope-supported USB tethering interfaces
     provides:
       file-exports:
         - description: Basic connection on usb0 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/usb0-fallback.nmconnection
+          target: overlays/usr/lib/NetworkManager/system-connections/usb0-fallback.nmconnection
+          permissions: 0600
