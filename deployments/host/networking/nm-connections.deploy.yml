@@ -1,0 +1,5 @@
+package: /packages/core/host/networking/nm-connections
+features:
+  - planktoscope-eth
+  - planktoscope-usb
+disabled: false
