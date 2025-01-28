@@ -1,7 +1,7 @@
 [connection]
 id=usb0-default
 type=ethernet
-autoconnect-priority=-990
+autoconnect-priority=-980
 interface-name=usb0
 permissions=
 
