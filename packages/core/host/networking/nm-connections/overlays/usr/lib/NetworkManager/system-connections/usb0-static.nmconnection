@@ -9,7 +9,8 @@ permissions=
 mac-address-blacklist=
 
 [ipv4]
-address1=192.168.6.1/24
+address1=192.168.6.1/24,192.168.6.1
+dns=192.168.6.1
 dns-search=
 method=shared
 
