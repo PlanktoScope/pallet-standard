@@ -1,7 +1,7 @@
 [connection]
 id=eth1-default
 type=ethernet
-autoconnect-priority=-998
+autoconnect-priority=-990
 interface-name=eth1
 permissions=
 
