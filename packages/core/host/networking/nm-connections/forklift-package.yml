@@ -7,21 +7,34 @@ package:
   sources:
     - https://github.com/PlanktoScope/pallet-standard
 
+deployment:
+  provides:
+    file-exports:
+      - description: Basic connection on eth0
+        target: overlays/usr/lib/NetworkManager/system-connections/eth0-default.nmconnection
+        permissions: 0600
+      - description: Basic connection on eth1
+        target: overlays/usr/lib/NetworkManager/system-connections/eth1-default.nmconnection
+        permissions: 0600
+      - description: Basic connection on usb0
+        target: overlays/usr/lib/NetworkManager/system-connections/usb0-default.nmconnection
+        permissions: 0600
+
 features:
   planktoscope-eth:
     description: Basic connections on PlanktoScope-supported ethernet interfaces
     provides:
       file-exports:
         - description: Basic connection on eth0 with PlanktoScope-specific default IP address
-          target: overlays/usr/lib/NetworkManager/system-connections/eth0-fallback.nmconnection
+          target: overlays/usr/lib/NetworkManager/system-connections/eth0-static.nmconnection
           permissions: 0600
         - description: Basic connection on eth1 with PlanktoScope-specific default IP address
-          target: overlays/usr/lib/NetworkManager/system-connections/eth1-fallback.nmconnection
+          target: overlays/usr/lib/NetworkManager/system-connections/eth1-static.nmconnection
           permissions: 0600
   planktoscope-usb:
     description: Basic connections on PlanktoScope-supported USB tethering interfaces
     provides:
       file-exports:
         - description: Basic connection on usb0 with PlanktoScope-specific default IP address
-          target: overlays/usr/lib/NetworkManager/system-connections/usb0-fallback.nmconnection
+          target: overlays/usr/lib/NetworkManager/system-connections/usb0-static.nmconnection
           permissions: 0600
