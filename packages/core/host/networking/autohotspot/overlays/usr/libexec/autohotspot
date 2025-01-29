@@ -38,14 +38,18 @@ start_isolated_wlan() {
     sleep 1
     ((elapsed++))
   done
-  nmcli device wifi hotspot ifname "$wifi_dev" \
+  nmcli device wifi hotspot \
+    ifname "$wifi_dev" \
     con-name "$connection_name" \
     ssid "$hotspot_ssid" \
     band "$hotspot_band" \
     channel "$hotspot_channel" \
     password "$hotspot_password"
   nmcli connection modify "$connection_name" \
+    +autoconnect true \
+    +autoconnect-priority -990 \
     ipv4.method shared \
+    +ipv4.addr "$hotspot_ip/24" \
     +ipv4.addr "$hotspot_ip"
   systemctl start dnsmasq
 
