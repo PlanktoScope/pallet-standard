@@ -38,6 +38,8 @@ start_isolated_wlan() {
     sleep 1
     ((elapsed++))
   done
+  # FIXME: replace this with a systemd service to auto-generate the hotspot nmconnection file from a
+  # template!
   nmcli device wifi hotspot \
     ifname "$wifi_dev" \
     con-name "$connection_name" \
@@ -46,8 +48,8 @@ start_isolated_wlan() {
     channel "$hotspot_channel" \
     password "$hotspot_password"
   nmcli connection modify "$connection_name" \
-    +autoconnect true \
-    +autoconnect-priority -990 \
+    +connection.autoconnect true \
+    +connection.autoconnect-priority -990 \
     ipv4.method shared \
     +ipv4.addr "$hotspot_ip/24" \
     +ipv4.addr "$hotspot_ip"
