@@ -51,8 +51,7 @@ start_isolated_wlan() {
     +connection.autoconnect true \
     +connection.autoconnect-priority -990 \
     ipv4.method shared \
-    +ipv4.addr "$hotspot_ip/24" \
-    +ipv4.addr "$hotspot_ip"
+    +ipv4.addr "$hotspot_ip/24"
   systemctl start dnsmasq
 
 }
