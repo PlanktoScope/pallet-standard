@@ -9,10 +9,10 @@ permissions=
 mac-address-blacklist=
 
 [ipv4]
-dns-search=
 method=auto
 dhcp-timeout=5
 may-fail=false
+dns-search=
 
 [ipv6]
 addr-gen-mode=stable-privacy

@@ -48,11 +48,12 @@ start_isolated_wlan() {
     channel "$hotspot_channel" \
     password "$hotspot_password"
   nmcli connection modify "$connection_name" \
-    +connection.autoconnect true \
-    +connection.autoconnect-priority -990 \
+    connection.autoconnect true \
+    connection.autoconnect-priority -990 \
     ipv4.method shared \
-    +ipv4.addr "$hotspot_ip/24"
-  systemctl start dnsmasq
+    +ipv4.addr "$hotspot_ip/24" \
+    ipv4.never-default true \
+    systemctl start dnsmasq
 
 }
 
