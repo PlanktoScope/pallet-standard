@@ -9,6 +9,10 @@ package:
 
 deployment:
   compose-files: [compose.yml]
+  provides:
+    networks:
+      - description: Bridge network for access to the MQTT broker
+        name: mosquitto
 
 features:
   mqtt-broker:

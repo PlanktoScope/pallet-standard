@@ -23,6 +23,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Breaking change) Deployment `host/networking/dnsmasq` has been renamed to `host/networking/nm-dnsmasq-config` to reflect its updated functionality.
 - (Breaking change) Package `core/host/networking/dnsmasq` has been renamed to `core/host/networking/nm-dnsmasq-config` to reflect its updated functionality; its `planktoscope-dhcp-interfaces` feature flag has been removed, as it is redundant with functionality provided by NetworkManager.
 - (Breaking change) Deployment `host/networking/avahi-daemon`'s `register-planktoscope-local` and `register-pkscope-local` feature flags now register `planktoscope.local` and `pkscope.local` (respectively) to `192.168.5.1` instead of `192.168.4.1` so that they still work over Ethernet when Wi-Fi is disabled.
+- (Breaking change) The Docker network provided by deployment `infra/mosquitto` for bridged access to Mosquito is now named `mosquito` instead of `infra_mosquito_default`.
 - Merged the [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo into this pallet, by moving all packages from there into here.
 
 ### Removed
