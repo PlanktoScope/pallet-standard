@@ -31,13 +31,6 @@ start_isolated_wlan() {
     echo "Hotspot '$hotspot_ssid' is already up"
     return
   fi
-  systemctl stop dnsmasq
-  elapsed=0
-  while [[ elapsed -lt 10 ]] && systemctl is-active --quiet dnsmasq; do
-    echo "Waiting for dnsmasq to stop..."
-    sleep 1
-    ((elapsed++))
-  done
   # TODO: replace this with a systemd service to auto-generate the hotspot nmconnection file from a
   # template?
   nmcli device wifi hotspot \
@@ -53,7 +46,6 @@ start_isolated_wlan() {
     ipv4.method shared \
     ipv4.addresses "$hotspot_ip/24" \
     ipv4.never-default true
-  systemctl start dnsmasq
 
 }
 
@@ -100,10 +92,6 @@ initialize_system_services() {
   if systemctl -all list-unit-files hostapd.service | grep "hostapd.service enabled" >/dev/null; then
     systemctl disable hostapd.service
     systemctl stop hostapd
-  fi
-  # Ensure that dnsmasq is unmasked
-  if systemctl -all list-unit-files dnsmasq.service | grep "dnsmasq.service masked" >/dev/null; then
-    systemctl unmask dnsmasq
   fi
 }
 
