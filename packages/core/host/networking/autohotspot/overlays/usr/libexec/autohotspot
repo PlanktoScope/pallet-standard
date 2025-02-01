@@ -83,18 +83,6 @@ fallback_if_unusable_wifi() {
   start_isolated_wlan
 }
 
-initialize_system_services() {
-  # hostapd may be masked after system updates. This fixes any drift.
-  # Ensure that hostapd is unmasked and disabled
-  if systemctl -all list-unit-files hostapd.service | grep "hostapd.service masked" >/dev/null; then
-    systemctl unmask hostapd.service
-  fi
-  if systemctl -all list-unit-files hostapd.service | grep "hostapd.service enabled" >/dev/null; then
-    systemctl disable hostapd.service
-    systemctl stop hostapd
-  fi
-}
-
 find_ssid() {
   # Check to see what SSIDs and MAC addresses are in range
   ssid_status="unavailable" # FIXME: use a bool instead
@@ -158,7 +146,6 @@ find_ssid() {
   done
 }
 
-initialize_system_services
 find_ssid
 
 # Connect to a valid wifi network if it's available, otherwise make an isolated wifi network
