@@ -12,8 +12,8 @@ deployment:
   provides:
     file-exports:
       # Basic drop-in config files
-      - description: Basic config to automatically listen for DNS & DHCP queries
-        target: overlays/etc/NetworkManager/dnsmasq-shared.d/10-listen.conf
+      - description: Basic config to resolve DNS requests for locally-configured hostsfile
+        target: overlays/etc/NetworkManager/dnsmasq-shared.d/10-hosts.conf
       - description: Basic config to forward DNS queries to Cloudflare & Google when needed
         target: overlays/etc/NetworkManager/dnsmasq-shared.d/20-upstream-dns.conf
       # Templated drop-in config file assembly:
@@ -48,17 +48,6 @@ deployment:
           - /run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config.conf
 
 features:
-  planktoscope-dhcp-interfaces:
-    description:
-      Enable DHCP server functionality for the PlanktoScope OS's static IP address assignments on
-      its network interfaces
-    provides:
-      file-exports:
-        - description:
-            Set DHCP server settings to assign IP addresses on the wlan0, wlan1, eth0, eth1, and
-            usb0 interfaces and to *not* advertise the PlanktoScope as a default route to the
-            internet
-          target: overlays/etc/NetworkManager/dnsmasq-shared.d/30-dhcp-interfaces.conf
   custom-domain:
     description: Handle DNS requests for a custom domain set by /etc/custom-domain
     provides:
