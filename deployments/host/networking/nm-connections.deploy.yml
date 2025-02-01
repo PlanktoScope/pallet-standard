@@ -2,4 +2,6 @@ package: /packages/core/host/networking/nm-connections
 features:
   - planktoscope-eth
   - planktoscope-usb
+  - firewall-allow-direct
+  - firewall-allow-public
 disabled: false

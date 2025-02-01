@@ -12,7 +12,7 @@ deployment:
 
 features:
   mqtt-broker:
-    description: Provides access to the MQTT broker
+    description: Provides access to the MQTT broker from the host
     compose-files: [compose-mqtt-broker.yml]
     tags:
       - device-portal-name=MQTT broker
@@ -29,3 +29,31 @@ features:
           tags: [mqtt-broker]
           port: 1883
           protocol: mqtt
+  firewall-allow-direct:
+    description:
+      Firewall configuration to allow accessing the MQTT broker from directly-connected devices
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the nm-shared zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones/nm-shared.d
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's MQTT service
+          target: overlays/etc/firewalld/zones/nm-shared.d/61-service-mqtt.xml
+  firewall-allow-public:
+    description:
+      Firewall configuration to allow public access to the MQTT broker
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the public zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones/public.d
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's MQTT service
+          target: overlays/etc/firewalld/zones/public.d/61-service-mqtt.xml

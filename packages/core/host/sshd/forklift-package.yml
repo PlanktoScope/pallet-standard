@@ -45,3 +45,31 @@ features:
           target: overlays/usr/lib/systemd/system/ensure-ssh-host-keys.service
         - description: systemd service enablement for ensure-ssh-host-keys.service
           target: overlays/etc/systemd/system/multi-user.target.wants/ensure-ssh-host-keys.service
+  firewall-allow-direct:
+    description:
+      Firewall configuration to allow accessing the SSH server from directly-connected devices
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the nm-shared zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones/nm-shared.d
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's SSH service
+          target: overlays/etc/firewalld/zones/nm-shared.d/50-service-ssh.xml
+  firewall-allow-public:
+    description:
+      Firewall configuration to allow public access to the SSH server
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the public zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones/public.d
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's SSH service
+          target: overlays/etc/firewalld/zones/public.d/50-service-ssh.xml

@@ -42,3 +42,31 @@ features:
       file-exports:
         - description: systemd service enablement
           target: overlays/etc/systemd/system/multi-user.target.wants/planktoscope-mdns-alias@pkscope.service
+  firewall-allow-direct:
+    description:
+      Firewall configuration to allow mDNS traffic from directly-connected devices
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the nm-shared zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones/nm-shared.d
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's mDNS service
+          target: overlays/etc/firewalld/zones/nm-shared.d/41-service-mdns.xml
+  firewall-allow-public:
+    description:
+      Firewall configuration to allow public mDNS traffic
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the public zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones/public.d
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's mDNS service
+          target: overlays/etc/firewalld/zones/public.d/41-service-mdns.xml

@@ -1,4 +1,6 @@
 package: /packages/core/infra/caddy-ingress
 features:
   - service-proxy
+  - firewall-allow-direct
+  - firewall-allow-public
 disabled: false

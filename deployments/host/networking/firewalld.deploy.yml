@@ -1,0 +1,5 @@
+package: /packages/core/host/networking/firewalld
+features:
+  - zone-nm-shared
+  - zone-public
+disabled: false
