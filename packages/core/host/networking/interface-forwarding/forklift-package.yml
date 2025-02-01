@@ -21,6 +21,8 @@ deployment:
 
 features:
   planktoscope-between:
+    # Note: this feature flag is not needed on NetworkManager-based systems with connections using
+    # the "shared" ipv4 mode:
     description:
       Forward network traffic between network interfaces for all interfaces supported by the
       PlanktoScope
