@@ -49,4 +49,4 @@ else
 fi
 
 mkdir -p /run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d
-echo "$config" >/run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config
+echo "$config" >/run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config.conf
