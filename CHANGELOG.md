@@ -17,7 +17,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 ### Changed
 
 - (Breaking change) Bumped the minimum required Forklift version to v0.8.0-alpha.6 in order to implement the new `host/networking/nm-connections` deployment (which requires new functionality added in that version of Forklift).
-- (Breaking change) Package `core/host/networking/interface-forwarding` has split its default functionality into two new feature flags named `planktoscope-between` (for forwarding network traffic between interfaces, to support internet connection sharing) and `planktoscope-inbound` (for forwarding network traffic targeted at `192.168.4.1`, `192.168.5.1`, etc., all to `127.0.0.1`), so that functionality is no longer enabled by default in deployments (though the `host/networking/interface-forwarding` deployment does enable `planktoscope-inbound`, resulting in no visible change to the deployment when deployed on a NetworkManager-based system). Similarly, the `/usr/lib/enable-interface-forwarding` script has been split into two scripts: `/usr/libexec/forward-between` and `/usr/libexec/forward-inbound`.
+- (Breaking change) Package `core/host/networking/interface-forwarding` has moved some of its default functionality into a new feature flag named `planktoscope-inbound` (for forwarding network traffic targeted at `192.168.4.1`, `192.168.5.1`, etc., all to `127.0.0.1`), so that functionality is no longer enabled by default in deployments (though the `host/networking/interface-forwarding` deployment does enable it, resulting in no visible change to the deployment when deployed on a NetworkManager-based system). Similarly, the `/usr/lib/enable-interface-forwarding` script has been renamed to `/usr/libexec/forward-inbound`.
 - (Breaking change) Deployment `host/networking/dnsmasq` has been renamed to `host/networking/nm-dnsmasq-config` to reflect its updated functionality.
 - (Breaking change) Package `core/host/networking/dnsmasq` has been renamed to `core/host/networking/nm-dnsmasq-config` to reflect its updated functionality; its `planktoscope-dhcp-interfaces` feature flag has been removed, as it is redundant with functionality provided by NetworkManager.
 - (Breaking change) Deployment `host/networking/avahi-daemon`'s `register-planktoscope-local` and `register-pkscope-local` feature flags now register `planktoscope.local` and `pkscope.local` (respectively) to `192.168.5.1` instead of `192.168.4.1` so that they still work over Ethernet when Wi-Fi is disabled.
@@ -27,6 +27,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Deployment `apps/portainer` (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
 - Deployment `apps/ps/device-portal` had a broken link (to a removed protocol PDF file) which has now been removed.
+- Deployment `host/networking/interface-forwarding` (and its associated package) no longer has functionality for forwarding network traffic between interfaces to support internet connection sharing, as that functionality is now instead provided natively by NetworkManager using the connection profiles provided by deployments `host/networking/nm-connections` and `host/networking/autohotspot`.
 
 ## v2024.0.0 - 2024-12-25
 
