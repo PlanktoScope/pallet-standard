@@ -45,11 +45,11 @@ features:
         - description:
             dnsmasq configuration to advertise the PlanktoScope as a route to all IP addresses
             assigned by the PlanktoScope to devices connected on all interfaces.
-          target: overlays/etc/dnsmasq.d/35-dhcp-subnet-routes.conf
+          target: overlays/etc/NetworkManager/dnsmasq-shared.d/35-dhcp-subnet-routes.conf
   planktoscope-dhcp-default-route:
     description:
       Configure dnsmasq's DHCP server to advertise itself as a default route to the internet
     provides:
       file-exports:
         - description: Sets DHCP settings on the wlan0, wlan1, eth0, eth1, and usb0 interfaces
-          target: overlays/etc/dnsmasq.d/35-dhcp-default-route.conf
+          target: overlays/etc/NetworkManager/dnsmasq-shared.d/35-dhcp-default-route.conf

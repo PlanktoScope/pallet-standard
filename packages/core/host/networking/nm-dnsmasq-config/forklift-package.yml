@@ -27,7 +27,7 @@ deployment:
         target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-dnsmasq-config-templated.service
       - description:
           Symlink redirecting /etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config to an auto-generated file
-        target: overlays/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config
+        target: overlays/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config.conf
       # Drop-in config templates to assemble by default:
       - description:
           Drop-in dnsmasq config template with comment describing dnsmasq template drop-in directory
@@ -45,7 +45,7 @@ deployment:
           Auto-generated dnsmasq drop-in config file with configurations based on machine name,
           hostname, and/or custom domain.
         paths:
-          - /run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config
+          - /run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config.conf
 
 features:
   planktoscope-dhcp-interfaces:
