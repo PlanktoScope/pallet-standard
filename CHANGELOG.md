@@ -10,7 +10,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Added
 
-- New deployment `host/networking/nm-connections` adds NetworkManager connection profiles for `eth0`/`eth1`/`usb0` as fallbacks which set static IP addresses.
+- New deployment `host/networking/networkmanager` adds NetworkManager connection profiles for `eth0`/`eth1`/`usb0` as fallbacks which set static IP addresses.
 - New deployment `host/networking/firewalld` adds system services to auto-generate firewalld zones for `public` and `nm-shared` from drop-in snippet files.
 - Deployments `host/networking/avahi-daemon`, `host/cockpit`, `host/sshd`, `infra/caddy-ingress`, and `infra/mosquitto` now provide firewalld rules (as drop-in snippet files assembled by deployment `host/networking/firewalld`) to allow access both from directly-connected devices (via respective feature flags named `firewall-allow-direct`) and from public LANs (via respective feature flags named `firewall-allow-public`).
 - Deployment `host/networking/mac-addresses` of new package `core/host/networking/mac-addresses` adds a systemd service to generate a YAML file report of the MAC addresses of the PlanktoScope's network interfaces, and a systemd timer to update that report periodically.
@@ -18,7 +18,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 ### Changed
 
-- (Breaking change) Bumped the minimum required Forklift version to v0.8.0-alpha.6 in order to implement the new `host/networking/nm-connections` deployment (which requires new functionality added in that version of Forklift).
+- (Breaking change) Bumped the minimum required Forklift version to v0.8.0-alpha.6 in order to implement the new `host/networking/networkmanager` deployment (which requires new functionality added in that version of Forklift).
 - (Breaking change) Package `core/host/networking/interface-forwarding` has moved some of its default functionality into a new feature flag named `planktoscope-inbound` (for forwarding network traffic targeted at `192.168.4.1`, `192.168.5.1`, etc., all to `127.0.0.1`), so that functionality is no longer enabled by default in deployments (though the `host/networking/interface-forwarding` deployment does enable it, resulting in no visible change to the deployment when deployed on a NetworkManager-based system). Similarly, the `/usr/lib/enable-interface-forwarding` script has been renamed to `/usr/libexec/forward-inbound`.
 - (Breaking change) Deployment `host/networking/dnsmasq` has been renamed to `host/networking/nm-dnsmasq-config` to reflect its updated functionality.
 - (Breaking change) Package `core/host/networking/dnsmasq` has been renamed to `core/host/networking/nm-dnsmasq-config` to reflect its updated functionality; its `planktoscope-dhcp-interfaces` feature flag has been removed, as it is redundant with functionality provided by NetworkManager.
@@ -30,7 +30,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 
 - Deployment `apps/portainer` (whose default enablement was deprecated in v2024.0.0-alpha.2) is now disabled by default.
 - Deployment `apps/ps/device-portal` had a broken link (to a removed protocol PDF file) which has now been removed.
-- Deployment `host/networking/interface-forwarding` (and its associated package) no longer has functionality for forwarding network traffic between interfaces to support internet connection sharing, as that functionality is now instead provided natively by NetworkManager using the connection profiles provided by deployments `host/networking/nm-connections` and `host/networking/autohotspot`.
+- Deployment `host/networking/interface-forwarding` (and its associated package) no longer has functionality for forwarding network traffic between interfaces to support internet connection sharing, as that functionality is now instead provided natively by NetworkManager using the connection profiles provided by deployments `host/networking/networkmanager` and `host/networking/autohotspot`.
 
 ## v2024.0.0 - 2024-12-25
 

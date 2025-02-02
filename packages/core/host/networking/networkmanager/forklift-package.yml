@@ -1,23 +1,28 @@
 package:
-  description: Default NetworkManager connection profiles
+  description:
+    Network configuration system ambiently provided by the OS, and default connection profiles for
+    it
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com
-  license: Apache-2.0
+  license: GPL-2.0-or-later
   sources:
+    # Ambiently-provided software (GPL-2.0-or-later)
+    - https://gitlab.freedesktop.org/NetworkManager/NetworkManager
+    # Auto-generation scripts (Apache-2.0):
     - https://github.com/PlanktoScope/pallet-standard
 
 deployment:
   provides:
     file-exports:
       - description: Basic connection on eth0
-        target: overlays/usr/lib/NetworkManager/system-connections/eth0-default.nmconnection
+        target: overlays/etc/NetworkManager/system-connections/eth0-default.nmconnection
         permissions: 0600
       - description: Basic connection on eth1
-        target: overlays/usr/lib/NetworkManager/system-connections/eth1-default.nmconnection
+        target: overlays/etc/NetworkManager/system-connections/eth1-default.nmconnection
         permissions: 0600
       - description: Basic connection on usb0
-        target: overlays/usr/lib/NetworkManager/system-connections/usb0-default.nmconnection
+        target: overlays/etc/NetworkManager/system-connections/usb0-default.nmconnection
         permissions: 0600
 
 features:
@@ -26,17 +31,17 @@ features:
     provides:
       file-exports:
         - description: Basic connection on eth0 with PlanktoScope-specific default IP address
-          target: overlays/usr/lib/NetworkManager/system-connections/eth0-static.nmconnection
+          target: overlays/etc/NetworkManager/system-connections/eth0-static.nmconnection
           permissions: 0600
         - description: Basic connection on eth1 with PlanktoScope-specific default IP address
-          target: overlays/usr/lib/NetworkManager/system-connections/eth1-static.nmconnection
+          target: overlays/etc/NetworkManager/system-connections/eth1-static.nmconnection
           permissions: 0600
   planktoscope-usb:
     description: Basic connections on PlanktoScope-supported USB tethering interfaces
     provides:
       file-exports:
         - description: Basic connection on usb0 with PlanktoScope-specific default IP address
-          target: overlays/usr/lib/NetworkManager/system-connections/usb0-static.nmconnection
+          target: overlays/etc/NetworkManager/system-connections/usb0-static.nmconnection
           permissions: 0600
   firewall-allow-direct:
     description:

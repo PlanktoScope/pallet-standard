@@ -1,4 +1,4 @@
-package: /packages/core/host/networking/nm-connections
+package: /packages/core/host/networking/networkmanager
 features:
   - planktoscope-eth
   - planktoscope-usb
