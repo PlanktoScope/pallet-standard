@@ -14,8 +14,6 @@ deployment:
     file-exports:
       - description: Kernel parameters to enable routing between network interfaces
         target: overlays/usr/lib/sysctl.d/20-routed-ap.conf
-      - description: Shell script to set up iptables rules to handle inbound network traffic on static IPs
-        target: overlays/usr/libexec/forward-inbound
 
 features:
   planktoscope-inbound-any:
@@ -24,10 +22,6 @@ features:
       192.168.5.1) on any network interface
     provides:
       file-exports:
-        - description: systemd service to run the forward-inbound script during boot
-          target: overlays/usr/lib/systemd/system/enable-interface-forwarding-inbound.service
-        - description: systemd service enablement for enable-interface-forwarding-inbound.service
-          target: overlays/etc/systemd/system/network-online.target.wants/enable-interface-forwarding-inbound.service
         - description:
             dnsmasq configuration to advertise the PlanktoScope as a route to all IP addresses
             assigned by the PlanktoScope to devices connected on all interfaces.
