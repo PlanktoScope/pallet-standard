@@ -47,15 +47,15 @@ features:
           tags:
             - drop-in-assembly
           paths:
-            - /etc/firewalld/zones/nm-shared.d
+            - /etc/firewalld/zones.d/nm-shared
     provides:
       file-exports:
         - description: Drop-in XML fragment for firewalld's ICMP protocol
-          target: overlays/etc/firewalld/zones/nm-shared.d/20-protocol-icmp.xml
+          target: overlays/etc/firewalld/zones.d/nm-shared/20-protocol-icmp.xml
         - description: Drop-in XML fragment for firewalld's DHCP services
-          target: overlays/etc/firewalld/zones/nm-shared.d/30-service-dhcp.xml
+          target: overlays/etc/firewalld/zones.d/nm-shared/30-service-dhcp.xml
         - description: Drop-in XML fragment for firewalld's DNS service
-          target: overlays/etc/firewalld/zones/nm-shared.d/40-service-dns.xml
+          target: overlays/etc/firewalld/zones.d/nm-shared/40-service-dns.xml
   firewall-allow-public:
     description:
       Firewall configuration to allow public ICMP, DHCP, and DNS traffic
@@ -65,12 +65,12 @@ features:
           tags:
             - drop-in-assembly
           paths:
-            - /etc/firewalld/zones/public.d
+            - /etc/firewalld/zones.d/public
     provides:
       file-exports:
         - description: Drop-in XML fragment for firewalld's ICMP protocol
-          target: overlays/etc/firewalld/zones/public.d/20-protocol-icmp.xml
+          target: overlays/etc/firewalld/zones.d/public/20-protocol-icmp.xml
         - description: Drop-in XML fragment for firewalld's DHCP services
-          target: overlays/etc/firewalld/zones/public.d/30-service-dhcp.xml
+          target: overlays/etc/firewalld/zones.d/public/30-service-dhcp.xml
         - description: Drop-in XML fragment for firewalld's DNS service
-          target: overlays/etc/firewalld/zones/public.d/40-service-dns.xml
+          target: overlays/etc/firewalld/zones.d/public/40-service-dns.xml

@@ -42,11 +42,11 @@ features:
           tags:
             - drop-in-assembly
           paths:
-            - /etc/firewalld/zones/nm-shared.d
+            - /etc/firewalld/zones.d/nm-shared
     provides:
       file-exports:
         - description: Drop-in XML fragment for firewalld's MQTT service
-          target: overlays/etc/firewalld/zones/nm-shared.d/61-service-mqtt.xml
+          target: overlays/etc/firewalld/zones.d/nm-shared/61-service-mqtt.xml
   firewall-allow-public:
     description:
       Firewall configuration to allow public access to the MQTT broker
@@ -56,8 +56,8 @@ features:
           tags:
             - drop-in-assembly
           paths:
-            - /etc/firewalld/zones/public.d
+            - /etc/firewalld/zones.d/public
     provides:
       file-exports:
         - description: Drop-in XML fragment for firewalld's MQTT service
-          target: overlays/etc/firewalld/zones/public.d/61-service-mqtt.xml
+          target: overlays/etc/firewalld/zones.d/public/61-service-mqtt.xml
