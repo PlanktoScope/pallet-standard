@@ -1,7 +1,7 @@
 [Unit]
 Description=Assemble drop-in XML fragment files into a firewalld zone file for %i
 ConditionFileIsExecutable=/usr/libexec/assemble-firewalld-zone
-ConditionPathIsDirectory=/etc/firewalld/zones/%i.d
+ConditionPathIsDirectory=/etc/firewalld/zones.d/%i
 Before=firewalld.service
 Before=NetworkManager.service
 
