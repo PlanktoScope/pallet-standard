@@ -29,6 +29,8 @@ features:
           target: overlays/etc/systemd/system/firewalld.service.wants/assemble-firewalld-zone@public.service
         - description: Symlink redirecting /etc/firewalld/zones/public.xml to an auto-generated file
           target: overlays/etc/firewalld/zones/public.xml
+        - description: Drop-in XML fragment with the required XML declaration
+          target: overlays/etc/firewalld/zones.d/public/00-xml-declaration.xml
         - description: Drop-in XML fragment with comment describing XML fragments drop-in directory
           target: overlays/etc/firewalld/zones.d/public/10-README.xml
         - description: Drop-in XML fragment opening the zone definition
@@ -54,6 +56,8 @@ features:
           target: overlays/etc/systemd/system/firewalld.service.wants/assemble-firewalld-zone@nm-shared.service
         - description: Symlink redirecting /etc/firewalld/zones/nm-shared.xml to an auto-generated file
           target: overlays/etc/firewalld/zones/nm-shared.xml
+        - description: Drop-in XML fragment with the required XML declaration
+          target: overlays/etc/firewalld/zones.d/nm-shared/00-xml-declaration.xml
         - description: Drop-in XML fragment with comment describing XML fragments drop-in directory
           target: overlays/etc/firewalld/zones.d/nm-shared/10-README.xml
         - description: Drop-in XML fragment opening the zone definition
