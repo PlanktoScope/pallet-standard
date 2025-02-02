@@ -174,11 +174,11 @@ features:
           tags:
             - drop-in-assembly
           paths:
-            - /etc/firewalld/zones/nm-shared.d
+            - /etc/firewalld/zones.d/nm-shared
     provides:
       file-exports:
         - description: Drop-in XML fragment for firewalld's Cockpit service
-          target: overlays/etc/firewalld/zones/nm-shared.d/51-service-cockpit.xml
+          target: overlays/etc/firewalld/zones.d/nm-shared/51-service-cockpit.xml
   firewall-allow-public:
     description:
       Firewall configuration to allow public access to Cockpit
@@ -188,8 +188,8 @@ features:
           tags:
             - drop-in-assembly
           paths:
-            - /etc/firewalld/zones/public.d
+            - /etc/firewalld/zones.d/public
     provides:
       file-exports:
         - description: Drop-in XML fragment for firewalld's Cockpit service
-          target: overlays/etc/firewalld/zones/public.d/51-service-cockpit.xml
+          target: overlays/etc/firewalld/zones.d/public/51-service-cockpit.xml
