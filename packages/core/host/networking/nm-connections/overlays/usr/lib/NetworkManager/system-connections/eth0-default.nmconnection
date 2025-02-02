@@ -2,6 +2,7 @@
 id=eth0-default
 type=ethernet
 autoconnect-priority=-980
+autoconnect-retries=1
 interface-name=eth0
 permissions=
 
