@@ -1,4 +1,4 @@
-package: /packages/core/host/networking/nm-dnsmasq-config
+package: /packages/core/host/networking/networkmanager-dnsmasq
 features:
   - custom-domain
   - planktoscope-custom-domain

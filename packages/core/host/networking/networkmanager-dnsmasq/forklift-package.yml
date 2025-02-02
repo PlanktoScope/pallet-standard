@@ -1,11 +1,15 @@
 package:
   description:
-    Auto-generation of configurations for NetworkManager's DNS and DHCP server
+    DNS and DHCP server ambiently provided with NetworkManager by the OS, and auto-generation of
+    configurations for it
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com
   license: GPL-2.0-only OR GPL-3.0-only
   sources:
+    # Ambiently-provided software (GPL):
+    - https://thekelleys.org.uk/dnsmasq/doc.html
+    # Config templating & auto-generation scripts (Apache-2.0):
     - https://github.com/PlanktoScope/pallet-standard
 
 deployment:
