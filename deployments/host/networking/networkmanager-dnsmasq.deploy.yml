@@ -1,5 +1,6 @@
 package: /packages/core/host/networking/networkmanager-dnsmasq
 features:
+  - dhcp-default-route
   - custom-domain
   - planktoscope-custom-domain
 disabled: false

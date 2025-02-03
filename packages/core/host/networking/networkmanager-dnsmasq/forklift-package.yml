@@ -52,6 +52,14 @@ deployment:
           - /run/overlays/generated/etc/NetworkManager/dnsmasq-shared.d/40-generated-templated-config.conf
 
 features:
+  dhcp-default-route:
+    description:
+      Configure dnsmasq's DHCP server to advertise itself as a default route to the internet for
+      eth0 & eth1
+    provides:
+      file-exports:
+        - description: Sets DHCP settings on the eth0 & eth1 interfaces
+          target: overlays/etc/NetworkManager/dnsmasq-shared.d/35-dhcp-default-route-eth.conf
   custom-domain:
     description: Handle DNS requests for a custom domain set by /etc/custom-domain
     provides:
