@@ -1,7 +1,7 @@
 package:
   description:
-    Network configuration system ambiently provided by the OS, and default connection profiles for
-    it
+    Network configuration system ambiently provided by the OS, and default wired connection profiles
+    for it
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com

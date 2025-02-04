@@ -1,0 +1,5 @@
+[connection]
+id=wlan1-hotspot
+type=wifi
+autoconnect-priority=-990
+interface-name=wlan0
