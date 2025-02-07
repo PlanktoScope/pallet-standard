@@ -10,7 +10,9 @@ mac-address-blacklist=
 
 [ipv4]
 method=auto
-# note: we don't try to self-assign 192.168.6.1, because it seems to cause problems.
+# self-assign the PlanktoScope-associated IP address so that it's available for interface forwarding
+# of inbound packets even if the upstream network router dynamically assigns an IP address:
+address1=192.168.6.1/24
 dns-search=
 
 [ipv6]
