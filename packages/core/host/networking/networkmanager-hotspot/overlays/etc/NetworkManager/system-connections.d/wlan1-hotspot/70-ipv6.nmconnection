@@ -2,4 +2,3 @@
 [ipv6]
 method=ignore
 addr-gen-mode=stable-privacy
-dns-search=
