@@ -15,10 +15,11 @@ package:
 deployment:
   provides:
     file-exports:
+
       - description:
           Shell script to generate a NetworkManager connection file from drop-in fragment files
         target: overlays/usr/libexec/assemble-networkmanager-connection
-      - description: systemd service to assemble a firewalld zone during boot
+      - description: systemd service to assemble a NetworkManager connection file during boot
         target: overlays/usr/lib/systemd/system/assemble-networkmanager-connection@.service
       - description:
           Shell script to generate a NetworkManager connection drop-in fragment file from drop-in
@@ -28,33 +29,119 @@ deployment:
           systemd service to run the assemble-networkmanager-connection-templated script during boot
         target: overlays/usr/lib/systemd/system/assemble-networkmanager-connection-templated@.service
 
+      # eth0-default:
+      - description: systemd service enablement for assemble-networkmanager-connection@eth0-default.service
+        target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-networkmanager-connection@eth0-default.service
+      - description: Symlink redirecting /etc/NetworkManager/system-connections/eth0-default.nmconnection to an auto-generated file
+        target: overlays/etc/NetworkManager/system-connections/eth0-default.nmconnection
+      - description: Comment describing NetworkManager connection fragments drop-in directory
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-default/10-README.nmconnection
+      - description: Basic connection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-default/20-connection.nmconnection
+      - description: Connection auto-selection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-default/21-connection-autoconnect.nmconnection
+      - description: Basic IPv4 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-default/60-ipv4.nmconnection
+      - description: IPv4 DHCP timeout settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-default/62-ipv4-timeout.nmconnection
+      - description: Basic IPv6 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-default/70-ipv6.nmconnection
+
+      # eth0-static:
+      - description: systemd service enablement for assemble-networkmanager-connection@eth0-static.service
+        target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-networkmanager-connection@eth0-static.service
+      - description: Symlink redirecting /etc/NetworkManager/system-connections/eth0-static.nmconnection to an auto-generated file
+        target: overlays/etc/NetworkManager/system-connections/eth0-static.nmconnection
+      - description: Comment describing NetworkManager connection fragments drop-in directory
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/10-README.nmconnection
+      - description: Basic connection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/20-connection.nmconnection
+      - description: Connection auto-selection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/21-connection-autoconnect.nmconnection
+      - description: Basic IPv4 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/60-ipv4.nmconnection
+      - description: IPv4 default route settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/62-ipv4-routes.nmconnection
+      - description: Basic IPv6 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/70-ipv6.nmconnection
+
+      # eth1-default:
+      - description: systemd service enablement for assemble-networkmanager-connection@eth1-default.service
+        target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-networkmanager-connection@eth1-default.service
+      - description: Symlink redirecting /etc/NetworkManager/system-connections/eth1-default.nmconnection to an auto-generated file
+        target: overlays/etc/NetworkManager/system-connections/eth1-default.nmconnection
+      - description: Comment describing NetworkManager connection fragments drop-in directory
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-default/10-README.nmconnection
+      - description: Basic connection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-default/20-connection.nmconnection
+      - description: Connection auto-selection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-default/21-connection-autoconnect.nmconnection
+      - description: Basic IPv4 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-default/60-ipv4.nmconnection
+      - description: IPv4 DHCP timeout settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-default/62-ipv4-timeout.nmconnection
+      - description: Basic IPv6 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-default/70-ipv6.nmconnection
+
+      # eth1-static:
+      - description: systemd service enablement for assemble-networkmanager-connection@eth1-static.service
+        target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-networkmanager-connection@eth1-static.service
+      - description: Symlink redirecting /etc/NetworkManager/system-connections/eth1-static.nmconnection to an auto-generated file
+        target: overlays/etc/NetworkManager/system-connections/eth1-static.nmconnection
+      - description: Comment describing NetworkManager connection fragments drop-in directory
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/10-README.nmconnection
+      - description: Basic connection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/20-connection.nmconnection
+      - description: Connection auto-selection settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/21-connection-autoconnect.nmconnection
+      - description: Basic IPv4 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/60-ipv4.nmconnection
+      - description: IPv4 default route settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/62-ipv4-routes.nmconnection
+      - description: Basic IPv6 settings
+        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/70-ipv6.nmconnection
+
+      # usb0-default:
+      - description: systemd service enablement for assemble-networkmanager-connection@usb0-default.service
+        target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-networkmanager-connection@usb0-default.service
+      - description: Symlink redirecting /etc/NetworkManager/system-connections/usb0-default.nmconnection to an auto-generated file
+        target: overlays/etc/NetworkManager/system-connections/usb0-default.nmconnection
+      - description: Comment describing NetworkManager connection fragments drop-in directory
+        target: overlays/etc/NetworkManager/system-connections.d/usb0-default/10-README.nmconnection
+      - description: Basic connection settings
+        target: overlays/etc/NetworkManager/system-connections.d/usb0-default/20-connection.nmconnection
+      - description: Connection auto-selection settings
+        target: overlays/etc/NetworkManager/system-connections.d/usb0-default/21-connection-autoconnect.nmconnection
+      - description: Basic IPv4 settings
+        target: overlays/etc/NetworkManager/system-connections.d/usb0-default/60-ipv4.nmconnection
+      - description: IPv4 DHCP timeout settings
+        target: overlays/etc/NetworkManager/system-connections.d/usb0-default/62-ipv4-timeout.nmconnection
+      - description: Basic IPv6 settings
+        target: overlays/etc/NetworkManager/system-connections.d/usb0-default/70-ipv6.nmconnection
+
+    filesets:
+      - description: systemd service to assemble a NetworkManager connection file during boot
+        paths:
+          - /usr/lib/systemd/system/assemble-networkmanager-connection@.service
+      - description: systemd service to assemble a templated NetworkManager connection drop-in file during boot
+        paths:
+          - /usr/lib/systemd/system/assemble-networkmanager-connection-templated@.service
+
 features:
-  planktoscope-eth:
-    description: Basic connections on PlanktoScope-supported ethernet interfaces
+  planktoscope-ip-addresses:
+    description: PlanktoScope-specific IP addresses for wired connections
     provides:
       file-exports:
-        - description: Basic connection on eth0 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/eth0-default.nmconnection
-          permissions: 0600
-        - description: Basic static IP connection on eth0 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/eth0-static.nmconnection
-          permissions: 0600
-        - description: Basic connection on eth1 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/eth1-default.nmconnection
-          permissions: 0600
-        - description: Basic static IP connection on eth1 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/eth1-static.nmconnection
-          permissions: 0600
-  planktoscope-usb:
-    description: Basic connections on PlanktoScope-supported USB tethering interfaces
-    provides:
-      file-exports:
-        - description: Basic connection on usb0 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/usb0-default.nmconnection
-          permissions: 0600
-        - description: Basic static IP connection on usb0 with PlanktoScope-specific default IP address
-          target: overlays/etc/NetworkManager/system-connections/usb0-static.nmconnection
-          permissions: 0600
+        - description: IPv4 address settings
+          target: overlays/etc/NetworkManager/system-connections.d/eth0-default/61-ipv4-address.nmconnection
+        - description: Static IPv4 address settings
+          target: overlays/etc/NetworkManager/system-connections.d/eth0-static/61-ipv4-address.nmconnection
+        - description: IPv4 address settings
+          target: overlays/etc/NetworkManager/system-connections.d/eth1-default/61-ipv4-address.nmconnection
+        - description: Static IPv4 address settings
+          target: overlays/etc/NetworkManager/system-connections.d/eth1-static/61-ipv4-address.nmconnection
+        - description: IPv4 address settings
+          target: overlays/etc/NetworkManager/system-connections.d/usb0-default/61-ipv4-address.nmconnection
   firewall-allow-direct:
     description:
       Firewall configuration to allow ICMP, DHCP, and DNS traffic from directly-connected devices

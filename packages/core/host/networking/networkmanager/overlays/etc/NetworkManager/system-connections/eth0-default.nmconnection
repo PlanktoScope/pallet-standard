@@ -1,17 +1,1 @@
-[connection]
-id=eth0-default
-type=ethernet
-autoconnect-priority=-980
-autoconnect-retries=1
-interface-name=eth0
-
-[ipv4]
-method=auto
-# self-assign the PlanktoScope-associated IP address so that it's available for interface forwarding
-# of inbound packets even if the upstream network router dynamically assigns an IP address:
-address1=192.168.5.1/24
-dhcp-timeout=5
-may-fail=false
-
-[ipv6]
-method=auto
+../../../run/overlays/generated/etc/NetworkManager/system-connections/eth0-default.nmconnection

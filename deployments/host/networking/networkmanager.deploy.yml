@@ -1,7 +1,6 @@
 package: /packages/core/host/networking/networkmanager
 features:
-  - planktoscope-eth
-  - planktoscope-usb
+  - planktoscope-ip-addresses
   - firewall-allow-direct
   - firewall-allow-public
 disabled: false
