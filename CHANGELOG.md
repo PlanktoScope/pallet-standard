@@ -37,6 +37,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `apps/ps/device-portal` had a broken link (to a removed protocol PDF file) which has now been removed.
 - Deployment `host/networking/interface-forwarding` (and its associated package) no longer has functionality for forwarding network traffic between interfaces to support internet connection sharing, as that functionality is now instead provided natively by NetworkManager using the connection profiles provided by deployments `host/networking/networkmanager` and `host/networking/autohotspot`.
 - Deployment `host/networking/autohotspot` (along with its associated package `core/host/networking/autohotspot`) has been removed, as it is now redundant with functionality natively provided by NetworkManater.
+- Deployment `host/networking/networkmanager-dnsmasq` no longer hard-codes upstream DNS servers, in order to allow devices connected to the PlanktoScope to access captive portals.
 
 ### Fixed
 
