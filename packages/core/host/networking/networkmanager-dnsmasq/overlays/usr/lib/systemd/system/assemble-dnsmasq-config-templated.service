@@ -1,7 +1,7 @@
 [Unit]
 Description=Assemble and process (with string interpolation) drop-in dnsmasq config template files into a drop-in dnsmasq config file
 ConditionFileIsExecutable=/usr/libexec/assemble-dnsmasq-config-templated
-ConditionPathExists=/etc/NetworkManager/dnsmasq-shared-templates.d
+ConditionPathIsDirectory=/etc/NetworkManager/dnsmasq-shared-templates.d
 # If there are services to generate a machine name and hostname (which can optionally be used in
 # templates), run those services first:
 Wants=generate-machine-name.service

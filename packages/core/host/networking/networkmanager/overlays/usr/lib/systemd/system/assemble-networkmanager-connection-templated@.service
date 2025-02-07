@@ -1,7 +1,7 @@
 [Unit]
 Description=Assemble and process (with string interpolation) drop-in NetworkManager connection fragment template files into a drop-in NetworkManager connection fragment file for %i
 ConditionFileIsExecutable=/usr/libexec/assemble-networkmanager-connection-templated
-ConditionPathExists=/etc/NetworkManager/system-connections-templates.d
+ConditionPathIsDirectory=/etc/NetworkManager/system-connections-templates.d/%i
 # If there are services to generate a machine name and hostname (which can optionally be used in
 # templates), run those services first:
 Wants=generate-machine-name.service

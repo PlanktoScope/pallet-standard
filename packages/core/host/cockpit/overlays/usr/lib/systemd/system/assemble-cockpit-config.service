@@ -1,7 +1,7 @@
 [Unit]
 Description=Assemble drop-in Cockpit config file fragments into a Cockpit config file
 ConditionFileIsExecutable=/usr/libexec/assemble-cockpit-config
-ConditionPathExists=/etc/cockpit/cockpit.conf.d
+ConditionPathIsDirectory=/etc/cockpit/cockpit.conf.d
 Wants=assemble-cockpit-origins.service
 After=assemble-cockpit-origins.service
 Before=cockpit.service
