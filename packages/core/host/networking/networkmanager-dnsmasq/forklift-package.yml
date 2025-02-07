@@ -20,6 +20,8 @@ deployment:
         target: overlays/etc/NetworkManager/dnsmasq-shared.d/10-hosts.conf
       - description: Basic config to forward DNS queries to Cloudflare & Google when needed
         target: overlays/etc/NetworkManager/dnsmasq-shared.d/20-upstream-dns.conf
+      - description: Disables DHCP advertisement as default route to internet on the eth0 & eth1 interfaces
+        target: overlays/etc/NetworkManager/dnsmasq-shared.d/30-dhcp-no-default-route-eth.conf
       # Templated drop-in config file assembly:
       - description:
           Shell script to generate a drop-in dnsmasq drop-in config file from drop-in dnsmasq config
