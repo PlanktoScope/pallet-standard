@@ -1,25 +1,14 @@
 package:
-  description:
-    Avahi daemon ambiently provided by the OS, and a program and system services to publish mDNS
-    CNAME aliases
+  description: Program and system services to publish mDNS CNAME aliases via Avahi
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com
-  license: LGPL-2.1-only
+  license: MIT
   sources:
-    # Ambiently-provided software (LGPL):
-    - https://github.com/avahi/avahi
     # Forklift-deployed software (MIT):
     - https://github.com/grishy/go-avahi-cname
     # Systemd units (Apache-2.0):
     - https://github.com/PlanktoScope/pallet-standard
-
-host:
-  provides:
-    listeners:
-      - description: mDNS messaging
-        port: 5353
-        protocol: udp
 
 deployment:
   provides:

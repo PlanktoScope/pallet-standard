@@ -18,6 +18,3 @@ dns-search=
 addr-gen-mode=stable-privacy
 dns-search=
 method=auto
-
-[proxy]
-
