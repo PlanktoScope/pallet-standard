@@ -6,7 +6,7 @@ Wants=avahi-daemon.socket
 After=update-hostname.service
 
 [Service]
-Type=simple
+Type=exec
 ExecStart=/usr/bin/go-avahi-cname cname %i.
 
 [Install]
