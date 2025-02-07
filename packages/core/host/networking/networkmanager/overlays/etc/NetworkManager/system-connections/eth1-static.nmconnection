@@ -3,18 +3,11 @@ id=eth1-static
 type=ethernet
 autoconnect-priority=-990
 interface-name=eth1
-permissions=
-
-[ethernet]
-mac-address-blacklist=
 
 [ipv4]
 method=shared
 address1=192.168.7.1/24
 never-default=true
-dns-search=
 
 [ipv6]
-addr-gen-mode=stable-privacy
-dns-search=
 method=auto

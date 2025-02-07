@@ -4,10 +4,6 @@ type=ethernet
 autoconnect-priority=-980
 autoconnect-retries=1
 interface-name=eth0
-permissions=
-
-[ethernet]
-mac-address-blacklist=
 
 [ipv4]
 method=auto
@@ -16,9 +12,6 @@ method=auto
 address1=192.168.5.1/24
 dhcp-timeout=5
 may-fail=false
-dns-search=
 
 [ipv6]
-addr-gen-mode=stable-privacy
-dns-search=
 method=auto

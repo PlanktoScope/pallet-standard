@@ -3,10 +3,6 @@ id=usb0-default
 type=ethernet
 autoconnect-priority=-980
 interface-name=usb0
-permissions=
-
-[ethernet]
-mac-address-blacklist=
 
 [ipv4]
 method=auto
@@ -15,9 +11,6 @@ method=auto
 address1=192.168.6.1/24
 dhcp-timeout=5
 may-fail=false
-dns-search=
 
 [ipv6]
-addr-gen-mode=stable-privacy
-dns-search=
 method=auto
