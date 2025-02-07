@@ -60,8 +60,6 @@ deployment:
         target: overlays/etc/NetworkManager/system-connections.d/eth0-static/21-connection-autoconnect.nmconnection
       - description: Basic IPv4 settings
         target: overlays/etc/NetworkManager/system-connections.d/eth0-static/60-ipv4.nmconnection
-      - description: IPv4 default route settings
-        target: overlays/etc/NetworkManager/system-connections.d/eth0-static/62-ipv4-routes.nmconnection
       - description: Basic IPv6 settings
         target: overlays/etc/NetworkManager/system-connections.d/eth0-static/70-ipv6.nmconnection
 
@@ -96,8 +94,6 @@ deployment:
         target: overlays/etc/NetworkManager/system-connections.d/eth1-static/21-connection-autoconnect.nmconnection
       - description: Basic IPv4 settings
         target: overlays/etc/NetworkManager/system-connections.d/eth1-static/60-ipv4.nmconnection
-      - description: IPv4 default route settings
-        target: overlays/etc/NetworkManager/system-connections.d/eth1-static/62-ipv4-routes.nmconnection
       - description: Basic IPv6 settings
         target: overlays/etc/NetworkManager/system-connections.d/eth1-static/70-ipv6.nmconnection
 
