@@ -12,6 +12,13 @@ package:
     # Auto-generation scripts (Apache-2.0):
     - https://github.com/PlanktoScope/pallet-standard
 
+deployment:
+  provides:
+    file-exports:
+      - description: Basic connection on usb0
+        target: overlays/etc/NetworkManager/system-connections/usb0-default.nmconnection
+        permissions: 0600
+
 features:
   planktoscope-eth:
     description: Basic connections on PlanktoScope-supported ethernet interfaces
@@ -28,13 +35,6 @@ features:
           permissions: 0600
         - description: Basic static IP connection on eth1 with PlanktoScope-specific default IP address
           target: overlays/etc/NetworkManager/system-connections/eth1-static.nmconnection
-          permissions: 0600
-  planktoscope-usb:
-    description: Basic connections on PlanktoScope-supported USB tethering interfaces
-    provides:
-      file-exports:
-        - description: Basic connection on usb0
-          target: overlays/etc/NetworkManager/system-connections/usb0-default.nmconnection
           permissions: 0600
   firewall-allow-direct:
     description:
