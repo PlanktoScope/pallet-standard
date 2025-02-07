@@ -1,5 +1,7 @@
 package:
-  description: Avahi daemon ambiently provided by the OS
+  description:
+    Avahi daemon ambiently provided by the OS, and a program and system services to publish mDNS
+    CNAME aliases
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com
@@ -7,6 +9,8 @@ package:
   sources:
     # Ambiently-provided software (LGPL):
     - https://github.com/avahi/avahi
+    # Forklift-deployed software (MIT):
+    - https://github.com/grishy/go-avahi-cname
     # Systemd units (Apache-2.0):
     - https://github.com/PlanktoScope/pallet-standard
 
@@ -16,32 +20,31 @@ host:
       - description: mDNS messaging
         port: 5353
         protocol: udp
-    filesets:
-      - description:
-          Avahi daemon client to register new mDNS/DNS-SD services or host names or address mappings
-        paths:
-          - /usr/bin/avahi-publish
 
 deployment:
   provides:
     file-exports:
-      - description:
-          systemd template service to register the specified mDNS name as an alias for 192.168.5.1
-        target: overlays/usr/lib/systemd/system/planktoscope-mdns-alias@.service
+      - description: go-avahi-cname binary
+        source-type: oci-image
+        url: ghcr.io/grishy/go-avahi-cname:2.2.4
+        source: go-avahi-cname
+        target: overlays/usr/bin/go-avahi-cname
+      - description: systemd template service to register the specified mDNS name as a CNAME alias
+        target: overlays/usr/lib/systemd/system/avahi-publish-cname@.service
 
 features:
   register-planktoscope-local:
-    description: "Register `planktoscope.local` as an alias for 192.168.5.1"
+    description: "Register `planktoscope.local` as an alias"
     provides:
       file-exports:
         - description: systemd service enablement
-          target: overlays/etc/systemd/system/multi-user.target.wants/planktoscope-mdns-alias@planktoscope.service
+          target: overlays/etc/systemd/system/multi-user.target.wants/avahi-publish-cname@planktoscope.local.service
   register-pkscope-local:
-    description: "Register `pkscope.local` as an alias for 192.168.5.1"
+    description: "Register `pkscope.local` as an alias"
     provides:
       file-exports:
         - description: systemd service enablement
-          target: overlays/etc/systemd/system/multi-user.target.wants/planktoscope-mdns-alias@pkscope.service
+          target: overlays/etc/systemd/system/multi-user.target.wants/avahi-publish-cname@pkscope.local.service
   firewall-allow-direct:
     description:
       Firewall configuration to allow mDNS traffic from directly-connected devices

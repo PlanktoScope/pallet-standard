@@ -27,6 +27,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Breaking change) Deployment `host/networking/avahi-daemon`'s `register-planktoscope-local` and `register-pkscope-local` feature flags now register `planktoscope.local` and `pkscope.local` (respectively) to `192.168.5.1` instead of `192.168.4.1` so that they still work over Ethernet when Wi-Fi is disabled.
 - (Breaking change) The `dhcp-default-route` feature flag in package `core/host/networking/interface-forwarding` has been moved to package `core/host/networking/networkmanager-dnsmasq`, and it no longer advertises the PlanktoScope as a default to the internet on the `usb0` interface (since that is presumably being used for the attached USB device to share its internet access to the PlanktoScope).
 - (Breaking change) The Docker network provided by deployment `infra/mosquitto` for bridged access to Mosquito is now named `mosquito` instead of `infra_mosquito_default`.
+- Renamed deployment `host/networking/avahi-daemon`'s systemd services from `planktoscope-mdns-alias@pkscope.service` and `planktoscope-mdns-alias@planktoscope.service` to `avahi-publish-cname@pkscope.local.service` and `avahi-publish-cname@planktoscope.local.service`.
 - Merged the [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo into this pallet, by moving all packages from there into here.
 
 ### Removed
@@ -35,6 +36,10 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `apps/ps/device-portal` had a broken link (to a removed protocol PDF file) which has now been removed.
 - Deployment `host/networking/interface-forwarding` (and its associated package) no longer has functionality for forwarding network traffic between interfaces to support internet connection sharing, as that functionality is now instead provided natively by NetworkManager using the connection profiles provided by deployments `host/networking/networkmanager` and `host/networking/autohotspot`.
 - Deployment `host/networking/autohotspot` (along with its associated package `core/host/networking/autohotspot`) has been removed, as it is now redundant with functionality natively provided by NetworkManater.
+
+### Fixed
+
+- Deployment `host/networking/avahi-daemon`'s published aliases (`planktoscope.local` and `pkscope.local`) now work regardless of the IP addresses the PlanktoScope is connected on.
 
 ## v2024.0.0 - 2024-12-25
 
