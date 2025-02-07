@@ -1,6 +1,5 @@
 package: /packages/core/host/networking/networkmanager-hotspot
 features:
-  - dhcp-default-route
   - wlan0
   - wlan0-localization
   - wlan0-ssid
@@ -11,4 +10,5 @@ features:
   - wlan1-ssid
   - wlan1-planktoscope-password
   - wlan1-planktoscope-ip-address
+  - dhcp-default-route
 disabled: false
