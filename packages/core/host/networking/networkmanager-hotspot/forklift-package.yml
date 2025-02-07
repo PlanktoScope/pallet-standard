@@ -9,22 +9,6 @@ package:
   sources:
     - https://github.com/PlanktoScope/pallet-standard
 
-deployment:
-  provides:
-    file-exports:
-      - description:
-          Shell script to generate a NetworkManager connection file from drop-in fragment files
-        target: overlays/usr/libexec/assemble-networkmanager-connection
-      - description: systemd service to assemble a firewalld zone during boot
-        target: overlays/usr/lib/systemd/system/assemble-networkmanager-connection@.service
-      - description:
-          Shell script to generate a NetworkManager connection drop-in fragment file from drop-in
-          NetworkManager connection fragment file templates
-        target: overlays/usr/libexec/assemble-networkmanager-connection-templated
-      - description:
-          systemd service to run the assemble-networkmanager-connection-templated script during boot
-        target: overlays/usr/lib/systemd/system/assemble-networkmanager-connection-templated@.service
-
 features:
   wlan0:
     description: Provide a PlanktoScope Wi-Fi hotspot on the internal Wi-Fi module (wlan0)
