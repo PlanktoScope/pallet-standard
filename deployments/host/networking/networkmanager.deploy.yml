@@ -1,0 +1,6 @@
+package: /packages/core/host/networking/networkmanager
+features:
+  - planktoscope-ip-addresses
+  - firewall-allow-direct
+  - firewall-allow-public
+disabled: false

@@ -1,7 +1,7 @@
 [Unit]
 Description=Assemble and process (with string interpolation) drop-in Cockpit origins template files into a drop-in Cockpit origins list file
 ConditionFileIsExecutable=/usr/libexec/assemble-cockpit-origins-templated
-ConditionPathExists=/etc/cockpit/origins-templates.d
+ConditionPathIsDirectory=/etc/cockpit/origins-templates.d
 # If there are services to generate a machine name and hostname (which can optionally be used in
 # templates), run those services first:
 Wants=generate-machine-name.service

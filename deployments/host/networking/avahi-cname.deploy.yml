@@ -1,0 +1,7 @@
+package: /packages/core/host/networking/avahi-cname
+features:
+  - register-planktoscope-local
+  - register-pkscope-local
+  - firewall-allow-direct
+  - firewall-allow-public
+disabled: false

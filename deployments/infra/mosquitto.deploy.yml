@@ -1,4 +1,6 @@
 package: /packages/core/infra/mosquitto
 features:
   - mqtt-broker
+  - firewall-allow-direct
+  - firewall-allow-public
 disabled: false

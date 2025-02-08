@@ -2,9 +2,17 @@ services:
   mqtt-broker:
     image: docker.io/library/eclipse-mosquitto:2.0.20@sha256:deae95623b9d5c6ca5e264380629db53b992106d436b56d42f7c8df46b41b96f
     command: mosquitto -c /mosquitto-no-auth.conf
+    networks:
+      - mosquitto
     volumes:
       - server-data:/mosquitto/data
       - server-logs:/mosquitto/log
 volumes:
   server-data: null
   server-logs: null
+networks:
+  default:
+    name: none
+    external: true
+  mosquitto:
+    name: mosquitto

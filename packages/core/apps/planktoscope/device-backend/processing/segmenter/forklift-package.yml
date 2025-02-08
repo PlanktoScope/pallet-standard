@@ -93,4 +93,6 @@ features:
     compose-files: [compose-dev-src.yml]
   pipeline-subtract-consecutive-masks:
     description:
+      Default to enabling subtraction of consecutive segmentation masks from each other as part of
+      the segmentation pipeline, for stronger suppression of duplicate objects.
     compose-files: [compose-pipeline-subtract-consecutive-masks.yml]

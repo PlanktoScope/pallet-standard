@@ -1,7 +1,7 @@
 [Unit]
 Description=Assemble drop-in hosts fragment files into a hosts file
 ConditionFileIsExecutable=/usr/libexec/assemble-hosts
-ConditionPathExists=/etc/hosts.d
+ConditionPathIsDirectory=/etc/hosts.d
 Wants=assemble-hosts-templated.service
 After=assemble-hosts-templated.service
 Before=dnsmasq.service

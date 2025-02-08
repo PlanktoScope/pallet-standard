@@ -2,4 +2,6 @@ package: /packages/core/host/sshd
 features:
   - ssh-server-enabled
   - ensure-ssh-host-keys
+  - firewall-allow-direct
+  - firewall-allow-public
 disabled: false

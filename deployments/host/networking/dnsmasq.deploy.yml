@@ -1,6 +1,0 @@
-package: /packages/core/host/networking/dnsmasq
-features:
-  - planktoscope-dhcp-interfaces
-  - custom-domain
-  - planktoscope-custom-domain
-disabled: false

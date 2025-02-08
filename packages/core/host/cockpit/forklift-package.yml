@@ -165,3 +165,31 @@ features:
       file-exports:
         - description: Drop-in Cockpit origins list
           target: overlays/etc/cockpit/origins-templates.d/40-mdns-hostname
+  firewall-allow-direct:
+    description:
+      Firewall configuration to allow accessing Cockpit from directly-connected devices
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the nm-shared zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones.d/nm-shared
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's Cockpit service
+          target: overlays/etc/firewalld/zones.d/nm-shared/51-service-cockpit.xml
+  firewall-allow-public:
+    description:
+      Firewall configuration to allow public access to Cockpit
+    requires:
+      filesets:
+        - description: Drop-in directory for XML fragment files to generate the public zone definition
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/firewalld/zones.d/public
+    provides:
+      file-exports:
+        - description: Drop-in XML fragment for firewalld's Cockpit service
+          target: overlays/etc/firewalld/zones.d/public/51-service-cockpit.xml

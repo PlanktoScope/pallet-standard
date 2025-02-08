@@ -6,4 +6,6 @@ features:
   - allow-origins-planktoscope-mdns-names
   - allow-origins-templated-custom-domain-home
   - allow-origins-templated-mdns-hostname
+  - firewall-allow-direct
+  - firewall-allow-public
 disabled: false

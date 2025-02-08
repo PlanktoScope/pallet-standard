@@ -2,6 +2,8 @@ description: General system administration interfaces
 modifiers:
   - type: add-feature
     source: base/http
+  - type: add-feature
+    source: base/firewall
   - target: /packages/core/host/prepare-custom-image
   - target: /deployments/host/prepare-custom-image.deploy.yml
   - target: /packages/core/host/cockpit
