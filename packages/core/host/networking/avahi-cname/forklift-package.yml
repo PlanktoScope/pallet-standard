@@ -24,16 +24,34 @@ deployment:
 features:
   register-planktoscope-local:
     description: "Register `planktoscope.local` as an alias"
+    requires:
+      filesets:
+        - description: Drop-in directory for hosts fragment files to generate the hosts file
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/hosts.d
     provides:
       file-exports:
         - description: systemd service enablement
           target: overlays/etc/systemd/system/multi-user.target.wants/avahi-publish-cname@planktoscope.local.service
+        - description: Drop-in hosts fragment file for locally resolving the mDNS name
+          target: overlays/etc/hosts.d/40-mdns-planktoscope.local
   register-pkscope-local:
     description: "Register `pkscope.local` as an alias"
+    requires:
+      filesets:
+        - description: Drop-in directory for hosts fragment files to generate the hosts file
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/hosts.d
     provides:
       file-exports:
         - description: systemd service enablement
           target: overlays/etc/systemd/system/multi-user.target.wants/avahi-publish-cname@pkscope.local.service
+        - description: Drop-in hosts fragment file for locally resolving the mDNS name
+          target: overlays/etc/hosts.d/40-mdns-pkscope.local
   firewall-allow-direct:
     description:
       Firewall configuration to allow mDNS traffic from directly-connected devices
