@@ -1,13 +1,7 @@
 services:
-  server:
-    image: quay.io/cockpit/ws:332
-    volumes:
-      - type: bind
-        source: /etc/cockpit/cockpit.conf
-        target: /etc/cocokpit/cockpit.conf
-        read_only: true
-        bind:
-          create_host_path: false
+  reverse-proxy-config:
+    image: docker.io/library/alpine:3.21.2@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099
+    command: sh -c 'while sleep 3600; do :; done'
 networks:
   default:
     name: none
