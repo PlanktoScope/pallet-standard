@@ -2,6 +2,9 @@
 name: Merge Gatekeeper
 
 on:
+  push:
+    branches:
+      - updatecli_**
   pull_request:
   merge_group:
 
