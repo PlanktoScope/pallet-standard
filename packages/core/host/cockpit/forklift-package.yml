@@ -126,6 +126,34 @@ deployment:
           - /run/overlays/generated/etc/cockpit/origins.d/60-generated-templated-names
 
 features:
+  integrate-caddy-ingress:
+    description: Integrate with the caddy-ingress reverse-proxy
+    tags:
+      - device-portal-name=Cockpit
+      - device-portal-description=Provides a general-purpose system administration dashboard for the computer embedded in the PlanktoScope
+      - device-portal-type=Browser applications
+      - device-portal-purpose=System administration and troubleshooting
+      - device-portal-entrypoint=/admin/cockpit
+    requires:
+      filesets:
+        - description: Caddyfile drop-in configuration directory
+          tags:
+            - drop-in-assembly
+          paths:
+            - /etc/caddy/Caddyfile.d
+    provides:
+      services:
+        - description: The Cockpit system administration dashboard
+          port: 80
+          protocol: http
+          paths:
+            - /admin/cockpit
+            - /admin/cockpit/*
+      file-exports:
+        - description: Drop-in Caddyfile for routing to Cockpit
+          target: overlays/etc/caddy/Caddyfile.d/20-cockpit.Caddyfile
+        - description: Drop-in Cockpit config fragment to enable connection through a reverse-proxy
+          target: overlays/etc/cockpit/cockpit.conf.d/20-webservice-20-reverse-proxy.conf
   allow-unencrypted:
     description: Allow accessing Cockpit over HTTP rather than HTTPS
     provides:

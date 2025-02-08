@@ -15,6 +15,16 @@ deployment:
       - description: Docker socket
         paths:
           - /run/docker.sock
+  provides:
+    file-exports:
+      - description: Drop-in Caddyfile with comment describing Caddyfile drop-in directory
+        target: overlays/etc/caddy/Caddyfile.d/00-README.Caddyfile
+    filesets:
+      - description: Caddyfile drop-in configuration directory
+        tags:
+          - drop-in-assembly
+        paths:
+          - /etc/caddy/Caddyfile.d
 
 features:
   service-proxy:

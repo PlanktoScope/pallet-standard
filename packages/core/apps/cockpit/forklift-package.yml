@@ -8,20 +8,14 @@ package:
     - https://github.com/cockpit-project/cockpit
 
 deployment:
-  compose-files:
-    - deployment.compose.yml
+  # compose-files:
+  #   - deployment.compose.yml
 
 features:
   frontend:
     description: Provides access to the GUI
-    compose-files:
-      - frontend.compose.yml
-    tags:
-      - device-portal-name=Cockpit
-      - device-portal-description=Provides a general-purpose system administration dashboard for the computer embedded in the PlanktoScope
-      - device-portal-type=Browser applications
-      - device-portal-purpose=System administration and troubleshooting
-      - device-portal-entrypoint=/admin/cockpit
+    # compose-files:
+    #   - frontend.compose.yml
     requires:
       networks:
         - description: Overlay network for Caddy to connect to upstream services
@@ -40,14 +34,11 @@ features:
             - drop-in-assembly
           paths:
             - /etc/cockpit/cockpit.conf.d
-    provides:
-      services:
-        - description: The Cockpit system administration dashboard
-          port: 80
-          protocol: http
-          paths:
-            - /admin/cockpit
-            - /admin/cockpit/*
-      file-exports:
-        - description: Drop-in config fragment to enable connection through a reverse-proxy
-          target: overlays/etc/cockpit/cockpit.conf.d/20-webservice-20-reverse-proxy.conf
+    # provides:
+    #   services:
+    #     - description: The Cockpit system administration dashboard
+    #       port: 80
+    #       protocol: http
+    #       paths:
+    #         - /admin/cockpit
+    #         - /admin/cockpit/*

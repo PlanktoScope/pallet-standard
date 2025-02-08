@@ -1,0 +1,6 @@
+:80 {
+  redir /admin/cockpit /admin/cockpit/
+  handle /admin/cockpit/* {
+    reverse_proxy host.docker.internal:9090
+  }
+}
