@@ -2,9 +2,6 @@
 name: Merge Gatekeeper
 
 on:
-  push:
-    branches:
-      - updatecli_**
   pull_request:
     types:
       - opened
