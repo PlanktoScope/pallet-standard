@@ -8,7 +8,8 @@ package:
     - https://github.com/filebrowser/filebrowser
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
   requires:
     filesets:
       - description: Directory for device backend service logs
@@ -19,7 +20,8 @@ deployment:
 features:
   frontend:
     description: Provides access to the GUI
-    compose-files: [compose-frontend.yml]
+    compose-files:
+      - frontend.compose.yml
     tags:
       - device-portal-name=Backend logs file manager
       - device-portal-description=Provides a file browsing and management interface for the PlanktoScope device backend's logs

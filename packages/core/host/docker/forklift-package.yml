@@ -10,10 +10,12 @@ package:
 host:
   provides:
     filesets:
-      - description: Socket files for Docker and containerd
+      - description: Sockets for Docker and containerd
         paths:
           - /run/docker.sock
+          - /var/run/docker.sock
           - /run/containerd/containerd.sock
+          - /var/run/containerd/containerd.sock
       - description: systemd socket for Docker
         paths:
           - /usr/lib/systemd/system/docker.socket

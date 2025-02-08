@@ -1,5 +1,5 @@
 services:
-  reverse-proxy:
+  server:
     ports:
       - 80:80
       - 443:443

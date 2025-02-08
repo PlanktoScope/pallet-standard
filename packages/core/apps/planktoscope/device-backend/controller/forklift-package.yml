@@ -45,7 +45,8 @@ host:
           - /home/pi/device-backend-logs/controller
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
   requires:
     services:
       - tags: [mqtt-broker]
@@ -56,7 +57,8 @@ deployment:
 features:
   camera-preview-stream-mjpeg:
     description: Provides access to the preview MJPEG stream
-    compose-files: [compose-camera-preview-stream-mjpeg.yml]
+    compose-files:
+      - camera-preview-stream-mjpeg.compose.yml
     tags:
     - device-portal.name=PlanktoScope microscope camera preview
     - device-portal.description=Provides an MJPEG stream to preview the latest microscope camera frame
