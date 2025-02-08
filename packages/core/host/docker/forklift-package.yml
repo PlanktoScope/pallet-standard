@@ -30,3 +30,13 @@ features:
       file-exports:
         - description: Override of the default system-provided docker.service
           target: overlays/usr/lib/systemd/system/docker.service
+  firewall-zone:
+    # Note: this feature is a workaround for an error Docker/Firewalld encounters in making the
+    # `docker` zone on bookworm; the error doesn't occur on bullseye.
+    description: Firewall configuration to support integration between Docker bridge networks and firewalld
+    provides:
+      file-exports:
+        - description: Firewalld zone definition
+          target: overlays/etc/firewalld/zones/docker.xml
+        - description: Firewalld policy
+          target: overlays/etc/firewalld/policies/docker-forwarding.xml
