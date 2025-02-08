@@ -1,5 +1,5 @@
 package:
-  description: MQTT broker ambiently provided by the PlanktoScope
+  description: MQTT broker for pub-sub services
   maintainers:
     - name: Ethan Li
       email: lietk12@gmail.com
@@ -8,7 +8,8 @@ package:
     - https://github.com/eclipse/mosquitto
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
   provides:
     networks:
       - description: Bridge network for access to the MQTT broker
@@ -17,7 +18,8 @@ deployment:
 features:
   mqtt-broker:
     description: Provides access to the MQTT broker from the host
-    compose-files: [compose-mqtt-broker.yml]
+    compose-files:
+      - mqtt-broker.compose.yml
     tags:
       - device-portal-name=MQTT broker
       - device-portal-description=Provides a broker for MQTT messages on port 1883

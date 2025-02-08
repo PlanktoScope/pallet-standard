@@ -1,0 +1,4 @@
+package: /packages/community/apps/lazydocker
+features:
+  - arm64
+disabled: false

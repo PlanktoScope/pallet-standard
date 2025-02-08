@@ -8,12 +8,14 @@ package:
     - https://github.com/grafana/grafana
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
 
 features:
   frontend:
     description: Provides access to the GUI
-    compose-files: [compose-frontend.yml]
+    compose-files:
+      - frontend.compose.yml
     tags:
       - device-portal-name=System monitoring dashboard
       - device-portal-description=Provides a graphical dashboard for monitoring system and application metrics
@@ -38,10 +40,12 @@ features:
             - /admin/grafana/*
   no-login:
     description: Allows full access without user management or login
-    compose-files: [compose-no-login.yml]
+    compose-files:
+      - no-login.compose.yml
   prometheus-datasource:
     description: Provides integration with a Prometheus server
-    compose-files: [compose-datasource-prometheus.yml]
+    compose-files:
+      - datasource-prometheus.compose.yml
     requires:
       services:
         - description: Prometheus server
@@ -53,7 +57,9 @@ features:
           nonblocking: true
   host-summary-dashboard:
     description: Provides a dashboard to summarize node-exporter metrics; includes prometheus-datasource
-    compose-files: [compose-datasource-prometheus.yml, compose-dashboard-host-summary.yml]
+    compose-files:
+      - datasource-prometheus.compose.yml
+      - dashboard-host-summary.compose.yml
     requires:
       services:
         - description: Prometheus server
@@ -77,4 +83,5 @@ features:
             - /admin/grafana/d/host-summary/*
   cpu-limit:
     description: Limits the dashboard's CPU usage to at most one virtual core.
-    compose-files: [compose-cpu-limit.yml]
+    compose-files:
+      - cpu-limit.compose.yml

@@ -44,6 +44,8 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `host/networking/avahi-cname`'s published aliases (`planktoscope.local` and `pkscope.local`) should now work regardless of the IP addresses the PlanktoScope is connected on, instead of only pointing to `192.168.4.1` regardless of how the PlanktoScope is being accessed.
 - Deployment `host/networking/networkmanager-dnsmasq` no longer hard-codes upstream DNS servers, in order to allow devices connected to the PlanktoScope to access captive portals.
 - Deployment `host/docker` now has a workaround to enable compatibility with firewalld on RPi OS 12 (bookworm).
+- Various filesystem bind mounts for the Compose apps of deployments `apps/dozzle`, `apps/filebrowser-root`, `apps/node-exporter`, `apps/ps/files-logs`, `apps/ps/files-datasets`, `infra/caddy-ingress`, and `infra/prometheus` are now configured to error out of the required files (e.g. `/var/run/docker.sock`) don't exist, instead of having Docker try to automatically create those paths as directories.
+- New deployment `apps/lazydocker` provides a TUI for troubleshooting Docker systems from the terminal (particularly convenient when Dozzle can't start for some reason). For now, this deployment should be considered experimental/undocumented and thus subject to breaking changes without prior deprecations.
 
 ## v2024.0.0 - 2024-12-25
 

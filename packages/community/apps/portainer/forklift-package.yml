@@ -8,13 +8,19 @@ package:
     - https://github.com/portainer/portainer
 
 deployment:
-  compose-files: [compose.yml]
-  # TODO: add a file requirement for /run/docker.sock, and update the compose file accordingly
+  compose-files:
+    - deployment.compose.yml
+  requires:
+    filesets:
+      - description: Docker socket
+        paths:
+          - /run/docker.sock
 
 features:
   frontend:
     description: Provides access to the GUI
-    compose-files: [compose-frontend.yml]
+    compose-files:
+      - frontend.compose.yml
     tags:
       - device-portal-name=Portainer
       - device-portal-description=Provides a Docker administration dashboard
@@ -39,7 +45,8 @@ features:
             - /admin/portainer/*
   frontend-direct:
     description: Provides direct access to the GUI
-    compose-files: [compose-frontend-direct.yml]
+    compose-files:
+      - frontend-direct.compose.yml
     tags:
       - device-portal-name=Portainer (direct-access fallback)
       - device-portal-description=Provides fallback access to the Portainer application, accessible even if the system's service proxy stops working

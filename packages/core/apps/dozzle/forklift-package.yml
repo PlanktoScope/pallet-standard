@@ -8,13 +8,19 @@ package:
     - https://github.com/amir20/dozzle
 
 deployment:
-  compose-files: [compose.yml]
-  # TODO: add a requirement for /run/docker.sock, and update the compose file's path accordingly
+  compose-files:
+    - deployment.compose.yml
+  requires:
+    filesets:
+      - description: Docker socket
+        paths:
+          - /run/docker.sock
 
 features:
   frontend:
     description: Provides access to the GUI
-    compose-files: [compose-frontend.yml]
+    compose-files:
+      - frontend.compose.yml
     tags:
       - device-portal-name=App log viewer
       - device-portal-description=Provides an interface to view logs of apps installed on the PlanktoScope

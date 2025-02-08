@@ -8,12 +8,14 @@ package:
     - https://github.com/PlanktoScope/PlanktoScope
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
 
 features:
   website:
     description: Provides access to the website
-    compose-files: [compose-website.yml]
+    compose-files:
+      - website.compose.yml
     tags:
       - device-portal-name=PlanktoScope documentation
       - device-portal-description=Provides an offline copy of the official PlanktoScope project documentation
@@ -38,4 +40,5 @@ features:
             - /ps/docs/*
   full-site:
     description: Provides the entire docs site, including hardware setup guides
-    compose-files: [compose-full-site.yml]
+    compose-files:
+      - full-site.compose.yml

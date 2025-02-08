@@ -9,12 +9,14 @@ package:
     - https://github.com/traefik/whoami
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
 
 features:
   hello:
     description: Provides a hello-world endpoint
-    compose-files: [compose-hello.yml]
+    compose-files:
+      - hello.compose.yml
     requires:
       networks:
         - description: Overlay network for Caddy to connect to upstream services
@@ -33,7 +35,8 @@ features:
             - /demo/hello-nginx/*
   whoami:
     description: Provides a whoami endpoint
-    compose-files: [compose-whoami.yml]
+    compose-files:
+      - whoami.compose.yml
     requires:
       networks:
         - description: Overlay network for Caddy to connect to upstream services

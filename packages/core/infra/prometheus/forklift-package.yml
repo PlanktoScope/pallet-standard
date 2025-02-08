@@ -8,7 +8,13 @@ package:
     - https://github.com/prometheus/prometheus
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
+  requires:
+    filesets:
+      - description: Docker socket
+        paths:
+          - /run/docker.sock
   provides:
     networks:
       - description: Bridge network for Prometheus to connect to upstream metrics endpoints
@@ -17,7 +23,8 @@ deployment:
 features:
   api:
     description: Provides access to the API, metrics endpoint, and GUI
-    compose-files: [compose-api.yml]
+    compose-files:
+      - api.compose.yml
     tags:
       - device-portal-name=Prometheus server
       - device-portal-description=Metrics monitoring system

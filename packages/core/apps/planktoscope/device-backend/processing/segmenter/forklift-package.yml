@@ -8,7 +8,8 @@ package:
     - https://github.com/PlanktoScope/device-backend
 
 deployment:
-  compose-files: [compose.yml]
+  compose-files:
+    - deployment.compose.yml
   tags:
     - device-portal.name=PlanktoScope object segmenter
     - device-portal.description=Provides an MQTT service on /segmenter and /status/segmenter for operating the PlanktoScope object segmenter
@@ -48,7 +49,8 @@ deployment:
 features:
   object-stream-mjpeg:
     description: Provides access to the last segmented object MJPEG stream
-    compose-files: [compose-object-stream-mjpeg.yml]
+    compose-files:
+      - object-stream-mjpeg.compose.yml
     tags:
       - device-portal.name=PlanktoScope segmented object preview
       - device-portal.description=Provides an MJPEG stream to preview the latest segmented object
@@ -73,7 +75,8 @@ features:
             - /ps/processing/segmenter/streams/object.mjpg
   deploy:
     description: Adds bind mounts for the PlanktoScope distro's filesystem structure
-    compose-files: [compose-deploy.yml]
+    compose-files:
+      - deploy.compose.yml
     requires:
       filesets:
         - description: Machine name
@@ -81,18 +84,23 @@ features:
             - /run/machine-name
   dev-machinename:
     description: Allows a machine name to be set in a file for development & troubleshooting
-    compose-files: [compose-dev-machinename.yml]
+    compose-files:
+      - dev-machinename.compose.yml
   dev-data:
     description: Allows the segmenter to read and write datasets
-    compose-files: [compose-dev-data.yml]
+    compose-files:
+      - dev-data.compose.yml
   dev-logs:
     description: Allows the segmenter's logs to be accessed and saved on disk
-    compose-files: [compose-dev-logs.yml]
+    compose-files:
+      - dev-logs.compose.yml
   dev-src:
     description: Allows the source code to be overwritten from an existing codebase for development & troubleshooting
-    compose-files: [compose-dev-src.yml]
+    compose-files:
+      - dev-src.compose.yml
   pipeline-subtract-consecutive-masks:
     description:
       Default to enabling subtraction of consecutive segmentation masks from each other as part of
       the segmentation pipeline, for stronger suppression of duplicate objects.
-    compose-files: [compose-pipeline-subtract-consecutive-masks.yml]
+    compose-files:
+      - pipeline-subtract-consecutive-masks.compose.yml
