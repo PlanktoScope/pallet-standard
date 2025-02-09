@@ -1,6 +1,6 @@
 services:
   server:
-    image: ghcr.io/planktoscope/device-portal:0.2.7@sha256:f0150767c8da4ff1038123c9a7670ba8ffcff8db2003161fd8eb8acc6ecc5a60
+    image: ghcr.io/planktoscope/device-portal:0.2.9@sha256:d2cd48b4e25b938712f22c99301a52196e045cefe2479aee19446dd4703bc91e
 networks:
   default:
     name: none
