@@ -1,0 +1,5 @@
+package: /packages/core/host/networking/avahi-daemon
+features:
+  - firewall-allow-direct
+  - firewall-allow-public
+disabled: false
