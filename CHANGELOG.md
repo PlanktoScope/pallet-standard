@@ -47,6 +47,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `host/docker` now has a workaround to enable compatibility with firewalld on RPi OS 12 (bookworm).
 - Various filesystem bind mounts for the Compose apps of deployments `apps/dozzle`, `apps/filebrowser-root`, `apps/node-exporter`, `apps/ps/files-logs`, `apps/ps/files-datasets`, `infra/caddy-ingress`, and `infra/prometheus` are now configured to error out of the required files (e.g. `/var/run/docker.sock`) don't exist, instead of having Docker try to automatically create those paths as directories.
 - New deployment `apps/lazydocker` provides a TUI for troubleshooting Docker systems from the terminal (particularly convenient when Dozzle can't start for some reason). For now, this deployment should be considered experimental/undocumented and thus subject to breaking changes without prior deprecations.
+- Deployment `host/machine-name` now correctly falls back to `unknown` as a machine name in `/run/machine-name` if an unrecognized (i.e. non-`en_US.UTF-8`) language is set via the `LANG` environment variable.
 
 ## v2024.0.0 - 2024-12-25
 
