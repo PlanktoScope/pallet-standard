@@ -2,6 +2,10 @@ services:
   server:
     volumes:
       - type: bind
-        source: /run/machine-name
-        target: /run/machine-name
+        source: /etc/machine-name
+        target: /etc/machine-name
+        bind:
+          create_host_path: false
         read_only: true
+    environment:
+      - MACHINENAME_NAMEFILE=/etc/machine-name

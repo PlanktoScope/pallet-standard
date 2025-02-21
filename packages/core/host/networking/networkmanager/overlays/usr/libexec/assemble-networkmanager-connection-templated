@@ -15,8 +15,8 @@ if [ -f /etc/hostname ]; then
   hostname_16="${hostname:0:16}"
   hostname_12="${hostname:0:12}"
 fi
-if [ -f /run/machine-name ]; then
-  machine_name="$(sed 's~#.*$~~g' /run/machine-name | tr -d '[:space:]')"
+if [ -f /etc/machine-name ]; then
+  machine_name="$(sed 's~#.*$~~g' /etc/machine-name | tr -d '[:space:]')"
   echo "Machine name: $machine_name"
   machine_name_32="${machine_name:0:32}"
   machine_name_24="${machine_name:0:24}"

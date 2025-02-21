@@ -9,8 +9,8 @@ if [ -f /etc/hostname ]; then
   hostname="$(sed 's~#.*$~~g' /etc/hostname | tr -d '[:space:]')"
   echo "Hostname: $hostname"
 fi
-if [ -f /run/machine-name ]; then
-  machine_name="$(sed 's~#.*$~~g' /run/machine-name | tr -d '[:space:]')"
+if [ -f /etc/machine-name ]; then
+  machine_name="$(sed 's~#.*$~~g' /etc/machine-name | tr -d '[:space:]')"
   echo "Machine name: $machine_name"
 fi
 if [ -f /etc/custom-domain ]; then

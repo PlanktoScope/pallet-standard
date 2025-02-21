@@ -9,7 +9,7 @@
 # https://docs.python.org/3/whatsnew/3.6.html#whatsnew36-pep498 .
 
 # Allowed template variables:
-# - machine-name: an automatically-generated machine name, loaded from /run/machine-name.
+# - machine-name: an automatically-generated machine name, loaded from /etc/machine-name.
 #     Example: if machine-name has value "metal-slope-23501", the string
 #       "machine-{machine-name}" will be rendered as "machine-metal-slope-23501".
 # - hostname: the system's hostname, loaded from /etc/hostname.

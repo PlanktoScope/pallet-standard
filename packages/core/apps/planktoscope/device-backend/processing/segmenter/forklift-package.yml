@@ -81,7 +81,7 @@ features:
       filesets:
         - description: Machine name
           paths:
-            - /run/machine-name
+            - /etc/machine-name
   dev-machinename:
     description: Allows a machine name to be set in a file for development & troubleshooting
     compose-files:
