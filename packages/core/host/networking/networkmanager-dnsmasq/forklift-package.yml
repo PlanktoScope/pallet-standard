@@ -13,6 +13,11 @@ package:
     - https://github.com/PlanktoScope/pallet-standard
 
 deployment:
+  requires:
+    filesets:
+      - description: Shell script to string-interpolate a templated stdin to stdout
+        paths:
+          - /usr/libexec/render-templated-config
   provides:
     file-exports:
       # Basic drop-in config files
@@ -24,10 +29,8 @@ deployment:
         target: overlays/etc/NetworkManager/dnsmasq-shared.d/30-dhcp-no-default-route-eth.conf
       # Templated drop-in config file assembly:
       - description:
-          Shell script to generate a drop-in dnsmasq drop-in config file from drop-in dnsmasq config
-          templates
-        target: overlays/usr/libexec/assemble-dnsmasq-config-templated
-      - description: systemd service to run the assemble-dnsmasq-config-templated script during boot
+          systemd service to generate a drop-in dnsmasq drop-in config file from drop-in dnsmasq
+          config templates during boot
         target: overlays/usr/lib/systemd/system/assemble-dnsmasq-config-templated.service
       - description: systemd service enablement for assemble-dnsmasq-config-templated.service
         target: overlays/etc/systemd/system/NetworkManager.service.wants/assemble-dnsmasq-config-templated.service

@@ -12,12 +12,22 @@
 # - machine-name: an automatically-generated machine name, loaded from /run/machine-name.
 #     Example: if machine-name has value "metal-slope-23501", the string
 #       "machine-{machine-name}" will be rendered as "machine-metal-slope-23501".
+# - machine-name-32: up to the first 32 characters of machine-name.
+# - machine-name-24: up to the first 24 characters of machine-name.
+# - machine-name-16: up to the first 16 characters of machine-name.
+# - machine-name-12: up to the first 12 characters of machine-name.
 # - hostname: the system's hostname, loaded from /etc/hostname.
 #     Example: if hostname has value "pkscope-metal-slope-23501", the string
 #       "{machine-name}.local" will be rendered as "pkscope-metal-slope-23501.local".
+# - hostname-32: up to the first 32 characters of machine-name.
+# - hostname-24: up to the first 24 characters of machine-name.
+# - hostname-16: up to the first 16 characters of machine-name.
+# - hostname-12: up to the first 12 characters of machine-name.
 # - custom-domain: a custom domain, loaded from /etc/custom-domain.
 #     Example: if custom-domain has value "pkscope", the string "home.{custom-domain}" will
 #       be rendered as "home.pkscope".
+# - custom-domain-16: up to the first 16 characters of custom-domain
+# - custom-domain-8: up to the first 8 characters of custom-domain
 
 # If a template variable has an empty value (e.g. because the file which sets the value of that
 # variable is missing or if that file doesn't provide a value), any line including that template

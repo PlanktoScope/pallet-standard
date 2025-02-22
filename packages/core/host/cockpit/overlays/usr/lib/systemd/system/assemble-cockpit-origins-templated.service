@@ -1,6 +1,6 @@
 [Unit]
 Description=Assemble and process (with string interpolation) drop-in Cockpit origins template files into a drop-in Cockpit origins list file
-ConditionFileIsExecutable=/usr/libexec/assemble-cockpit-origins-templated
+ConditionFileIsExecutable=/usr/libexec/render-templated-config
 ConditionPathIsDirectory=/etc/cockpit/origins-templates.d
 # If there are services to generate a machine name and hostname (which can optionally be used in
 # templates), run those services first:
@@ -11,4 +11,9 @@ After=generate-hostname-templated.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/assemble-cockpit-origins-templated
+ExecStartPre=mkdir -p /run/overlays/generated/etc/cockpit/origins.d
+ExecStart=sh -c "\
+  cat /etc/cockpit/origins-templates.d/* |
+    /usr/libexec/render-templated-config \
+      >/run/overlays/generated/etc/cockpit/origins.d/60-generated-templated-names
+"

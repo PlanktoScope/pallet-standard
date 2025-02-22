@@ -13,6 +13,11 @@ package:
     - https://github.com/PlanktoScope/pallet-standard
 
 deployment:
+  requires:
+    filesets:
+      - description: Shell script to string-interpolate a templated stdin to stdout
+        paths:
+          - /usr/libexec/render-templated-config
   provides:
     file-exports:
 
@@ -22,11 +27,8 @@ deployment:
       - description: systemd service to assemble a NetworkManager connection file during boot
         target: overlays/usr/lib/systemd/system/assemble-networkmanager-connection@.service
       - description:
-          Shell script to generate a NetworkManager connection drop-in fragment file from drop-in
-          NetworkManager connection fragment file templates
-        target: overlays/usr/libexec/assemble-networkmanager-connection-templated
-      - description:
-          systemd service to run the assemble-networkmanager-connection-templated script during boot
+          systemd service to generate a NetworkManager connection drop-in fragment file from drop-in
+          NetworkManager connection fragment file templates during boot
         target: overlays/usr/lib/systemd/system/assemble-networkmanager-connection-templated@.service
 
       # eth0-default:

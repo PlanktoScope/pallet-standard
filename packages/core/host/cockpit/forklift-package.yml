@@ -73,10 +73,8 @@ deployment:
         target: overlays/etc/cockpit/origins.d/20-localhost
       # Templated origins list assembly:
       - description:
-          Shell script to generate a drop-in Cockpit origins list from drop-in Cockpit origins list
-          templates
-        target: overlays/usr/libexec/assemble-cockpit-origins-templated
-      - description: systemd service to run the assemble-cockpit-origins-templated script during boot
+          systemd service to generate a drop-in Cockpit origins list from drop-in Cockpit origins
+          list templates during boot
         target: overlays/usr/lib/systemd/system/assemble-cockpit-origins-templated.service
         # Note: we don't need to enable assemble-cockpit-origins-templated.service because
         # assemble-cockpit-origins.service depends on it, and assemble-cockpit-origins-templated.service is
