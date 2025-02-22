@@ -4,7 +4,7 @@ ConditionFileIsExecutable=/usr/libexec/assemble-hosts
 ConditionPathIsDirectory=/etc/hosts.d
 Wants=assemble-hosts-templated.service
 After=assemble-hosts-templated.service
-Before=dnsmasq.service
+Before=NetworkManager.service
 Wants=network-pre.target
 Before=network-pre.service
 
