@@ -12,6 +12,17 @@ services:
     environment:
       - FB_DATABASE=/database/filebrowser.db
       - FB_ROOT=/home/pi/device-backend-logs
+      # We must assign a port which is available to non-root users:
+      - FB_PORT=9000
+    user: '1000:1000'
+    depends_on:
+      volume-setup:
+        condition: service_completed_successfully
+  volume-setup:
+    image: docker.io/library/alpine:3.21.3
+    volumes:
+      - server-data:/database
+    command: 'sh -c "chown -R 1000:1000 /database"'
 networks:
   default:
     name: none
