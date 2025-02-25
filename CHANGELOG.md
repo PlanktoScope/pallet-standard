@@ -29,6 +29,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Breaking change) The Docker network provided by deployment `infra/mosquitto` for bridged access to Mosquito is now named `mosquito` instead of `infra_mosquito_default`.
 - Deployment `host/networking/avahi-daemon`'s systemd services have been renamed from `planktoscope-mdns-alias@pkscope.service` and `planktoscope-mdns-alias@planktoscope.service` to `avahi-publish-cname@pkscope.local.service` and `avahi-publish-cname@planktoscope.local.service`.
 - The [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo has been merged into this pallet, by moving all packages from there into here, in order to simplify pallet maintenance.
+- Deployments `apps/ps/backend/proc-segmenter`, `apps/ps/files-datasets`, and `apps/ps/files-logs` now run as the `pi` user (i.e. UID 1000) instead of `root`, and the directories they manage are all owned by the `pi` user instead of `root`.
 
 ### Removed
 

@@ -5,4 +5,14 @@ services:
         source: /run/machine-name
         target: /var/lib/planktoscope/machine-name # FIXME(ethanjli): update the segmenter to read from /run/machine-name
       - /home/pi/data:/home/pi/data
-      - /home/pi/device-backend-logs/processing/segmenter:/home/pi/device-backend-logs/processing/segmenter
+      - /home/pi/device-backend-logs:/home/pi/device-backend-logs
+    depends_on:
+      bind-mount-setup:
+        condition: service_completed_successfully
+  bind-mount-setup:
+    # This is a workaround for non-rootless Docker creating bind mounts with root ownership:
+    image: docker.io/library/alpine:3.21.3
+    volumes:
+      - /home/pi/data:/home/pi/data
+      - /home/pi/device-backend-logs:/home/pi/device-backend-logs
+    command: 'sh -c "chown -R 1000:1000 /home/pi/data /home/pi/device-backend-logs"'
