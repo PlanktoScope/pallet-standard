@@ -10,6 +10,7 @@ services:
       bind-mount-setup:
         condition: service_completed_successfully
   bind-mount-setup:
+    # This is a workaround for non-rootless Docker creating bind mounts with root ownership:
     image: docker.io/library/alpine:3.21.3
     volumes:
       - /home/pi/data:/home/pi/data
