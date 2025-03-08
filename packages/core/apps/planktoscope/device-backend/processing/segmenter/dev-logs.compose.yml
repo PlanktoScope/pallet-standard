@@ -1,4 +1,12 @@
 services:
   server:
     volumes:
-      - ~/.local/share/planktoscope/device-backend-logs/processing/segmenter:/home/pi/device-backend-logs/processing/segmenter
+      - ~/.local/share/planktoscope/device-backend-logs:/home/pi/device-backend-logs
+    depends_on:
+      logs-bind-mount-setup:
+        condition: service_completed_successfully
+  logs-bind-mount-setup:
+    image: docker.io/library/alpine:3.21.3
+    volumes:
+      - ~/.local/share/planktoscope/device-backend-logs:/home/pi/device-backend-logs
+    command: 'sh -c "chown -R 1000:1000 /home/pi/device-backend-logs"'
