@@ -40,6 +40,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `host/networking/hostapd` (along with its associated package `core/host/networking/hostapd`) has been replaced with deployment `host/networking/networkmanager-hotspot`.
 - Deployment `host/networking/dhcpcd` (along with its associated package `core/host/networking/dhcpcd`) has been replaced with deployment `host/networking/networkmanager`, as it is redundant with functionality provided NetworkManager.
 - Package `core/host/networking/networkmanager-dnsmasq`'s `planktoscope-dhcp-interfaces` feature flag has been removed, as it is redundant with functionality provided by NetworkManager with the configurations provided by the `core/host/networking/networkmanager` package.
+- Deployment `host/planktoscope/gpio-init`, whose exported systemd service never actually started correctly, is now disabled by default.
 
 ### Fixed
 
