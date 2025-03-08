@@ -116,6 +116,7 @@ jobs:
         run: |
           tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
           ".github/download-rush.sh" "$tmp_bin"
+          export PATH="$tmp_bin:$PATH"
           forklift dev plt ls-img | rush ".github/load-precached-image.sh" {} "$PRECACHE_PATH"
 
       - name: Try to stage the pallet
