@@ -7,6 +7,10 @@ services:
       caddy.handle_path: /ps/processing/segmenter/streams/object.mjpg
       caddy.handle_path.rewrite: "* /object.mjpg"
       caddy.handle_path.reverse_proxy: "{{upstreams 8001}}"
+  bind-mount-setup:
+    networks:
+      # This is needed so Docker doesn't complain
+      - caddy-ingress
 
 networks:
   caddy-ingress:
