@@ -1,0 +1,13 @@
+services:
+  server:
+    networks:
+      - caddy-ingress
+    labels:
+      caddy: :80
+      caddy.redir: /restreamer /restreamer/
+      caddy.handle_path: /restreamer/*
+      caddy.handle_path.reverse_proxy: "{{upstreams 8080}}"
+
+networks:
+  caddy-ingress:
+    external: true

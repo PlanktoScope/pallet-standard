@@ -1,0 +1,4 @@
+package: /packages/testing/restreamer
+features:
+  - frontend
+disabled: true

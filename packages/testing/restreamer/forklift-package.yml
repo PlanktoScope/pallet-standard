@@ -1,0 +1,55 @@
+package:
+  description: Live streaming adapter
+  maintainers:
+    - name: Ethan Li
+      email: lietk12@gmail.com
+  license: Apache-2.0
+  sources:
+    - https://github.com/datarhei/restreamer
+
+deployment:
+  compose-files:
+    - deployment.compose.yml
+  provides:
+    listeners:
+      - description: RTMP server for streaming
+        port: 1935
+        protocol: tcp
+      - description: RTMPs server for streaming
+        port: 1936
+        protocol: tcp
+    services:
+      - port: 1935
+        application: restreamer
+        protocol: rtmp
+      - port: 1936
+        application: restreamer
+        protocol: rtmps
+
+features:
+  frontend:
+    description: Provides access to the GUI
+    compose-files:
+      - frontend.compose.yml
+    tags:
+      - device-portal-name=Restreamer
+      - device-portal-description=Provides a livestreaming adapter
+      - device-portal-type=Browser applications
+      - device-portal-purpose=PlanktoScope operation
+      - device-portal-entrypoint=/restreamer/
+    requires:
+      networks:
+        - description: Overlay network for Caddy to connect to upstream services
+          name: caddy-ingress
+      services:
+        - tags: [caddy-docker-proxy]
+          port: 80
+          protocol: http
+    provides:
+      services:
+        - description: The Restreamer livestreaming adapter
+          port: 80
+          protocol: http
+          paths:
+            - /restreamer
+            - /restreamer/*
