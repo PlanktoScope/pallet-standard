@@ -114,6 +114,8 @@ jobs:
         env:
           PRECACHE_PATH: ${{ steps.setup-precaching.outputs.path }}
         run: |
+          tmp_bin="$(mktemp -d --tmpdir=/tmp bin.XXXXXXX)"
+          ".github/download-rush.sh" "$tmp_bin"
           forklift dev plt ls-img | rush ".github/load-precached-image.sh" {} "$PRECACHE_PATH"
 
       - name: Try to stage the pallet
