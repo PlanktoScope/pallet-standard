@@ -30,6 +30,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - (Breaking change) The Docker network provided by deployment `infra/mosquitto` for bridged access to Mosquito is now named `mosquito` instead of `infra_mosquito_default`.
 - Deployment `host/networking/avahi-daemon`'s systemd services have been renamed from `planktoscope-mdns-alias@pkscope.service` and `planktoscope-mdns-alias@planktoscope.service` to `avahi-publish-cname@pkscope.local.service` and `avahi-publish-cname@planktoscope.local.service`.
 - The [github.com/PlanktoScope/device-pkgs](https://github.com/PlanktoScope/device-pkgs) repo has been merged into this pallet, by moving all packages from there into here, in order to simplify pallet maintenance.
+- Deployments `apps/ps/backend/proc-segmenter`, `apps/ps/files-datasets`, and `apps/ps/files-logs` now run as the `pi` user (i.e. UID 1000) instead of `root`, and the directories they manage are all owned by the `pi` user instead of `root`.
 
 ### Removed
 
@@ -48,6 +49,7 @@ All dates in this file are given in the [UTC time zone](https://en.wikipedia.org
 - Deployment `host/docker` now has a workaround to enable compatibility with firewalld on RPi OS 12 (bookworm).
 - Various filesystem bind mounts for the Compose apps of deployments `apps/dozzle`, `apps/filebrowser-root`, `apps/node-exporter`, `apps/ps/files-logs`, `apps/ps/files-datasets`, `infra/caddy-ingress`, and `infra/prometheus` are now configured to error out of the required files (e.g. `/var/run/docker.sock`) don't exist, instead of having Docker try to automatically create those paths as directories.
 - New deployment `apps/lazydocker` provides a TUI for troubleshooting Docker systems from the terminal (particularly convenient when Dozzle can't start for some reason). For now, this deployment should be considered experimental/undocumented and thus subject to breaking changes without prior deprecations.
+- Deployment `host/machine-name` now correctly falls back to `unknown` as a machine name in `/run/machine-name` if an unrecognized (i.e. non-`en_US.UTF-8`) language is set via the `LANG` environment variable.
 
 ## v2024.0.0 - 2024-12-25
 
