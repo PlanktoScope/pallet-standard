@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.io/datarhei/restreamer:2.12.0
+    image: docker.io/datarhei/restreamer:2.12.0@sha256:813acc9d41d2953b1e7fbb5b281f9a1f68d07fef4e1b30e34472b12d3db9426a
     volumes:
       - server-config:/core/config
       - server-data:/core/data
