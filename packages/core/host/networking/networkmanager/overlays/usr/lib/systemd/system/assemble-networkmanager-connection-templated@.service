@@ -13,7 +13,7 @@ After=generate-hostname-templated.service
 Type=oneshot
 ExecStartPre=mkdir -p /run/overlays/generated/etc/NetworkManager/system-connections.d/%i
 ExecStart=sh -c "\
-  cat /etc/NetworkManager/system-connections-templates.d/%i/* |
+  cat /etc/NetworkManager/system-connections-templates.d/%i/* | \
     /usr/libexec/render-templated-config \
-      >/run/overlays/generated/etc/NetworkManager/system-connections.d/%i/40-generated-templated.nmconnection
+      >/run/overlays/generated/etc/NetworkManager/system-connections.d/%i/40-generated-templated.nmconnection \
 "
