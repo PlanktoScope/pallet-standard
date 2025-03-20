@@ -1,6 +1,6 @@
 [Unit]
 Description=Assemble and process (with string interpolation) drop-in NetworkManager connection fragment template files into a drop-in NetworkManager connection fragment file for %i
-ConditionFileIsExecutable=/usr/libexec/assemble-networkmanager-connection-templated
+ConditionFileIsExecutable=/usr/libexec/render-templated-config
 ConditionPathIsDirectory=/etc/NetworkManager/system-connections-templates.d/%i
 # If there are services to generate a machine name and hostname (which can optionally be used in
 # templates), run those services first:
@@ -11,4 +11,9 @@ After=generate-hostname-templated.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/libexec/assemble-networkmanager-connection-templated %i
+ExecStartPre=mkdir -p /run/overlays/generated/etc/NetworkManager/system-connections.d/%i
+ExecStart=sh -c "\
+  cat /etc/NetworkManager/system-connections-templates.d/%i/* | \
+    /usr/libexec/render-templated-config \
+      >/run/overlays/generated/etc/NetworkManager/system-connections.d/%i/40-generated-templated.nmconnection \
+"

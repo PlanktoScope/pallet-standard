@@ -8,6 +8,11 @@ package:
     - https://github.com/PlanktoScope/pallet-standard
 
 deployment:
+  requires:
+    filesets:
+      - description: Shell script to string-interpolate a templated stdin to stdout
+        paths:
+          - /usr/libexec/render-templated-config
   provides:
     file-exports:
       # Hosts file assembly:
@@ -30,10 +35,8 @@ deployment:
         target: overlays/etc/hosts.d/30-ipv6-multicast
       # Templated origins list assembly:
       - description:
-          Shell script to generate a drop-in hosts fragment file from drop-in hosts fragment
-          templates
-        target: overlays/usr/libexec/assemble-hosts-templated
-      - description: systemd service to run the assemble-hosts-templated script during boot
+          systemd service to generate a drop-in hosts fragment file from drop-in hosts fragment
+          templates during boot
         target: overlays/usr/lib/systemd/system/assemble-hosts-templated.service
         # Note: we don't need to enable assemble-hosts-templated.service because
         # assemble-hosts.service depends on it, and assemble-hosts-templated.service is
