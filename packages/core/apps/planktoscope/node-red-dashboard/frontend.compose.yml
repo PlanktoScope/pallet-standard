@@ -10,6 +10,13 @@ services:
       caddy.handle_2: /ps/node-red-v2/api/* # FIXME: these APIs should be provided by the Python backend instead
       caddy.handle_2.reverse_proxy: host.docker.internal:1880
 
+      # Temporary public entrypoint for development of the v3 Node-RED dashboard:
+      # TODO: replace this with a proper public entrypoint when the dashboard is ready
+      # for testing. See https://github.com/PlanktoScope/PlanktoScope/pull/554
+      caddy.redir_3: /ps/node-red-v2/dashboard /ps/node-red-v2/dashboard/
+      caddy.handle_3: /ps/node-red-v2/dashboard/*
+      caddy.handle_3.reverse_proxy: host.docker.internal:1880
+
 networks:
   caddy-ingress:
     external: true
