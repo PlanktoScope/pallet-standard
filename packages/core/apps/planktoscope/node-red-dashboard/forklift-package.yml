@@ -56,14 +56,6 @@ deployment:
     # /home/pi/PlanktoScope/scripts/bash/usb_backup.sh,
     # /usr/share/planktoscope/installer-versioning.yml,
     # /etc/wpa_supplicant/wpa_supplicant.conf, /home/pi/device-backend/default-configs
-  provides:
-    file-exports:
-      - description: Node-RED settings file
-        target: overlays/etc/nodered/settings.js
-      - description: systemd service override for the system-provided nodered.service's start order & settings
-        target: overlays/etc/systemd/system/nodered.service.d/20-override.conf
-      - description: systemd service enablement for the system-provided nodered.service
-        target: overlays/etc/systemd/system/multi-user.target.wants/nodered.service
 
 features:
   editor:
