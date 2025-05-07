@@ -19,7 +19,7 @@ services:
     volumes:
       - server-data:/database
       - /home/pi/device-backend-logs:/home/pi/device-backend-logs
-    command: 'sh -c "chown -R 1000:1000 /database /home/pi/device-backend-logs"'
+    command: 'sh -c "chown -R 1000:1000 /database /home/pi/device-backend-logs; sleep 60"'
 networks:
   default:
     name: none

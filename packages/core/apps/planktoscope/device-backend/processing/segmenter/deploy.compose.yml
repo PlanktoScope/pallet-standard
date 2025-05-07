@@ -15,4 +15,4 @@ services:
     volumes:
       - /home/pi/data:/home/pi/data
       - /home/pi/device-backend-logs:/home/pi/device-backend-logs
-    command: 'sh -c "chown -R 1000:1000 /home/pi/data /home/pi/device-backend-logs"'
+    command: 'sh -c "chown -R 1000:1000 /home/pi/data /home/pi/device-backend-logs; sleep 60"'
