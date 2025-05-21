@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.io/portainer/portainer-ce:2.29.2@sha256:eaa1a7d27c81a0a4d52974378bc7113c3d389c7a4c5586c4e0ad7bc68e96e99f
+    image: docker.io/portainer/portainer-ce:2.30.1@sha256:efe1560377ccf297095fcdea7d44c4d79629a04a0098879b28a385262f14da71
     command: --tlsskipverify
     volumes:
       - server-data:/data
