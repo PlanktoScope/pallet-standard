@@ -2,6 +2,9 @@
 name: Merge Gatekeeper
 
 on:
+  push:
+    tags:
+      - 'v*' # merge-gatekeeper is required by the release-channel-* workflows
   pull_request:
     types:
       - opened
