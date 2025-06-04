@@ -1,9 +1,7 @@
 services:
   server:
     volumes:
-      - type: bind
-        source: /run/machine-name
-        target: /var/lib/planktoscope/machine-name # FIXME(ethanjli): update the segmenter to read from /run/machine-name
+      - /run/machine-name:/run/machine-name
       - /home/pi/data:/home/pi/data
       - /home/pi/device-backend-logs:/home/pi/device-backend-logs
     depends_on:
