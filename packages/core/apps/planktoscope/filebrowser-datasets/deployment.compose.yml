@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.io/filebrowser/filebrowser:v2.33.5@sha256:659a58c71b974dbf5fb0fd5453fec91e84b8c3729f74bb610f16e214352e56bd
+    image: docker.io/filebrowser/filebrowser:v2.33.7@sha256:e0969d7619096d704f1df790a80b9e00ee5240aedb401f87f104b70530cb7dca
     volumes:
       - /home/pi/data:/home/pi/data
       - /home/pi/data:/srv # this prevents filebrowser from making an unnamed volume
