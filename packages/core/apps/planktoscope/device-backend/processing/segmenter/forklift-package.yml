@@ -34,3 +34,12 @@ features:
           protocol: http
           paths:
             - /ps/processing/segmenter/streams/object.mjpg
+  deploy:
+    description: Adds bind mounts for the PlanktoScope distro's filesystem structure
+    compose-files:
+      - deploy.compose.yml
+    requires:
+      filesets:
+        - description: Machine name
+          paths:
+            - /run/machine-name
