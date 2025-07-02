@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.io/amir20/dozzle:v8.13.2@sha256:ba5929460e6b0e402582875c5daa6bc9365206416ecc0b762b9162460faa5f4f
+    image: docker.io/amir20/dozzle:v8.13.4@sha256:36707d180462e764eac81aac793f8352296048404fa4dea1f280fa3cefa7fce3
     volumes:
       - type: bind
         source: /run/docker.sock
