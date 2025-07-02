@@ -163,6 +163,13 @@ features:
       file-exports:
         - description: Drop-in Cockpit origins list
           target: overlays/etc/cockpit/origins-templates.d/40-mdns-hostname
+  allow-origins-templated-hostname:
+    provides:
+      description:
+        "Allow accessing Cockpit via the bare hostname, e.g. 'pkscope-metal-slope-23501'"
+      file-exports:
+        - description: Drop-in Cockpit origins list
+          target: overlays/etc/cockpit/origins-templates.d/50-hostname
   firewall-allow-direct:
     description:
       Firewall configuration to allow accessing Cockpit from directly-connected devices
