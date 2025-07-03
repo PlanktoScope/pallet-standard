@@ -43,14 +43,9 @@ deployment:
           - /actuator/pump
           - /actuator/focus
           - /imager/image
-          - /segmenter/segment
           - /status/pump
           - /status/focus
           - /status/imager
-          - /status/segmenter
-          - /status/segmenter/name
-          - /status/segmenter/object_id
-          - /status/segmenter/metric
     # TODO: add fileset dependencies for /home/pi/PlanktoScope/config.json,
     # /home/pi/PlanktoScope/hardware.json, /home/pi/data/img,
     # /home/pi/PlanktoScope/scripts/bash/usb_backup.sh,
@@ -63,11 +58,11 @@ features:
     compose-files:
       - editor.compose.yml
     tags:
-    - device-portal.name=Node-RED dashboard editor
-    - device-portal.description=Provides a Node-RED flow editor to modify the Node-RED dashboard
-    - device-portal.type=Browser applications
-    - device-portal.purpose=Software development
-    - device-portal.entrypoint=/admin/ps/node-red-v2/
+      - device-portal.name=Node-RED dashboard editor
+      - device-portal.description=Provides a Node-RED flow editor to modify the Node-RED dashboard
+      - device-portal.type=Browser applications
+      - device-portal.purpose=Software development
+      - device-portal.entrypoint=/admin/ps/node-red-v2/
     requires:
       networks:
         - description: Overlay network for Caddy to connect to upstream services
@@ -93,11 +88,11 @@ features:
     compose-files:
       - frontend.compose.yml
     tags:
-    - device-portal.name=Node-RED dashboard
-    - device-portal.description=Provides a Node-RED dashboard to operate the PlanktoScope
-    - device-portal.type=Browser applications
-    - device-portal.purpose=PlanktoScope operation
-    - device-portal.entrypoint=/ps/node-red-v2/ui/
+      - device-portal.name=Node-RED dashboard
+      - device-portal.description=Provides a Node-RED dashboard to operate the PlanktoScope
+      - device-portal.type=Browser applications
+      - device-portal.purpose=PlanktoScope operation
+      - device-portal.entrypoint=/ps/node-red-v2/ui/
     requires:
       networks:
         - description: Overlay network for Caddy to connect to upstream services
