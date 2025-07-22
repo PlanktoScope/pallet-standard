@@ -1,6 +1,6 @@
 services:
   server:
-    image: docker.io/filebrowser/filebrowser:v2.36.0@sha256:2f9c8b964f51d56a4e92583c8a09204722fba90dd66ae28836a2e3f563c7cb71
+    image: docker.io/filebrowser/filebrowser:v2.41.0@sha256:b7e05896700acf278bc4ee90cac1e13f17d7a983dfbe5744ee3690ee11dce766
     volumes:
       - type: bind
         source: /
